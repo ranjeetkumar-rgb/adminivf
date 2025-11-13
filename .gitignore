@@ -1,10 +1,10 @@
 # Laravel 11 .gitignore
 
 # Node modules
-/node_modules/
+# /node_modules/
 
 # Composer vendor
-/vendor/
+# /vendor/
 
 # Laravel 11 environment files
 .env
@@ -36,11 +36,11 @@ Thumbs.db
 /.phpstorm.meta.php/
 
 # Laravel Mix
-/public/hot
-/public/storage
-/public/mix-manifest.json
-/public/js/*.map
-/public/css/*.map
+# /public/hot
+# /public/storage
+# /public/mix-manifest.json
+# /public/js/*.map
+# /public/css/*.map
 
 # NPM/Yarn logs
 npm-debug.log*
