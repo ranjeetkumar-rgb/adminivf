@@ -244,6 +244,7 @@ Route::get('/debug/page-seo', function() {
     }
 })->name('debug.page-seo');
 
+
 // Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 // Route::get('{any}', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
 
