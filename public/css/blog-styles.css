@@ -1,0 +1,141 @@
+/* Blog Styling - This file shows how the blog styling fields can be applied */
+
+/* Default blog styling */
+.blog-content {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Heading styles */
+.blog-content h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+}
+
+.blog-content h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #34495e;
+}
+
+.blog-content h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #34495e;
+}
+
+.blog-content h4 {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #34495e;
+}
+
+.blog-content h5 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #34495e;
+}
+
+.blog-content h6 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #34495e;
+}
+
+/* Paragraph styling */
+.blog-content p {
+    margin-bottom: 1em;
+}
+
+/* Link styling */
+.blog-content a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.blog-content a:hover {
+    text-decoration: underline;
+}
+
+/* List styling */
+.blog-content ul, .blog-content ol {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+.blog-content li {
+    margin-bottom: 0.5em;
+}
+
+/* Blockquote styling */
+.blog-content blockquote {
+    border-left: 4px solid #3498db;
+    padding-left: 1em;
+    margin: 1em 0;
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+/* Code styling */
+.blog-content code {
+    background-color: #f8f9fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* Image styling */
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Table styling */
+.blog-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.blog-content th, .blog-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.blog-content th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .blog-content {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .blog-content h1 {
+        font-size: 2em;
+    }
+    
+    .blog-content h2 {
+        font-size: 1.75em;
+    }
+    
+    .blog-content h3 {
+        font-size: 1.4em;
+    }
+} 

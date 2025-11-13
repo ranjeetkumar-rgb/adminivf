@@ -1,0 +1,61 @@
+# Laravel 11 .gitignore
+
+# Node modules
+/node_modules/
+
+# Composer vendor
+/vendor/
+
+# Laravel 11 environment files
+.env
+.env.*.backup
+
+# Laravel 11 caches and logs
+/storage/*.key
+/storage/*.txt
+/storage/*.log
+/storage/debugbar/
+storage/app/public/
+storage/framework/cache/data/
+storage/framework/sessions/
+storage/framework/testing/
+storage/framework/views/
+storage/logs/
+
+# IDE / Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# PHPStorm specific
+/.phpstorm.meta.php/
+
+# Laravel Mix
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/js/*.map
+/public/css/*.map
+
+# NPM/Yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build and test artifacts
+/build/
+.phpunit.result.cache
+
+# Coverage reports
+coverage/
+
+# Laravel Telescope (if used)
+storage/telescope/
+
+# Ignoring Laravel Pint cache (if used)
+.pint.cache

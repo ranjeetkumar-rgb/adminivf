@@ -1,0 +1,266 @@
+<header id="header" class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-4 mb-4 md:mb-0 md:px-12">
+        <div class="flex flex-col md:flex-row md:items-center justify-between  space-y-4 md:space-y-0">
+            <div class="flex items-center justify-between px-4 md:px-0 py-2 bg-white">
+                <div class="flex items-center">
+                    <a href="{{ url('/') }}" class="flex items-center">
+                        @if($globalSettings && $globalSettings->site_logo)
+                            <img src="{{ asset('storage/' . $globalSettings->site_logo) }}" alt="{{ $globalSettings->site_name ?? 'India IVF' }}" style="height: 100px !important" class="h-10 md:h-16 w-auto object-contain">
+                        @else
+                            <img src="{{ asset('assets/images/No-1-IVF-Centre-IndiaIVF.webp') }}" alt="India IVF Logo" class="h-10 md:h-16 w-auto object-contain">
+                        @endif
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 md:space-x-4 w-full md:w-auto">
+                <div class="relative block">
+                    <input placeholder="Search articles..." class="w-[100%] md:w-72 pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:border-brand-pink">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <button class="hidden md:block bg-brand-blue hover:bg-brand-pink text-white px-4 md:px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all text-sm md:text-base">Shop</button>
+                <div class="flex flex-row items-center space-x-2 md:space-x-3">
+                    @if($globalSettings && $globalSettings->facebook_url)
+                    <a href="{{ $globalSettings->facebook_url }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <span class="w-8 h-8 bg-brand-pink text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </span>
+                    </a>
+                    @else
+                    <span class="w-8 h-8 bg-brand-pink text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </span>
+                    @endif
+
+                    @if($globalSettings && $globalSettings->twitter_url)
+                    <a href="{{ $globalSettings->twitter_url }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <span class="w-8 h-8 bg-brand-blue text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </span>
+                    </a>
+                    @else
+                    <span class="w-8 h-8 bg-brand-blue text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </span>
+                    @endif
+
+                    @if($globalSettings && $globalSettings->instagram_url)
+                    <a href="{{ $globalSettings->instagram_url }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <span class="w-8 h-8 bg-brand-pink text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </span>
+                    </a>
+                    @else
+                    <span class="w-8 h-8 bg-brand-pink text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </span>
+                    @endif
+
+                    @if($globalSettings && $globalSettings->whatsapp_number)
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $globalSettings->whatsapp_number) }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                            <i class="fab fa-whatsapp text-sm"></i>
+                        </span>
+                    </a>
+                    @else
+                    <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-all">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                    </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="hidden md:flex py-3 justify-between items-center overflow-x-auto sm:text-sm">
+                <a href="{{ url('/') }}">
+                    <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Home</span>
+                </a>
+                <div class="group">
+                    <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Planning for baby</button>
+                    <div class="absolute top-full bg-white border shadow-xl w-screen max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                        <div class="grid grid-cols-3 gap-6 w-full">
+                            <div>
+                                <h4 class="text-md font-semibold mb-2 text-brand-pink">Fertility Issues</h4>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">Difficulty Conceiving</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Female Infertility</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Male Infertility</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Unexplained Infertility</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Pregnancy Loss Care</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Failed IVF Solutions</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Second Opinion</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-md font-semibold mb-2 text-brand-pink">IVF &amp; Related Treatments</h4>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">IVF</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">ICSI</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">IUI</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Donor Egg Program</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Donor Sperm Program</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Surrogacy</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">IVF for Single Mothers</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">IVF for HIV-positive Couples</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-md font-semibold mb-2 text-brand-pink">Advanced Techniques</h4>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">Blastocyst Transfer</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Embryo Glue</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Laser Assisted Hatching</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Time-Lapse Embryo Monitoring</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Double Witnessing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">MACS</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Microfluidic Sperm Sorting</a></li>
+                                </ul><br>
+                                <h5 class="text-md font-semibold mb-2 text-brand-pink">Male Surgical Procedures</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">TESA</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">PESA</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Micro-TESE</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Testicular Mapping</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Surgical Innovations / Stem Cell Research</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Fertility Preservation</button>
+                    <div class="absolute top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                        <div class="grid gap-6 w-full">
+                            <div>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">Egg Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Sperm Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Embryo Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Fertility Preservation for Cancer Patients</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Social Egg Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Storage &amp; Legal Guidelines</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Fertility Wellness</button>
+                    <div class="absolute top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                        <div class="grid gap-6 w-full">
+                            <div>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">Fertility Tests &amp; Assessments</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">BMI Calculator &amp; Weight Management</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Fertility Diet &amp; Lifestyle Consultations</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Stress &amp; Mind-Body Support</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Fertility Supplements &amp; Products</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Centres</button>
+                    <div class="absolute top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                        <div class="grid gap-6 w-full">
+                            <div>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500">Delhi – South (Vasant Lok)</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Delhi – North (Rohini)</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Gurugram</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Noida</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Ghaziabad</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Srinagar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Our Pricing</span>
+                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Patient Resources</span>
+                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Academics</span>
+                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">International Patients</span>
+
+                <div class="group">
+                    <button id="desktopMenuBtn" class="text-gray-700 hover:text-brand-pink focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute hidden top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 group-hover:flex transition-all duration-300">
+                        <div class="grid gap-6 w-full">
+                            <div>
+                                <ul class="space-y-3">
+                                    <li><a href="#" class="hover:text-pink-500">Franchise Opportunities</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">Corporate Health Talks</a></li>
+                                    <li><a href="{{ url('blog') }}" class="hover:text-pink-500">Blog</a></li>
+                                    <li><a href="#" class="hover:text-pink-500">About Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white py-4 space-y-2">
+                <a href="{{ url('/') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink">Home</a>
+                <hr>
+                <button class="w-full flex justify-between items-center px-4 py-1 text-gray-700 hover:text-brand-pink" data-toggle="submenu">
+                    Planning for baby <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="px-8 hidden submenu space-y-1">
+                    <button class="w-full flex justify-between items-center text-gray-700 hover:text-brand-pink" data-toggle="submenu">
+                        Fertility Issues <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="px-4 hidden submenu space-y-1">
+                        <a href="#" class="block text-gray-600 hover:text-pink-500">Difficulty Conceiving</a>
+                        <a href="#" class="block text-gray-600 hover:text-pink-500">Female Infertility</a>
+                        <a href="#" class="block text-gray-600 hover:text-pink-500">Male Infertility</a>
+                        <a href="#" class="block text-gray-600 hover:text-pink-500">Unexplained Infertility</a>
+                        <a href="#" class="block text-gray-600 hover:text-pink-500">Pregnancy Loss Care</a>
+                        <a href="#" class="block text-gray-600 hover:text-pink-500">Failed IVF Solutions</a>
+                    </div>
+                    <button class="w-full flex justify-between items-center text-gray-700 hover:text-brand-pink" data-toggle="submenu">
+                        IVF &amp; Related Treatments <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                </div>
+                <hr>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink">Fertility Preservation</a>
+                <hr>
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink">Fertility Wellness</a>
+                <hr>
+                <button class="w-full flex justify-between items-center px-4 py-1 text-gray-700 hover:text-brand-pink" data-toggle="submenu">
+                    Centres <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="pl-4 hidden submenu space-y-1">
+                    <a href="#" class="block text-gray-600 hover:text-pink-500">Noida</a>
+                    <a href="#" class="block text-gray-600 hover:text-pink-500">Gurugram</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <script>
+        const mobileBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        if (mobileBtn) {
+            mobileBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+        }
+
+        document.querySelectorAll('[data-toggle="submenu"]').forEach(btn => {
+            btn.addEventListener("click", function() {
+                const submenu = this.nextElementSibling;
+                submenu.classList.toggle("hidden");
+                this.querySelector("i").classList.toggle("rotate-180");
+            });
+        });
+    </script>
+</header>

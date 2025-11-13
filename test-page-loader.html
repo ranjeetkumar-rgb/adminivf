@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Loader Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Page Loader Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button class="test-button" onclick="showLoader()">Show Loader</button>
+        <button class="test-button" onclick="hideLoader()">Hide Loader</button>
+        <button class="test-button" onclick="forceHideLoader()">Force Hide Loader</button>
+        <button class="test-button" onclick="debugLoader()">Debug Loader</button>
+        <button class="test-button" onclick="simulateBackNavigation()">Simulate Back Navigation</button>
+        
+        <div id="status" class="status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Instructions</h2>
+        <ol>
+            <li>Click "Show Loader" to display the page loader</li>
+            <li>Click "Hide Loader" to hide it normally</li>
+            <li>Click "Force Hide Loader" to force hide it</li>
+            <li>Click "Debug Loader" to see debug information in console</li>
+            <li>Click "Simulate Back Navigation" to test back navigation handling</li>
+            <li>Use browser back/forward buttons to test real navigation</li>
+        </ol>
+    </div>
+    
+    <div class="test-section">
+        <h2>Expected Behavior</h2>
+        <ul>
+            <li>Loader should show when navigating to this page</li>
+            <li>Loader should hide when page is fully loaded</li>
+            <li>Loader should show briefly when using browser back/forward</li>
+            <li>Loader should not get stuck in loading state</li>
+            <li>Force hide should work even if loader is stuck</li>
+        </ul>
+    </div>
+
+    <script>
+        function showStatus(message, type = 'success') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        function showLoader() {
+            if (window.showPageLoader) {
+                window.showPageLoader('Testing...');
+                showStatus('Loader shown');
+            } else {
+                showStatus('Page loader not available', 'error');
+            }
+        }
+
+        function hideLoader() {
+            if (window.hidePageLoader) {
+                window.hidePageLoader();
+                showStatus('Loader hidden');
+            } else {
+                showStatus('Page loader not available', 'error');
+            }
+        }
+
+        function forceHideLoader() {
+            if (window.forceHidePageLoader) {
+                window.forceHidePageLoader();
+                showStatus('Loader force hidden');
+            } else {
+                showStatus('Force hide function not available', 'error');
+            }
+        }
+
+        function debugLoader() {
+            if (window.debugPageLoader) {
+                window.debugPageLoader();
+                showStatus('Debug info logged to console');
+            } else {
+                showStatus('Debug function not available', 'error');
+            }
+        }
+
+        function simulateBackNavigation() {
+            // Simulate popstate event
+            window.dispatchEvent(new PopStateEvent('popstate'));
+            showStatus('Back navigation simulated');
+        }
+
+        // Test if page loader is available
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (window.pageLoader) {
+                    showStatus('Page loader is available and working');
+                } else {
+                    showStatus('Page loader not found', 'error');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

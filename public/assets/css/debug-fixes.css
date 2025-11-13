@@ -1,0 +1,41 @@
+/* Debug fixes for hamburger menu */
+#vertical-menu-btn {
+    position: relative !important;
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Ensure button is always visible and clickable */
+#vertical-menu-btn:hover {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Fix for mobile sidebar */
+@media (max-width: 992px) {
+    body.sidebar-enable .vertical-menu {
+        display: block !important;
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        width: 250px !important;
+        height: calc(100vh - 70px) !important;
+        z-index: 999 !important;
+        background: white !important;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1) !important;
+    }
+    
+    .vertical-menu {
+        display: none !important;
+    }
+}
+
+/* Ensure proper positioning on desktop */
+@media (min-width: 992px) {
+    #vertical-menu-btn {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+} 
