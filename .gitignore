@@ -11,16 +11,16 @@
 .env.*.backup
 
 # Laravel 11 caches and logs
-/storage/*.key
-/storage/*.txt
-/storage/*.log
-/storage/debugbar/
-storage/app/public/
-storage/framework/cache/data/
-storage/framework/sessions/
-storage/framework/testing/
-storage/framework/views/
-storage/logs/
+# /storage/*.key
+# /storage/*.txt
+# /storage/*.log
+# /storage/debugbar/
+# storage/app/public/
+# storage/framework/cache/data/
+# storage/framework/sessions/
+# storage/framework/testing/
+# storage/framework/views/
+# storage/logs/
 
 # IDE / Editor
 .idea/
