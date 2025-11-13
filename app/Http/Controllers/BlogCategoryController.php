@@ -39,7 +39,8 @@ class BlogCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:blog_categories,name',
         ]);
-        BlogCategory::create(['name' => $request->name]);
+        $slug = Str::slug($request->name);
+        BlogCategory::create(['name' => $request->name, 'slug' => $slug]);
         return redirect()->route('admin.blog-categories.index')->with('success', 'Category created successfully.');
     }
 
@@ -67,7 +68,8 @@ class BlogCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:blog_categories,name,' . $blogCategory->id,
         ]);
-        $blogCategory->update(['name' => $request->name]);
+        $slug = Str::slug($request->name);
+        $blogCategory->update(['name' => $request->name, 'slug' => $slug]);
         return redirect()->route('admin.blog-categories.index')->with('success', 'Category updated successfully.');
     }
 
