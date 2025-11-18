@@ -52,12 +52,16 @@
                                             <small class="text-muted">{{ Str::limit($blog->slug ?? '', 25) }}</small>
                                         </div>
                                     </td>
+                                    {{-- This is the code for your table cell --}}
                                     <td>
-                                        @if($blog->category)
-                                            <span class="badge bg-primary">{{ $blog->category->name }}</span>
-                                        @else
+                                        {{-- This loop checks the $blog->categories accessor --}}
+                                        @forelse($blog->categories as $category)
+                                            {{-- It will loop and show a badge for every category --}}
+                                            <span class="badge bg-primary">{{ $category->name }}</span>
+                                        @empty
+                                            {{-- This will show if the blog has no categories --}}
                                             <span class="badge bg-secondary">No Category</span>
-                                        @endif
+                                        @endforelse
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -93,25 +97,25 @@
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('admin.blog.show', $blog->id) }}" 
+                                            <a href="{{ route('admin.blog.show', $blog->id) }}"
                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.blog.edit', $blog->id) }}" 
+                                            <a href="{{ route('admin.blog.edit', $blog->id) }}"
                                                class="btn btn-sm btn-warning" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" 
+                                                <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
                                                         data-bs-toggle="dropdown" title="Engagement">
                                                     <i class="fas fa-chart-line"></i>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" 
+                                                    <li><a class="dropdown-item" href="#"
                                                            onclick="resetLikes({{ $blog->id }})">
                                                         <i class="fas fa-heart-broken me-2"></i>Reset Likes
                                                     </a></li>
-                                                    <li><a class="dropdown-item" href="#" 
+                                                    <li><a class="dropdown-item" href="#"
                                                            onclick="resetViews({{ $blog->id }})">
                                                         <i class="fas fa-eye-slash me-2"></i>Reset Views
                                                     </a></li>
@@ -120,7 +124,7 @@
                                                     </a></li>
                                                 </ul>
                                             </div>
-                                            <button type="button" class="btn btn-sm btn-danger" title="Delete" 
+                                            <button type="button" class="btn btn-sm btn-danger" title="Delete"
                                                     onclick="deleteConfirm('{{ $blog->title }}', event, this, '{{ route('admin.blog.destroy', $blog->id) }}')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
@@ -139,7 +143,7 @@
     <!-- dashboard init -->
     <script src="{{ URL::asset('/assets/js/pages/dashboard.init.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
-    
+
     <script>
         function resetLikes(blogId) {
             if (confirm('Are you sure you want to reset likes for this blog?')) {

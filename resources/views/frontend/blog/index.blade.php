@@ -40,7 +40,7 @@
                     @endforeach
                 </div>
             </div>
-            
+
             <!-- Content Type Filters -->
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <span class="font-semibold text-support-grey text-sm sm:text-base">Content Type:</span>
@@ -58,7 +58,7 @@
                         <i class="fas fa-list text-sm"></i> <span>All</span>
                     </button>
                 </div>
-                
+
                 <!-- Language Selector - Hidden on mobile, shown on larger screens -->
                 <div class="hidden lg:block ml-auto">
                     <select class="px-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:border-primary-pink text-sm">
@@ -98,7 +98,10 @@
                     </div>
                     <div class="p-4 sm:p-6">
                         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-3">
-                            <span class="text-primary-blue text-xs sm:text-sm font-medium">{{ $featuredBlog->category->name ?? 'General' }}</span>
+                            <span class="text-primary-blue text-xs sm:text-sm font-medium">
+                                {{ $featuredBlog->categories->first()->name ?? 'General' }}
+                            </span>
+                            {{-- <span class="text-primary-blue text-xs sm:text-sm font-medium">{{ $featuredBlog->category->name ?? 'General' }}</span> --}}
                             <span class="text-gray-400 hidden sm:inline">•</span>
                             <span class="text-gray-500 text-xs sm:text-sm">{{ $featuredBlog->video_duration ?: $featuredBlog->reading_time }}</span>
                         </div>
@@ -140,9 +143,12 @@
                                  src="{{ $blog->featured_image ? asset('storage/' . $blog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}"
                                  alt="{{ $blog->title }}">
                             <div class="absolute top-2 sm:top-3 left-2 sm:left-3">
-                                <span class="{{ $blog->category->color_class ?? 'bg-primary-blue' }} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                                    {{ $blog->category->name ?? 'General' }}
+                                <span class="{{ $blog->categories->first()->color_class ?? 'bg-primary-blue' }} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                                    {{ $blog->categories->first()->name ?? 'General' }}
                                 </span>
+                                {{-- <span class="{{ $blog->category->color_class ?? 'bg-primary-blue' }} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                                    {{ $blog->category->name ?? 'General' }}
+                                </span> --}}
                             </div>
                             @if($blog->content_type === 'video')
                             <div class="absolute top-2 sm:top-3 right-2 sm:right-3">

@@ -31,7 +31,6 @@ trait HasImageUpload
             'max_width' => 50000,  // Allow very large images
             'max_height' => 50000, // Allow very large images
         ];
-
         // Validate image with permissive size limits
         $validation = ImageService::validateImage($file, $validationOptions);
         if (!$validation['valid']) {
@@ -43,12 +42,10 @@ trait HasImageUpload
             ]);
             throw new \Exception($errorMessage);
         }
-
         // Delete old image if exists
         if ($this->$field) {
             $this->deleteImage($field);
         }
-
         // Upload and compress image
         $path = $this->getImagePath($field);
         $imagePath = ImageService::compressAndUpload($file, $path, $options);
@@ -88,7 +85,7 @@ trait HasImageUpload
                 try {
                     $imagePath = $this->uploadImage($file, $field, $options);
                     $uploadedImages[] = $imagePath;
-                    
+
                     // Get compression stats
                     $stats = ImageService::getCompressionStats($file, $imagePath);
                     $compressionStats[] = [
@@ -323,13 +320,10 @@ trait HasImageUpload
     public function uploadImageWithPreset(UploadedFile $file, string $field = 'image', string $preset = 'medium')
     {
         $presets = ImageService::getCompressionPresets();
-        
         if (!isset($presets[$preset])) {
             throw new \Exception("Invalid compression preset: {$preset}");
         }
-
         $options = array_merge($this->getImageOptions($field), ['preset' => $preset]);
-        
         return $this->uploadImage($file, $field, $options);
     }
 
@@ -344,4 +338,4 @@ trait HasImageUpload
         $path = $this->getImagePath('image');
         return ImageService::batchCompressImages($path, $options);
     }
-} 
+}

@@ -5,18 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Traits\HasImageUpload;
+use App\Models\BlogCategory;
+use App\Models\Comment;
+use App\Models\BlogLike;
+
 
 class Blog extends Model
 {
     use HasImageUpload;
-    
+
     protected $fillable = [
-        'title', 'description', 'content', 'excerpt', 'slug', 'image', 'featured_image',
-        'meta_title', 'meta_description', 'meta_keywords', 'og_title', 'og_description', 
-        'og_image', 'canonical_url', 'focus_keyword', 'author_name', 'author_title', 
-        'author_bio', 'author_image', 'category_id', 'published', 'featured', 
-        'published_at', 'video_url', 'video_duration', 'video_description', 
-        'image_caption', 'views', 'likes', 'comments_count', 'shares', 'rating', 
+        'title', 'description','description1','description2','description3','description4','description5','key_tests_heading'
+        ,'key_tests_content','key_tests_section_1','key_tests_section_2','key_tests_section_3','key_tests_section_4','male_factor_and_key_male_fertility',
+        'icsi','lifestyle','nutrition','exercise','avoid','clinic','laboratory_standards','experienced_team',
+        'transparent_success_rates','dr_review','previous_attempts','success_after_attempts','emotional_support',
+        'partner_support','support_groups','professinal_counselling','personalized_treatment','india_advantage',
+        'conclusion','your_journey','user_write_and_tag_create','tags',
+        'content', 'excerpt', 'slug', 'image', 'featured_image',
+        'meta_title', 'meta_description', 'meta_keywords', 'og_title', 'og_description',
+        'og_image', 'canonical_url', 'focus_keyword', 'author_name', 'author_title',
+        'author_bio', 'author_image', 'categories', 'published', 'featured',
+        'published_at', 'video_url', 'video_duration', 'video_description',
+        'image_caption', 'views', 'likes', 'comments_count', 'shares', 'rating',
         'tags', 'meta_tags', 'index_follow',
     ];
 
@@ -28,11 +38,19 @@ class Blog extends Model
         'published_at' => 'datetime',
     ];
 
-    public function category()
+    // In your app/Models/Blog.php
+    public function categories()
     {
-        return $this->belongsTo(BlogCategory::class, 'category_id');
+        return $this->belongsToMany(BlogCategory::class);
     }
 
+    public function getCategoriesAttribute($value)
+    {
+        if (empty($value)) {
+            return collect();
+        }
+        return BlogCategory::whereIn('id', json_decode($value))->get();
+    }
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -75,17 +93,36 @@ class Blog extends Model
     }
 
     // Scope for related blogs
-    public function scopeRelated(Builder $query, $categoryId, $excludeId = null, $limit = 3)
+    // public function scopeRelated(Builder $query, $categoryId, $excludeId = null, $limit = 3)
+    // {
+    //     $query = $query->where('category_id', $categoryId);
+
+    //     if ($excludeId) {
+    //         $query->where('id', '!=', $excludeId);
+    //     }
+
+    //     return $query->limit($limit);
+    // }
+    public function scopeRelated(Builder $query, array $categoryIds, $excludeId = null, $limit = 3)
     {
-        $query = $query->where('category_id', $categoryId);
-        
+        if (empty($categoryIds)) {
+            return $query;
+        }
+        $query->where(function(Builder $q) use ($categoryIds) {
+            foreach ($categoryIds as $id) {
+                $q->orWhereJsonContains('categories', $id);
+            }
+        });
         if ($excludeId) {
             $query->where('id', '!=', $excludeId);
         }
-        
         return $query->limit($limit);
     }
 
+    public function blogs()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
     // Get reading time estimate
     public function getReadingTimeAttribute()
     {
@@ -154,7 +191,7 @@ class Blog extends Model
     {
         $videoDuration = $this->attributes['video_duration'] ?? null;
         $videoUrl = $this->attributes['video_url'] ?? null;
-        
+
         if ($videoUrl && $videoDuration) {
             return $videoDuration . ' min video';
         }
@@ -165,11 +202,11 @@ class Blog extends Model
     public function getVideoEmbedUrlAttribute()
     {
         $videoUrl = $this->attributes['video_url'] ?? null;
-        
+
         if (!$videoUrl) {
             return null;
         }
-        
+
         // Parse different video platforms
         if (strpos($videoUrl, 'youtube.com') !== false || strpos($videoUrl, 'youtu.be') !== false) {
             // YouTube URL
@@ -185,7 +222,7 @@ class Blog extends Model
             // Direct video file
             return $videoUrl;
         }
-        
+
         return null;
     }
 
@@ -193,11 +230,11 @@ class Blog extends Model
     public function getIsExternalVideoAttribute()
     {
         $embedUrl = $this->video_embed_url;
-        
+
         if (!$embedUrl) {
             return false;
         }
-        
+
         return strpos($embedUrl, 'youtube.com') !== false || strpos($embedUrl, 'vimeo.com') !== false;
     }
 }

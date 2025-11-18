@@ -256,6 +256,10 @@
                 <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
                 <a href="{{ route('blog.index') }}" class="text-gray-500 hover-brand-pink cursor-pointer whitespace-nowrap">Blog</a>
                 <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                {{-- @if($blog->category)
+                <a href="{{ route('blog.category', $blog->category->slug) }}" class="text-gray-500 hover-brand-pink cursor-pointer whitespace-nowrap">{{ $blog->category->name }}</a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                @endif --}}
                 @if($blog->categories->first())
                 <a href="{{ route('blog.category', $blog->categories->first()->slug) }}" class="text-gray-500 hover-brand-pink cursor-pointer whitespace-nowrap">{{ $blog->categories->first()->name }}</a>
                 <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
@@ -269,6 +273,8 @@
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                    <!-- <span class="text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium" style="color: #3e73b9;">{{ $blog->category->name ?? 'General' }}</span>
+                    <span class="text-gray-400 hidden sm:inline">•</span> -->
                     <span class="bg-brand-blue text-white px-4 py-2 rounded-full text-sm font-medium">{{ $blog->categories->first()->name ?? 'General' }}</span>
                     <span class="text-gray-400 hidden sm:inline">•</span>
                     <span class="text-gray-600 text-xs sm:text-sm" id="reading-time">{{ $blog->reading_time }}</span>
@@ -315,30 +321,77 @@
         </div>
     </section>
     <!-- Hero Media Section -->
-    {{-- <section id="hero-media" class="bg-white py-6 sm:py-8">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                @if($blog->image)
-                <div class="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
-                    <img class="w-full h-[250px] sm:h-[400px] lg:h-[500px] object-cover"
-                        src="{{ $blog->image ? asset('storage/' . $blog->image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/70181682fe-facb641d12e787079343.png' }}"
-                        alt="{{ $blog->title }}">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-6">
-                        <p class="text-white text-xs sm:text-sm">{{ $blog->image_caption ?: 'Photo: ' . $blog->title }}</p>
-                    </div>
-                </div>
-                @endif
-            </div>
-        </div>
-    </section> --}}
     <section id="hero-media" class="bg-white py-6 sm:py-8">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
-                {{-- Video Logic Commented Out
-                @if($blog->content_type === 'video' && $blog->video_url)
-                     Video content code here...
-                @else
-                --}}
+                {{-- @if($blog->content_type === 'video' && $blog->video_url)
+                <div class="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
+                    @php
+                        $embedUrl = $blog->video_embed_url;
+                        $thumbnail = $blog->featured_image ? asset('storage/' . $blog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/70181682fe-facb641d12e787079343.png';
+                    @endphp
+
+                    @if($embedUrl)
+                        <div class="relative w-full h-[250px] sm:h-[400px] lg:h-[500px] bg-black">
+                            @if($blog->is_external_video)
+                                <!-- YouTube/Vimeo iframe -->
+                                <iframe
+                                    class="w-full h-full rounded-xl sm:rounded-2xl"
+                                    src="{{ $embedUrl }}"
+                                    title="{{ $blog->title }}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                                </iframe>
+                            @else
+                                <!-- Direct video file -->
+                                <video
+                                    class="w-full h-full rounded-xl sm:rounded-2xl object-cover"
+                                    controls
+                                    preload="metadata"
+                                    poster="{{ $thumbnail }}"
+                                    title="{{ $blog->title }}">
+                                    <source src="{{ $embedUrl }}" type="video/mp4">
+                                    <source src="{{ $embedUrl }}" type="video/webm">
+                                    <source src="{{ $embedUrl }}" type="video/ogg">
+                                    Your browser does not support the video tag.
+                                </video>
+                            @endif
+
+                            @if($blog->video_description)
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-6">
+                                    <p class="text-white text-xs sm:text-sm">{{ $blog->video_description }}</p>
+                                </div>
+                            @endif
+                        </div>
+                    @else
+                        <!-- Fallback for unsupported URLs -->
+                        <div class="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg video-overlay">
+                            <img class="w-full h-[250px] sm:h-[400px] lg:h-[500px] object-cover"
+                                src="{{ $thumbnail }}"
+                                alt="{{ $blog->title }}">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/50">
+                                <div class="text-center text-white px-4">
+                                    <div class="mb-3 sm:mb-4">
+                                        <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M8 5v10l8-5-8-5z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg sm:text-xl font-bold mb-2">Video Content</h3>
+                                    <p class="text-xs sm:text-sm mb-3 sm:mb-4">{{ $blog->video_description ?: 'Watch: ' . $blog->title }}</p>
+                                    <a href="{{ $blog->video_url }}" target="_blank" rel="noopener noreferrer"
+                                       class="inline-flex items-center px-3 sm:px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors text-xs sm:text-sm">
+                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 12l-4-4h8l-4 4z"/>
+                                        </svg>
+                                        Watch Video
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                @else --}}
                 @if($blog->image)
                 <div class="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
                     <img class="w-full h-[250px] sm:h-[400px] lg:h-[500px] object-cover"
@@ -404,23 +457,35 @@
                         @endif
                         @if($blog->description1)
                         <div class="highlight-box">
-                            <h4 class="text-brand-pink font-semibold mb-3"><i class="mr-2" data-fa-i2svg=""><svg class="svg-inline--fa fa-lightbulb" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lightbulb" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2l0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4l0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"></path></svg></i>Key Insight</h4>
-                             {!! $blog->description1 !!}
+                            <h4 class="text-brand-pink font-semibold mb-3"><i class="mr-2" data-fa-i2svg=""><svg class="svg-inline--fa fa-lightbulb" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lightbulb" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2l0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4l0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"></path></svg></i>Key Insight</h4>
+                             <p class="mb-0">{!! $blog->description1 !!}</p>
                         </div>
                         @endif
                         <div id="age-factor" class="mb-12">
                             @if($blog->description2)
                                 {!! $blog->description2 !!}
+                                {{-- <h2>Age: The Primary Factor in IVF Success</h2>
+                                <p>Age is undeniably the most significant factor affecting IVF success rates, particularly for women. As women age, both the quantity and quality of eggs decline, directly impacting the chances of successful fertilization and healthy embryo development.</p>
+                                <h3>Success Rates by Age Group</h3>
+                                <ul>
+                                    <li><strong>Under 30 years:</strong> 65-70% success rate per cycle</li>
+                                    <li><strong>30-34 years:</strong> 55-60% success rate per cycle</li>
+                                    <li><strong>35-39 years:</strong> 40-45% success rate per cycle</li>
+                                    <li><strong>40-42 years:</strong> 25-30% success rate per cycle</li>
+                                    <li><strong>Over 42 years:</strong> 10-15% success rate per cycle</li>
+                                </ul> --}}
                             @endif
                             @if($blog->description3)
                                <blockquote>
                                  {!! $blog->description3 !!}
+                                 {{-- "Age affects not only the quantity of eggs but also their genetic integrity. Women over 35 face increased risks of chromosomal abnormalities, which is why we often recommend preimplantation genetic testing (PGT) for this age group." - Dr. Sarah Patel --}}
                                 </blockquote>
                             @endif
                             @if($blog->description4)
                                <div class="bg-blue-50 border-l-4 border-brand-blue p-6 my-6">
                                 {!! $blog->description4 !!}
+                                 {{-- <h4 class="font-semibold brand-blue mb-3">Understanding Biological Clock</h4> --}}
+                                 {{-- <p class="mb-0">Women are born with all the eggs they will ever have. Unlike sperm, which regenerates every 72 days, egg quality cannot be improved once formed. This is why age has such a profound impact on fertility outcomes.</p> --}}
                                 </div>
                             @endif
                         </div>
@@ -448,6 +513,8 @@
                             @if($blog->description5)
                                 {!! $blog->description5 !!}
                             @endif
+                            {{-- <h2>Ovarian Reserve Assessment</h2> --}}
+                            {{-- <p>Ovarian reserve refers to the quantity and quality of eggs remaining in a woman's ovaries. This assessment is crucial for predicting IVF success and determining the most appropriate treatment protocol.</p> --}}
                             @if($blog->key_tests_heading)
                                 <h3>
                                     <h2> {{ $blog->key_tests_heading }} </h2>
@@ -457,63 +524,75 @@
                                 @if($blog->key_tests_section_1)
                                    <div class="border border-gray-200 rounded-lg p-4">
                                      {!! $blog->key_tests_section_1 !!}
+                                     {{-- <h4 class="font-semibold brand-pink mb-2">AMH (Anti-Müllerian Hormone)</h4>
+                                     <p class="text-sm text-gray-600">Measures the number of developing follicles in the ovaries. Higher levels indicate better ovarian reserve.</p> --}}
                                     </div>
                                 @endif
                                 @if($blog->key_tests_section_2)
                                     <div class="border border-gray-200 rounded-lg p-4">
                                         {!! $blog->key_tests_section_2 !!}
+                                        {{-- <h4 class="font-semibold brand-pink mb-2">FSH (Follicle Stimulating Hormone)</h4>
+                                        <p class="text-sm text-gray-600">Measured on day 2-3 of the menstrual cycle. Lower levels typically indicate better ovarian function.</p> --}}
                                     </div>
                                 @endif
                                 @if($blog->key_tests_section_3)
                                   <div class="border border-gray-200 rounded-lg p-4">
                                      {!! $blog->key_tests_section_3 !!}
+                                     {{-- <h4 class="font-semibold brand-pink mb-2">Antral Follicle Count (AFC)</h4>
+                                     <p class="text-sm text-gray-600">Ultrasound measurement of small follicles in the ovaries, indicating potential egg yield.</p> --}}
                                     </div>
                                 @endif
                                 @if($blog->key_tests_section_4)
                                    <div class="border border-gray-200 rounded-lg p-4">
                                      {!! $blog->key_tests_section_4 !!}
+                                     {{-- <h4 class="font-semibold brand-pink mb-2">Estradiol (E2) Levels</h4>
+                                     <p class="text-sm text-gray-600">Hormone levels that help assess overall ovarian function and response potential.</p> --}}
                                     </div>
                                 @endif
                             </div>
                             @if($blog->key_tests_content)
-                                <p> {!! $blog->key_tests_content !!} </p>
+                                <p> {{ $blog->key_tests_content }} </p>
                             @endif
                         </div>
                         @if($blog->male_factor_and_key_male_fertility || $blog->icsi)
                             <div id="male-factors" class="mb-12">
                                 {!! $blog->male_factor_and_key_male_fertility !!}
+                                {{-- <h2>Male Factor Considerations</h2>
+                                <p>While much focus is placed on female factors, male fertility issues contribute to approximately 40-50% of all infertility cases. Understanding and addressing male factors is crucial for IVF success.</p>
+                                <h3>Key Male Fertility Parameters</h3>
+                                <ul>
+                                    <li><strong>Sperm Count:</strong> Adequate number of sperm for fertilization</li>
+                                    <li><strong>Sperm Motility:</strong> Ability of sperm to move effectively</li>
+                                    <li><strong>Sperm Morphology:</strong> Normal shape and structure of sperm</li>
+                                    <li><strong>DNA Fragmentation:</strong> Genetic integrity of sperm</li>
+                                </ul> --}}
                                 <div class="bg-pink-50 border-l-4 border-brand-pink p-6 my-6">
                                     {!! $blog->icsi !!}
+                                    {{-- <h4 class="font-semibold brand-pink mb-3">ICSI: When Male Factors Impact Success</h4>
+                                    <p class="mb-0">Intracytoplasmic Sperm Injection (ICSI) can overcome many male fertility challenges by directly injecting a single sperm into each egg, significantly improving fertilization rates even with poor sperm parameters.</p> --}}
                                 </div>
                             </div>
                         @endif
                         <!-- Video Content Section -->
                         <div class="my-12">
-                    @if(!empty($blog->video_url))
-                        @php
-                            // Extract YouTube video ID
-                            parse_str(parse_url($blog->video_url, PHP_URL_QUERY), $ytParams);
-                            $youtubeId = $ytParams['v'] ?? null;
-                        @endphp
-
-                        @if($youtubeId)
-                                <div class="relative rounded-2xl overflow-hidden shadow-lg">
-                                    <iframe
-                                        width="100%"
-                                        height="400"
-                                        src="https://www.youtube.com/embed/{{ $youtubeId }}"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
+                            @if(isset($blog->video_url))
+                            <div class="relative rounded-2xl overflow-hidden shadow-lg video-overlay">
+                                <video class="w-full h-[400px] object-cover" controls>
+                                    <source src="{{ $blog->video_url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                {{-- <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                                    <h4 class="text-white font-semibold mb-2">Watch: Dr. Patel Explains IVF Success Factors</h4>
+                                    <p class="text-white text-sm">15-minute expert discussion on maximize your IVF success chances</p>
+                                </div> --}}
+                            </div>
                             @endif
-                        @endif
                         <div id="lifestyle-impact" class="mb-12">
                              @if($blog->lifestyle)
                                  {!! $blog->lifestyle !!}
                              @endif
-                             @if($blog->nutrition || $blog->exercise)
+                            {{-- <h2>Lifestyle Impact on Success</h2> --}}
+                            {{-- <p>Your lifestyle choices can significantly influence IVF success rates. While some factors like age cannot be changed, lifestyle modifications can improve your chances of conception.</p> --}}
                             <h3>Positive Lifestyle Factors</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
                                 <div>
@@ -528,6 +607,12 @@
                                     </h4>
                                     {!! $blog->nutrition !!}
                                 @endif
+                                {{-- <ul class="text-sm space-y-1">
+                                    <li>Mediterranean diet rich in antioxidants</li>
+                                    <li>Adequate folic acid supplementation</li>
+                                    <li>Omega-3 fatty acids</li>
+                                    <li>Limited processed foods</li>
+                                </ul> --}}
                                 </div>
                                 <div>
                                    @if($blog->exercise)
@@ -540,10 +625,15 @@
                                         Exercise
                                     </h4>
                                     {!! $blog->exercise !!}
+                                    {{-- <ul class="text-sm space-y-1">
+                                        <li>Moderate regular exercise</li>
+                                        <li>Stress-reducing activities like yoga</li>
+                                        <li>Maintaining healthy BMI (18.5-24.9)</li>
+                                        <li>Avoiding excessive high-intensity training</li>
+                                    </ul> --}}
                                     @endif
                                 </div>
                             </div>
-                            @endif
                             @if($blog->avoid)
                             <h3>Factors to Avoid</h3>
                             <div class="bg-red-50 border border-red-200 rounded-lg p-6 my-6">
@@ -552,7 +642,37 @@
                                     @if($blog->avoid)
                                     {!! $blog->avoid !!}
                                     @endif
+                                    {{-- <i class="text-red-500" data-fa-i2svg="">
+                                        <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                                        </svg>
+                                    </i>
+                                    <strong>Smoking:</strong> Reduces success rates by up to 50% --}}
                                 </li>
+                                {{-- <li class="flex items-center gap-2">
+                                    <i class="text-red-500" data-fa-i2svg="">
+                                        <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                                        </svg>
+                                    </i>
+                                    <strong>Excessive alcohol:</strong> Negatively impacts egg and sperm quality
+                                </li> --}}
+                                {{-- <li class="flex items-center gap-2">
+                                    <i class="text-red-500" data-fa-i2svg="">
+                                        <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                                        </svg>
+                                    </i>
+                                    <strong>High stress levels:</strong> Can disrupt hormonal balance
+                                </li> --}}
+                                {{-- <li class="flex items-center gap-2">
+                                    <i class="text-red-500" data-fa-i2svg="">
+                                        <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                                        </svg>
+                                    </i>
+                                    <strong>Extreme weight:</strong> Both underweight and obesity affect fertility
+                                </li> --}}
                                 </ul>
                             </div>
                             @endif
@@ -562,6 +682,8 @@
                             @if($blog->clinic)
                              {!! $blog->clinic !!}
                             @endif
+                            {{-- <h2>Clinic and Technology Factors</h2>
+                            <p>The choice of fertility clinic and the technologies they employ can significantly impact your IVF success rates. Not all clinics are created equal, and understanding what to look for is crucial.</p> --}}
                             @if($blog->laboratory_standards || $blog->experienced_team || $blog->transparent_success_rates || $blog->dr_review)
                             <h3>Key Clinic Quality Indicators</h3>
                             <div class="space-y-4 my-6">
@@ -574,6 +696,8 @@
                                     </i>
                                         <div>
                                             {!! $blog->laboratory_standards !!}
+                                            {{-- <h4 class="font-semibold brand-grey mb-2">Laboratory Standards</h4>
+                                            <p class="text-sm text-gray-600">State-of-the-art embryology labs with strict quality control measures and optimal environmental conditions for embryo development.</p> --}}
                                         </div>
                                     </div>
                                 @endif
@@ -586,6 +710,8 @@
                                     </i>
                                     <div>
                                         {!! $blog->experienced_team !!}
+                                        {{-- <h4 class="font-semibold brand-grey mb-2">Experienced Team</h4>
+                                        <p class="text-sm text-gray-600">Board-certified reproductive endocrinologists and experienced embryologists with proven track records.</p> --}}
                                     </div>
                                 </div>
                                 @endif
@@ -598,6 +724,8 @@
                                     </i>
                                     <div>
                                         {!! $blog->transparent_success_rates !!}
+                                        {{-- <h4 class="font-semibold brand-grey mb-2">Transparent Success Rates</h4>
+                                        <p class="text-sm text-gray-600">Clinics that provide detailed, age-specific success rates and are transparent about their outcomes.</p> --}}
                                     </div>
                                 </div>
                                 @endif
@@ -606,10 +734,10 @@
                             @if($blog->dr_review)
                             <blockquote>
                                  {!! $blog->dr_review !!}
+                                {{-- "At India IVF, we invest continuously in the latest technology and training because we understand that every detail matters when it comes to creating life. Our success rates reflect this commitment to excellence." - Dr. Sarah Patel --}}
                             </blockquote>
                             @endif
                         </div>
-                        @endif
                         <!-- Another CTA Card -->
                         <div class="cta-card rounded-2xl p-8 my-12 text-center">
                             <div class="max-w-lg mx-auto">
@@ -628,9 +756,20 @@
                         @if($blog->previous_attempts || $blog->success_after_attempts)
                         <div id="previous-attempts" class="mb-12">
                             {!! $blog->previous_attempts !!}
+                            {{-- <h2>Previous IVF Attempts and Learning</h2>
+                            <p>If you've had previous IVF cycles, this information is invaluable for improving future success rates. Each cycle provides important data that can guide treatment modifications.</p>
+                            <h3>What We Learn from Previous Cycles</h3>
+                            <ul>
+                                <li><strong>Ovarian Response:</strong> How well you responded to stimulation medications</li>
+                                <li><strong>Egg Quality:</strong> Fertilization rates and embryo development patterns</li>
+                                <li><strong>Implantation Factors:</strong> Whether embryos successfully implanted</li>
+                                <li><strong>Protocol Optimization:</strong> Adjustments needed for better outcomes</li>
+                            </ul> --}}
                             @if($blog->success_after_attempts)
                             <div class="bg-blue-50 border-l-4 border-brand-blue p-6 my-6">
                                 {!! $blog->success_after_attempts !!}
+                                {{-- <h4 class="font-semibold brand-blue mb-3">Success After Multiple Attempts</h4>
+                                <p class="mb-0">Research shows that cumulative success rates improve with multiple cycles. Many couples achieve success on their second or third attempt, especially when protocols are optimized based on previous cycle data.</p> --}}
                             </div>
                             @endif
                         </div>
@@ -638,6 +777,8 @@
                         @if($blog->emotional_support || $blog->partner_support || $blog->support_groups || $blog->professinal_counselling)
                         <div id="emotional-support" class="mb-12">
                             {!! $blog->emotional_support !!}
+                            {{-- <h2>Emotional Support Systems</h2>
+                            <p>The emotional aspect of IVF treatment is often underestimated, yet it plays a crucial role in overall success. Stress management and emotional well-being can impact hormonal balance and treatment outcomes.</p> --}}
                             <h3>Building Your Support Network</h3>
                             @if($blog->partner_support || $blog->support_groups || $blog->professinal_counselling)
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
@@ -649,6 +790,8 @@
                                             </svg>
                                         </i>
                                        {!! $blog->partner_support !!}
+                                    {{-- <h4 class="font-semibold brand-grey mb-2">Partner Support</h4>
+                                    <p class="text-sm text-gray-600">Open communication and mutual support throughout the journey</p> --}}
                                     </div>
                                 @endif
                                 @if($blog->support_groups)
@@ -659,6 +802,8 @@
                                         </svg>
                                     </i>
                                     {!! $blog->support_groups !!}
+                                    {{-- <h4 class="font-semibold brand-grey mb-2">Support Groups</h4>
+                                    <p class="text-sm text-gray-600">Connect with others going through similar experiences</p> --}}
                                 </div>
                                 @endif
                                 @if($blog->professinal_counselling)
@@ -669,6 +814,8 @@
                                         </svg>
                                     </i>
                                     {!! $blog->professinal_counselling !!}
+                                    {{-- <h4 class="font-semibold brand-grey mb-2">Professional Counseling</h4>
+                                    <p class="text-sm text-gray-600">Expert guidance for managing treatment stress</p> --}}
                                 </div>
                                 @endif
                             </div>
@@ -680,9 +827,18 @@
                             @if($blog->personalized_treatment)
                                 {!! $blog->personalized_treatment !!}
                             @endif
+                            {{-- <h2>Personalized Treatment Approach</h2>
+                            <p>At India IVF, we understand that every patient is unique. Our personalized approach considers all factors affecting your individual success rate to create the most effective treatment plan.</p>
+                            <h3>Our Comprehensive Assessment Process</h3>
+                            <ol>
+                                <li><strong>Detailed Medical History:</strong> Complete evaluation of both partners' medical backgrounds</li>
+                                <li><strong>Advanced Diagnostic Testing:</strong> Comprehensive fertility assessments using latest technology</li>
+                                <li><strong>Lifestyle Evaluation:</strong> Assessment of factors that can be optimized for better outcomes</li>
+                                <li><strong>Protocol Customization:</strong> Tailored stimulation protocols based on individual response patterns</li>
+                                <li><strong>Ongoing Monitoring:</strong> Continuous adjustment of treatment based on response</li>
+                            </ol> --}}
                             @if($blog->india_advantage)
-                            {{-- <div class="highlight-box"> --}}
-                            <div>
+                            <div class="highlight-box">
                                 <h4 class="text-brand-pink font-semibold mb-3">
                                 <i class="mr-2" data-fa-i2svg="">
                                     <svg class="svg-inline--fa fa-star" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
@@ -692,6 +848,7 @@
                                 India IVF Advantage
                                 </h4>
                                 {!! $blog->india_advantage !!}
+                                {{-- <p class="mb-0">Our personalized approach has helped us achieve success rates 15-20% higher than national averages across all age groups, giving our patients the best possible chance of achieving their dream of parenthood.</p> --}}
                             </div>
                             @endif
                         </div>
@@ -702,6 +859,7 @@
                             <div class="relative rounded-2xl overflow-hidden shadow-lg">
                                 <img class="w-full h-[350px] object-cover" src="{{ $blog->image ? asset('storage/' . $blog->image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}" >
                                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                                {{-- <p class="text-white text-sm">Success Story: Priya and Raj celebrate their positive pregnancy test after personalized IVF treatment at India IVF</p> --}}
                                 </div>
                             </div>
                         </div>
@@ -772,6 +930,24 @@
                         @if($blog->conclusion)
                         <div id="conclusion" class="mb-12">
                             {!! $blog->conclusion !!}
+                            {{-- <h2>Conclusion and Next Steps</h2>
+                            <p>Understanding IVF success rates is about more than just numbers – it's about recognizing the complex interplay of factors that influence your individual journey to parenthood. While some factors like age cannot be changed, many others can be optimized to improve your chances of success.</p>
+                            <p>At India IVF, we're committed to providing you with the most advanced treatments, personalized care, and emotional support throughout your fertility journey. Our success rates speak to our dedication, but more importantly, our focus on each individual patient ensures that you receive the best possible care tailored to your unique needs.</p>
+                            <div class="bg-gradient-to-r from-brand-pink to-brand-blue rounded-2xl p-8 text-white my-8">
+                                <h3 class="text-2xl font-bold mb-4">Ready to Take the Next Step?</h3>
+                                <p class="mb-6">Don't let statistics discourage you – let them inform your decisions. Every journey is unique, and with the right support and treatment, many couples achieve their dreams of parenthood.</p>
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                <button class="bg-white text-brand-pink px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all">
+                                Schedule Free Consultation
+                                </button>
+                                <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-brand-pink transition-all">
+                                Download Success Guide
+                                </button>
+                                </div>
+                            </div>
+                            <h3>Your Journey Starts Here</h3>
+                            <p>Remember, IVF success is not just about one cycle – it's about finding the right approach for your unique situation. With advances in technology, personalized treatment protocols, and comprehensive support systems, the path to parenthood is more hopeful than ever.</p> --}}
+                            {{-- <p>Contact India IVF today to begin your personalized fertility assessment and take the first step toward building your family.</p> --}}
                         </div>
                         @endif
                         <!-- Article Tags and Sharing -->
@@ -779,13 +955,13 @@
                             @if($blog->tags)
                                 @php
                                 $tags = explode(',', $blog->tags);
-                                // foreach ($tags as $tag) {
-                                //     \App\Models\Tag::firstOrCreate(['name' => trim($tag)]);
-                                // }
+                                foreach ($tags as $tag) {
+                                    \App\Models\Tag::firstOrCreate(['name' => trim($tag)]);
+                                }
                                 @endphp
                                 <div class="flex flex-wrap items-center gap-4 mb-6">
                                     <span class="text-gray-600 font-medium">Tags:</span>
-                                    @foreach($tags as $tag)
+                                    @foreach($blog->tags as $tag)
                                     <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{{ $tag }}</span>
                                     @endforeach
                                 </div>
@@ -861,6 +1037,22 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div id="article-content" class="lg:col-span-3">
+                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 xl:p-12 article-content" id="blog-content">
+                        {!! $blog->description !!}
+
+                        <!-- Article Tags and Sharing -->
+                        <div class="border-t border-gray-200 pt-6 sm:pt-8 mt-8 sm:mt-12">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+                                <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                                    <span class="flex items-center gap-1"><i class="fas fa-heart text-xs"></i> <span class="article-likes-count">{{ $blog->likes ?? 0 }}</span> likes</span>
+                                    <span class="flex items-center gap-1"><i class="fas fa-comment text-xs"></i> {{ $blog->comments_count ?? 0 }} comments</span>
+                                    <span class="flex items-center gap-1"><i class="fas fa-share text-xs"></i> {{ $blog->shares ?? 0 }} shares</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -915,6 +1107,10 @@
                                     class="bg-brand-pink text-white px-4 sm:px-6 py-2 sm:py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-opacity-90 transition-all">
                                     Book Consultation
                                 </button>
+                                <!-- <button
+                                    class="border-2 border-brand-blue text-brand-blue px-4 sm:px-6 py-2 sm:py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-brand-blue hover:text-white transition-all">
+                                    View Profile
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -1065,6 +1261,8 @@
                     <div class="border-b border-gray-200 pb-6 mb-6">
                         <form id="comment-form">
                             <div class="flex gap-4">
+                                    <!-- <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg"
+                                        alt="User Avatar" class="w-12 h-12 rounded-full flex-shrink-0"> -->
                                 <div class="flex-1">
                                     <!-- Email Check for Returning Users -->
                                     <div id="email-check-section" class="mb-4">

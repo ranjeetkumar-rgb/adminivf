@@ -29,19 +29,18 @@
                         <li class="list-group-item"><strong>Meta Title:</strong> {{ $blog->meta_title }}</li>
                         <li class="list-group-item"><strong>Meta Description:</strong> {{ $blog->meta_description }}</li>
                         <li class="list-group-item"><strong>Meta Keywords:</strong> {{ $blog->meta_keywords }}</li>
-                        
+
                         <!-- SEO Information -->
                         <li class="list-group-item"><strong>Focus Keyword:</strong> {{ $blog->focus_keyword ?? 'Not set' }}</li>
                         <li class="list-group-item"><strong>Author Name:</strong> {{ $blog->author_name ?? 'Not set' }}</li>
                         <li class="list-group-item"><strong>Canonical URL:</strong> {{ $blog->canonical_url ?? 'Not set' }}</li>
-                        <li class="list-group-item"><strong>Index & Follow:</strong> 
+                        <li class="list-group-item"><strong>Index & Follow:</strong>
                             @if($blog->index_follow)
                                 <span class="badge bg-success">Index, Follow</span>
                             @else
                                 <span class="badge bg-warning">No Index, No Follow</span>
                             @endif
                         </li>
-                        
                         <!-- Open Graph Information -->
                         <li class="list-group-item"><strong>OG Title:</strong> {{ $blog->og_title ?? 'Not set' }}</li>
                         <li class="list-group-item"><strong>OG Description:</strong> {{ $blog->og_description ?? 'Not set' }}</li>
@@ -55,7 +54,7 @@
                             @endif
                         </li>
                     </ul>
-                    
+
                     <!-- Blog Content Preview with Applied Styling -->
                     <div class="mt-4">
                         <h5>Blog Content Preview:</h5>

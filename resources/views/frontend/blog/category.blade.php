@@ -31,7 +31,7 @@
             <div class="flex flex-wrap items-center gap-4">
                 <span class="font-semibold text-support-grey">Filter by:</span>
                 <div class="flex flex-wrap gap-2">
-                    <button class="filter-category px-4 py-2 rounded-full text-sm font-medium transition-all bg-primary-pink text-white" 
+                    <button class="filter-category px-4 py-2 rounded-full text-sm font-medium transition-all bg-primary-pink text-white"
                             data-category="{{ $category->id }}">{{ $category->name }}</button>
                     <a href="{{ route('blog.index') }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-700 hover:bg-primary-pink hover:text-white">
                         All Categories
@@ -46,15 +46,15 @@
                     <option>Telugu</option>
                 </select>
                 <div class="flex gap-2">
-                    <button class="filter-type px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white transition-all" 
+                    <button class="filter-type px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white transition-all"
                             data-type="videos">
                         <i class="fas fa-play"></i> Videos
                     </button>
-                    <button class="filter-type px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white transition-all" 
+                    <button class="filter-type px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white transition-all"
                             data-type="articles">
                         <i class="fas fa-file-text"></i> Articles
                     </button>
-                    <button class="filter-type px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 bg-primary-blue text-white transition-all" 
+                    <button class="filter-type px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 bg-primary-blue text-white transition-all"
                             data-type="all">
                         <i class="fas fa-list"></i> All
                     </button>
@@ -75,12 +75,16 @@
                         @foreach($blogs as $blog)
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group">
                             <div class="relative">
-                                <img class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" 
-                                     src="{{ $blog->featured_image ? asset('storage/' . $blog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}" 
+                                <img class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                     src="{{ $blog->featured_image ? asset('storage/' . $blog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}"
                                      alt="{{ $blog->title }}">
                                 <div class="absolute top-3 left-3">
-                                    <span class="{{ $blog->category->color_class ?? 'bg-primary-blue' }} text-white px-3 py-1 rounded-full text-sm font-medium">
+                                    {{-- <span class="{{ $blog->category->color_class ?? 'bg-primary-blue' }} text-white px-3 py-1 rounded-full text-sm font-medium">
                                         {{ $blog->category->name ?? 'General' }}
+                                    </span> --}}
+                                        {{-- This now correctly gets the first category from your JSON array --}}
+                                    <span class="{{ $blog->categories->first()->color_class ?? 'bg-primary-blue' }} text-white px-3 py-1 rounded-full text-sm font-medium">
+                                        {{ $blog->categories->first()->name ?? 'General' }}
                                     </span>
                                 </div>
                                 @if($blog->content_type === 'video')
@@ -96,7 +100,7 @@
                                 <p class="text-gray-600 mb-4">{{ $blog->excerpt }}</p>
                                 <div class="flex items-center justify-between mb-4">
                                     <div class="flex items-center gap-2">
-                                        <img src="{{ $blog->author_image ? asset('storage/' . $blog->author_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg' }}" 
+                                        <img src="{{ $blog->author_image ? asset('storage/' . $blog->author_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg' }}"
                                              alt="{{ $blog->author_name }}" class="w-8 h-8 rounded-full">
                                         <span class="text-sm text-support-grey font-medium">{{ $blog->author_name }}</span>
                                     </div>
@@ -156,8 +160,8 @@
                     <div class="space-y-4">
                         @foreach($popularPosts as $popularPost)
                         <div class="flex gap-3">
-                            <img class="w-16 h-16 rounded-lg object-cover flex-shrink-0" 
-                                 src="{{ $popularPost->featured_image ? asset('storage/' . $popularPost->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/98a3f329ec-0fd40a140196c521f0b9.png' }}" 
+                            <img class="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                                 src="{{ $popularPost->featured_image ? asset('storage/' . $popularPost->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/98a3f329ec-0fd40a140196c521f0b9.png' }}"
                                  alt="{{ $popularPost->title }}">
                             <div>
                                 <a href="{{ route('blog.show', $popularPost->slug) }}">
@@ -229,17 +233,17 @@ console.log('Category page script loaded, initial values:', {
 // Filter functionality
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, setting up filter listeners');
-    
+
     // Content type filter functionality
     const typeButtons = document.querySelectorAll('.filter-type');
     console.log('Found type buttons:', typeButtons.length);
-    
+
     typeButtons.forEach((button, index) => {
         console.log(`Setting up type filter ${index}:`, button.dataset.type, button);
         button.addEventListener('click', function(e) {
             e.preventDefault();
             console.log('Type filter clicked:', this.dataset.type);
-            
+
             // Remove active class from all type buttons
             document.querySelectorAll('.filter-type').forEach(btn => {
                 btn.classList.remove('bg-primary-blue', 'text-white');
@@ -249,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add active class to clicked button
             this.classList.remove('bg-gray-100', 'text-gray-700');
             this.classList.add('bg-primary-blue', 'text-white');
-            
+
             // Update current type and filter
             currentType = this.dataset.type;
             console.log('Updated currentType to:', currentType);
@@ -263,19 +267,19 @@ function filterBlogs() {
     console.log('filterBlogs() called');
     isLoading = true;
     currentPage = 1;
-    
+
     console.log('Filtering with:', { category: currentCategory, type: currentType });
     console.log('CSRF Token:', '{{ csrf_token() }}');
     console.log('Filter URL:', '{{ route("blog.filter") }}');
-    
+
     const requestData = {
         category: currentCategory,
         type: currentType,
         page: 1
     };
-    
+
     console.log('Request data:', requestData);
-    
+
     fetch('{{ route("blog.filter") }}', {
         method: 'POST',
         headers: {
@@ -301,7 +305,7 @@ function filterBlogs() {
         } else {
             console.error('Blog container not found!');
         }
-        
+
         isLoading = false;
         currentPage = 2;
     })

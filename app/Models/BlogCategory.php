@@ -31,9 +31,15 @@ class BlogCategory extends Model
     }
 
     // Get blogs count for this category
+    // public function getBlogsCountAttribute()
+    // {
+    //     return $this->blogs()->published()->count();
+    // }
     public function getBlogsCountAttribute()
     {
-        return $this->blogs()->published()->count();
+        return Blog::published() // Uses the scope from your Blog model
+                   ->whereJsonContains('categories', $this->id)
+                   ->count();
     }
 
     // Get category color class
@@ -41,12 +47,12 @@ class BlogCategory extends Model
     {
         $colorMap = [
             'primary-pink' => 'bg-primary-pink',
-            'primary-blue' => 'bg-primary-blue', 
+            'primary-blue' => 'bg-primary-blue',
             'green' => 'bg-green-500',
             'purple' => 'bg-purple-500',
             'orange' => 'bg-orange-500',
         ];
-        
+
         return $colorMap[$this->color] ?? 'bg-gray-500';
     }
 }
