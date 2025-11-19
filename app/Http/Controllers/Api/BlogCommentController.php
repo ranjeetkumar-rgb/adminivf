@@ -17,8 +17,8 @@ class BlogCommentController extends Controller
         $blog = Blog::findOrFail($blogId);
         
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'location' => 'nullable|string|max:100',
             'consultation_interest' => 'nullable|in:yes,maybe,no',
@@ -35,9 +35,13 @@ class BlogCommentController extends Controller
             ], 422);
         }
 
+        // Use default values for anonymous comments
+        $name = $request->name ?? 'Guest';
+        $email = $request->email ?? 'guest_' . time() . '_' . rand(1000, 9999) . '@anonymous.local';
+        
         // Find or create user profile
-        $userProfile = UserProfile::findOrCreateByEmail($request->email, [
-            'name' => $request->name,
+        $userProfile = UserProfile::findOrCreateByEmail($email, [
+            'name' => $name,
             'phone' => $request->phone,
             'location' => $request->location,
             'consultation_interest' => $request->consultation_interest,
@@ -47,8 +51,8 @@ class BlogCommentController extends Controller
         $comment = Comment::create([
             'blog_id' => $blog->id,
             'user_profile_id' => $userProfile->id,
-            'name' => $request->name,
-            'email' => $request->email,
+            'name' => $name,
+            'email' => $email,
             'phone' => $request->phone,
             'location' => $request->location,
             'consultation_interest' => $request->consultation_interest,

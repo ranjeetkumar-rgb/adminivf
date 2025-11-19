@@ -1065,90 +1065,25 @@
                     <div class="border-b border-gray-200 pb-6 mb-6">
                         <form id="comment-form">
                             <div class="flex gap-4">
+                                <!-- Avatar Icon -->
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                                        <i class="fas fa-user text-gray-500 text-xl"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Comment Input Section -->
                                 <div class="flex-1">
-                                    <!-- Email Check for Returning Users -->
-                                    <div id="email-check-section" class="mb-4">
-                                        <div class="p-4 bg-gray-50 rounded-lg">
-                                            <label class="block text-sm font-medium text-gray-700 mb-2">Enter your email to continue</label>
-                                            <div class="flex gap-2">
-                                                <input type="email" id="email-check" placeholder="Your Email *" required
-                                                    class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
-                                                <button type="button" id="check-email-btn"
-                                                    class="bg-brand-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                            </div>
-                                            <p class="text-xs text-gray-500 mt-2">We'll check if you've commented before to pre-fill your details</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- User Details Section (Hidden by default) -->
-                                    <div id="user-details-section" class="hidden">
-                                        <!-- Basic Information -->
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                            <input type="text" name="name" placeholder="Your Name *" required
-                                                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
-                                            <input type="email" name="email" placeholder="Your Email *" required
-                                                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
-                                        </div>
-
-                                        <!-- Additional User Details -->
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                            <input type="tel" name="phone" placeholder="Phone Number (Optional)"
-                                                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
-                                            <input type="text" name="location" placeholder="Location (Optional)"
-                                                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
-                                        </div>
-
-                                        <!-- Consultation Interest -->
-                                        <div class="mb-4">
-                                            <label class="block text-sm font-medium text-gray-700 mb-2">Are you interested in a consultation?</label>
-                                            <div class="flex gap-4">
-                                                <label class="flex items-center">
-                                                    <input type="radio" name="consultation_interest" value="yes" class="mr-2 text-brand-pink focus:ring-brand-pink">
-                                                    <span class="text-sm">Yes, I'm interested</span>
-                                                </label>
-                                                <label class="flex items-center">
-                                                    <input type="radio" name="consultation_interest" value="maybe" class="mr-2 text-brand-pink focus:ring-brand-pink">
-                                                    <span class="text-sm">Maybe later</span>
-                                                </label>
-                                                <label class="flex items-center">
-                                                    <input type="radio" name="consultation_interest" value="no" class="mr-2 text-brand-pink focus:ring-brand-pink">
-                                                    <span class="text-sm">Not interested</span>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <!-- Privacy Notice -->
-                                        <div class="mb-4 p-3 bg-blue-50 rounded-lg">
-                                            <div class="flex items-start">
-                                                <i class="fas fa-info-circle text-blue-500 mt-1 mr-2"></i>
-                                                <div class="text-sm text-blue-700">
-                                                    <strong>Privacy Notice:</strong> Your information will be used to provide better consultation services.
-                                                    We respect your privacy and will not share your details with third parties.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!-- Comment Text -->
-                                    <div id="comment-section" class="hidden">
-                                        <textarea name="comment" placeholder="Share your thoughts or ask a question..." required
-                                            class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink resize-none h-24"></textarea>
+                                    <textarea name="comment" placeholder="Share your thoughts or ask a question..." required
+                                        class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink resize-none h-24"></textarea>
 
-                                        <div class="flex justify-between items-center mt-3">
-                                            <span class="text-sm text-gray-500">Please be respectful and constructive</span>
-                                            <div class="flex gap-2">
-                                                <button type="button" id="back-to-email-btn"
-                                                    class="bg-gray-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-                                                    Back
-                                                </button>
-                                                <button type="submit"
-                                                    class="bg-brand-pink text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-                                                    Post Comment
-                                                </button>
-                                            </div>
-                                        </div>
+                                    <div class="flex justify-between items-center mt-3">
+                                        <span class="text-sm text-gray-500">Please be respectful and constructive</span>
+                                        <button type="submit"
+                                            class="bg-brand-pink text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                                            Post Comment
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -1481,7 +1416,6 @@
             console.log('Initializing blog functionality for blog ID:', blogId);
             initializeBlogInteractions();
             initializeCommentForm();
-            initializeUserDetailsForm();
             updateReadingTime();
             initializeLikeState();
 
@@ -1960,28 +1894,6 @@
                         e.preventDefault();
                         submitComment();
                     });
-
-                    // Add event listener for email check button
-                    const checkEmailBtn = document.getElementById('check-email-btn');
-                    const emailCheckInput = document.getElementById('email-check');
-                    const backToEmailBtn = document.getElementById('back-to-email-btn');
-
-                    if (checkEmailBtn && emailCheckInput) {
-                        checkEmailBtn.addEventListener('click', function() {
-                            const email = emailCheckInput.value.trim();
-                            if (email && email.includes('@')) {
-                                checkExistingUser(email);
-                            } else {
-                                alert('Please enter a valid email address');
-                            }
-                        });
-                    }
-
-                    if (backToEmailBtn) {
-                        backToEmailBtn.addEventListener('click', function() {
-                            showEmailCheckSection();
-                        });
-                    }
                 }
             }
 
@@ -2201,11 +2113,6 @@
                 const formData = new FormData(form);
 
                 const commentData = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    location: formData.get('location'),
-                    consultation_interest: formData.get('consultation_interest'),
                     comment: formData.get('comment')
                 };
 
