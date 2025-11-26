@@ -1,12 +1,16 @@
 @foreach($blogs as $blog)
-<div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group">
+<a href="{{ route('blog.show', $blog->slug) }}" class="block bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
     <div class="relative">
+        @php
+            // Prioritize image field over featured_image
+            $blogImage = $blog->image ?? $blog->featured_image;
+        @endphp
         <img class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" 
-             src="{{ $blog->featured_image ? asset('storage/' . $blog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}" 
+             src="{{ $blogImage ? asset('storage/' . $blogImage) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}" 
              alt="{{ $blog->title }}">
         <div class="absolute top-3 left-3">
-            <span class="{{ $blog->category->color_class ?? 'bg-primary-blue' }} text-white px-3 py-1 rounded-full text-sm font-medium">
-                {{ $blog->category->name ?? 'General' }}
+            <span class="{{ $blog->categories->first()->color_class ?? 'bg-primary-blue' }} text-white px-3 py-1 rounded-full text-sm font-medium">
+                {{ $blog->categories->first()->name ?? 'General' }}
             </span>
         </div>
         @if($blog->content_type === 'video')
@@ -29,17 +33,19 @@
             <span class="text-gray-500 text-sm">{{ $blog->video_duration ?: $blog->reading_time }}</span>
         </div>
         <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4 text-sm text-gray-500">
-                <span class="flex items-center gap-1"><i class="fas fa-heart"></i> {{ $blog->likes ?? 0 }}</span>
+            <div class="flex items-center gap-4 text-sm text-gray-500" onclick="event.stopPropagation();">
+                <span class="flex items-center gap-1 like-btn cursor-pointer hover:text-red-500 transition-colors" data-blog-id="{{ $blog->id }}">
+                    <i class="far fa-heart"></i> <span class="likes-count">{{ $blog->likes ?? 0 }}</span>
+                </span>
                 <span class="flex items-center gap-1"><i class="fas fa-comment"></i> {{ $blog->comments_count ?? 0 }}</span>
-                <span class="flex items-center gap-1"><i class="fas fa-share"></i> {{ $blog->shares ?? 0 }}</span>
+                <span class="flex items-center gap-1 share-btn cursor-pointer hover:text-blue-500 transition-colors" data-blog-id="{{ $blog->id }}">
+                    <i class="fas fa-share"></i> <span class="shares-count">{{ $blog->shares ?? 0 }}</span>
+                </span>
             </div>
-            <a href="{{ route('blog.show', $blog->slug) }}">
-                <button class="text-primary-pink font-semibold hover:underline">
-                    {{ $blog->content_type === 'video' ? 'Watch Video' : 'Read More' }}
-                </button>
-            </a>
+            <span class="text-primary-pink font-semibold text-sm">
+                {{ $blog->content_type === 'video' ? 'Watch Video →' : 'Read More →' }}
+            </span>
         </div>
     </div>
-</div>
+</a>
 @endforeach

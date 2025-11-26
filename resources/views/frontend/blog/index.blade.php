@@ -80,10 +80,14 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             @if($featuredBlogs->count() > 0)
                 @foreach($featuredBlogs->take(2) as $featuredBlog)
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                <a href="{{ route('blog.show', $featuredBlog->slug) }}" class="block bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer">
                     <div class="relative">
+                        @php
+                            // Prioritize image field over featured_image
+                            $featuredImage = $featuredBlog->image ?? $featuredBlog->featured_image;
+                        @endphp
                         <img class="w-full h-48 sm:h-64 object-cover"
-                             src="{{ $featuredBlog->featured_image ? asset('storage/' . $featuredBlog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/70181682fe-facb641d12e787079343.png' }}"
+                             src="{{ $featuredImage ? asset('storage/' . $featuredImage) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/70181682fe-facb641d12e787079343.png' }}"
                              alt="{{ $featuredBlog->title }}">
                         <div class="absolute top-3 sm:top-4 left-3 sm:left-4">
                             <span class="bg-primary-pink text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">Featured</span>
@@ -116,12 +120,10 @@
                                     <p class="text-gray-500 text-xs">{{ $featuredBlog->author_title }}</p>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.show', $featuredBlog->slug) }}">
-                              <button class="text-primary-pink font-semibold hover:underline text-sm sm:text-base">Read More</button>
-                            </a>
+                            <span class="text-primary-pink font-semibold hover:underline text-sm sm:text-base">Read More →</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             @endif
         </div>
@@ -137,10 +139,14 @@
             <div id="blog-posts-grid" class="lg:col-span-3">
                 <div id="blog-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                     @foreach($blogs as $blog)
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group">
+                    <a href="{{ route('blog.show', $blog->slug) }}" class="block bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
                         <div class="relative">
+                            @php
+                                // Prioritize image field over featured_image
+                                $blogImage = $blog->image ?? $blog->featured_image;
+                            @endphp
                             <img class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                 src="{{ $blog->featured_image ? asset('storage/' . $blog->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}"
+                                 src="{{ $blogImage ? asset('storage/' . $blogImage) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/5aef1ce0af-317e4fcc09506136c86a.png' }}"
                                  alt="{{ $blog->title }}">
                             <div class="absolute top-2 sm:top-3 left-2 sm:left-3">
                                 <span class="{{ $blog->categories->first()->color_class ?? 'bg-primary-blue' }} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
@@ -170,7 +176,7 @@
                                 <span class="text-gray-500 text-xs sm:text-sm">{{ $blog->video_duration ?: $blog->reading_time }}</span>
                             </div>
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                                <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                                <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500" onclick="event.stopPropagation();">
                                     <span class="flex items-center gap-1 like-btn cursor-pointer hover:text-red-500 transition-colors" data-blog-id="{{ $blog->id }}">
                                         <i class="far fa-heart text-xs"></i> <span class="likes-count">{{ $blog->likes ?? 0 }}</span>
                                     </span>
@@ -179,14 +185,12 @@
                                         <i class="fas fa-share text-xs"></i> <span class="shares-count">{{ $blog->shares ?? 0 }}</span>
                                     </span>
                                 </div>
-                                <a href="{{ route('blog.show', $blog->slug) }}">
-                                    <button class="text-primary-pink font-semibold hover:underline text-xs sm:text-sm">
-                                        {{ $blog->content_type === 'video' ? 'Watch Video' : 'Read More' }}
-                                    </button>
-                                </a>
+                                <span class="text-primary-pink font-semibold text-xs sm:text-sm">
+                                    {{ $blog->content_type === 'video' ? 'Watch Video →' : 'Read More →' }}
+                                </span>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
                 </div>
 
@@ -208,17 +212,19 @@
                     <h3 class="text-lg sm:text-xl font-bold text-support-grey mb-4 sm:mb-6">Popular Posts</h3>
                     <div class="space-y-3 sm:space-y-4">
                         @foreach($popularPosts as $popularPost)
-                        <div class="flex gap-3">
+                        <a href="{{ route('blog.show', $popularPost->slug) }}" class="flex gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors cursor-pointer">
+                            @php
+                                // Prioritize image field over featured_image
+                                $popularImage = $popularPost->image ?? $popularPost->featured_image;
+                            @endphp
                             <img class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0"
-                                 src="{{ $popularPost->featured_image ? asset('storage/' . $popularPost->featured_image) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/98a3f329ec-0fd40a140196c521f0b9.png' }}"
+                                 src="{{ $popularImage ? asset('storage/' . $popularImage) : 'https://storage.googleapis.com/uxpilot-auth.appspot.com/98a3f329ec-0fd40a140196c521f0b9.png' }}"
                                  alt="{{ $popularPost->title }}">
                             <div class="flex-1 min-w-0">
-                                <a href="{{ route('blog.show', $popularPost->slug) }}">
-                                    <h4 class="font-semibold text-support-grey text-xs sm:text-sm mb-1 hover:text-primary-pink cursor-pointer line-clamp-2">{{ $popularPost->title }}</h4>
-                                </a>
+                                <h4 class="font-semibold text-support-grey text-xs sm:text-sm mb-1 hover:text-primary-pink transition-colors line-clamp-2">{{ $popularPost->title }}</h4>
                                 <p class="text-xs text-gray-500">{{ number_format($popularPost->views ?? 0) }} views • {{ $popularPost->published_at ? $popularPost->published_at->diffForHumans() : 'Recently' }}</p>
                             </div>
-                        </div>
+                        </a>
                         @endforeach
                     </div>
                 </div>
@@ -598,6 +604,9 @@ function filterBlogs() {
         if (container) {
             container.innerHTML = data.html;
             console.log('Updated blog container with new content');
+            
+            // Re-initialize event listeners for dynamically loaded cards
+            initializeBlogCardListeners();
         } else {
             console.error('Blog container not found!');
         }
@@ -639,6 +648,9 @@ function loadMoreBlogs() {
     .then(data => {
         document.getElementById('blog-cards-container').insertAdjacentHTML('beforeend', data.html);
 
+        // Re-initialize event listeners for dynamically loaded cards
+        initializeBlogCardListeners();
+
         // Show/hide load more button
         const loadMoreContainer = document.querySelector('#load-more-btn')?.parentElement;
         if (loadMoreContainer) {
@@ -671,29 +683,45 @@ document.querySelector('#appointment-section form')?.addEventListener('submit', 
     this.reset();
 });
 
+// Function to initialize blog card event listeners
+function initializeBlogCardListeners() {
+    // Like functionality - use event delegation to handle dynamically added elements
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        // Check if already has listener by checking for data attribute
+        if (!btn.hasAttribute('data-listener-attached')) {
+            btn.setAttribute('data-listener-attached', 'true');
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent card click
+                const blogId = this.getAttribute('data-blog-id');
+                console.log('Like clicked for blog:', blogId);
+                toggleBlogLike(blogId, this);
+            });
+        }
+    });
+
+    // Share functionality - use event delegation to handle dynamically added elements
+    document.querySelectorAll('.share-btn').forEach(btn => {
+        // Check if already has listener by checking for data attribute
+        if (!btn.hasAttribute('data-listener-attached')) {
+            btn.setAttribute('data-listener-attached', 'true');
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent card click
+                const blogId = this.getAttribute('data-blog-id');
+                console.log('Share clicked for blog:', blogId);
+                shareBlog(blogId, this);
+            });
+        }
+    });
+}
+
 // Dynamic blog interactions
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Initializing blog index dynamic functionality');
-
-    // Like functionality
-    document.querySelectorAll('.like-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const blogId = this.getAttribute('data-blog-id');
-            console.log('Like clicked for blog:', blogId);
-            toggleBlogLike(blogId, this);
-        });
-    });
-
-    // Share functionality
-    document.querySelectorAll('.share-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const blogId = this.getAttribute('data-blog-id');
-            console.log('Share clicked for blog:', blogId);
-            shareBlog(blogId, this);
-        });
-    });
+    
+    // Initialize listeners for initial page load
+    initializeBlogCardListeners();
 });
 
 function toggleBlogLike(blogId, element) {
