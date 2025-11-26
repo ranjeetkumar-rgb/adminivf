@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -346,6 +347,12 @@ class BlogController extends Controller
             'index_follow' => 'boolean',
         ]);
         $data = $request->except(['image', 'author_image','categories']);
+
+        // Explicitly handle author fields to ensure they are saved even if empty
+        $data['author_name'] = $request->input('author_name', null);
+        $data['author_title'] = $request->input('author_title', null);
+        $data['author_bio'] = $request->input('author_bio', null);
+
         if ($request->has('categories')) {
             $data['categories'] = json_encode($request->categories);
         } else {
@@ -383,8 +390,10 @@ class BlogController extends Controller
         }
         if ($request->hasFile('author_image')) {
             try {
-                // Optional: Add logic here to delete the old author image
-                // $blog->deleteImage('author_image');
+                // Delete old author image if exists
+                if ($blog->author_image && \Storage::disk('public')->exists($blog->author_image)) {
+                    \Storage::disk('public')->delete($blog->author_image);
+                }
                 $authorImagePath = $blog->uploadImageWithPreset($request->file('author_image'), 'author_image', 'small');
                 $data['author_image'] = $authorImagePath; // Add new image path to data
             } catch (\Exception $e) {

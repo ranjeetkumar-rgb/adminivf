@@ -205,17 +205,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="author_name" class="form-label">Author Name</label>
-                                    <input type="text" class="form-control @error('author_name') is-invalid @enderror" id="author_name" name="author_name" placeholder="Enter author name" value="{{ $blog->author_name ?? '' }}">
-                                    @error('author_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -807,6 +796,18 @@
                             <div class="col-12">
                                 <h5 class="mt-4 mb-3 text-primary">Author Information</h5>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="author_name" class="form-label">Author Name</label>
+                                    <input type="text" class="form-control @error('author_name') is-invalid @enderror" id="author_name" name="author_name" placeholder="Enter author name" value="{{ $blog->author_name ?? '' }}">
+                                    @error('author_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
 
                             <div class="col-md-6">
                                 <div class="mb-3">
