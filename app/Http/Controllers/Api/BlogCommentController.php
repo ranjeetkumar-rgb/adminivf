@@ -9,6 +9,7 @@ use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class BlogCommentController extends Controller
 {
@@ -23,7 +24,7 @@ class BlogCommentController extends Controller
             'location' => 'nullable|string|max:100',
             'consultation_interest' => 'nullable|in:yes,maybe,no',
             'additional_notes' => 'nullable|string|max:1000',
-            'comment' => 'required|string|min:10',
+            'comment' => 'required|string',
             'parent_id' => 'nullable|exists:comments,id'
         ]);
 
@@ -156,6 +157,137 @@ class BlogCommentController extends Controller
         return response()->json([
             'success' => true,
             'user_exists' => false
+        ]);
+    }
+
+    public function login(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $userProfile = UserProfile::where('email', $request->email)->first();
+
+        if (!$userProfile) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found. Please register first.'
+            ], 404);
+        }
+
+        if (!$userProfile->password) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Account not set up. Please register with a password.'
+            ], 400);
+        }
+
+        if (!Hash::check($request->password, $userProfile->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid password.'
+            ], 401);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Login successful',
+            'user' => [
+                'id' => $userProfile->id,
+                'name' => $userProfile->name,
+                'email' => $userProfile->email,
+                'phone' => $userProfile->phone,
+                'location' => $userProfile->location,
+                'consultation_interest' => $userProfile->consultation_interest,
+            ]
+        ]);
+    }
+
+    public function register(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:6',
+            'phone' => 'nullable|string|max:20',
+            'location' => 'nullable|string|max:100',
+            'consultation_interest' => 'nullable|in:yes,maybe,no',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Check if user already exists
+        $existingUser = UserProfile::where('email', $request->email)->first();
+        
+        if ($existingUser) {
+            if ($existingUser->password) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User already exists. Please login instead.'
+                ], 409);
+            } else {
+                // User exists but no password - update with password
+                $existingUser->update([
+                    'name' => $request->name,
+                    'password' => Hash::make($request->password),
+                    'phone' => $request->phone,
+                    'location' => $request->location,
+                    'consultation_interest' => $request->consultation_interest,
+                ]);
+                
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Account created successfully',
+                    'user' => [
+                        'id' => $existingUser->id,
+                        'name' => $existingUser->name,
+                        'email' => $existingUser->email,
+                        'phone' => $existingUser->phone,
+                        'location' => $existingUser->location,
+                        'consultation_interest' => $existingUser->consultation_interest,
+                    ]
+                ]);
+            }
+        }
+
+        // Create new user
+        $userProfile = UserProfile::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'location' => $request->location,
+            'consultation_interest' => $request->consultation_interest,
+            'first_comment_at' => now(),
+            'last_comment_at' => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Account created successfully',
+            'user' => [
+                'id' => $userProfile->id,
+                'name' => $userProfile->name,
+                'email' => $userProfile->email,
+                'phone' => $userProfile->phone,
+                'location' => $userProfile->location,
+                'consultation_interest' => $userProfile->consultation_interest,
+            ]
         ]);
     }
 }

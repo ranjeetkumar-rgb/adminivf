@@ -57,7 +57,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
-                                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Enter blog title" value="{{ old('title') }}" required>
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Enter blog title" value="{{ old('title') }}" >
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="heading" class="form-label">  Slug  <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('heading') is-invalid @enderror" id="heading" name="heading" placeholder="Enter blog slug" value="{{ old('heading') }}" required>
+                                    <input type="text" class="form-control @error('heading') is-invalid @enderror" id="heading" name="heading" placeholder="Enter blog slug" value="{{ old('heading') }}" >
                                     @error('heading')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -92,7 +92,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Image <span class="text-danger">*</span></label>
-                                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*" required>
+                                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*" >
                                     <small class="form-text text-muted">Images will be automatically resized to a maximum of 600x600 pixels while maintaining aspect ratio.</small>
                                     @error('image')
                                         <span class="invalid-feedback" role="alert">
@@ -104,7 +104,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="meta_title" class="form-label">Meta Title <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" placeholder="Enter blog meta title" value="{{ old('meta_title') }}" required>
+                                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" placeholder="Enter blog meta title" value="{{ old('meta_title') }}" >
                                     @error('meta_title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -115,7 +115,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="meta_description" class="form-label">Meta Description <span class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="3" placeholder="Enter blog meta description" required>{{ old('meta_description') }}</textarea>
+                                    <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="3" placeholder="Enter blog meta description" >{{ old('meta_description') }}</textarea>
                                     @error('meta_description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -329,7 +329,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="key_tests_heading" class="form-label">Key Tests Heading</label>
-                                    <input type="text" class="form-control @error('key_tests_heading') is-invalid @enderror" id="key_tests_heading" name="key_tests_heading" placeholder="Enter blog heading" value="{{ old('key_tests_heading') }}" required>
+                                    <input type="text" class="form-control @error('key_tests_heading') is-invalid @enderror" id="key_tests_heading" name="key_tests_heading" placeholder="Enter blog heading" value="{{ old('key_tests_heading') }}" >
                                     @error('key_tests_heading')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -738,7 +738,7 @@
                                         multiple
                                         id="categories_select"
                                         name="categories[]"
-                                        required>
+                                        >
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ in_array($category->id, old('categories', [])) ? 'selected' : '' }}>
@@ -847,7 +847,7 @@
                             <!-- <div class="col-12">
                                 <div class="mb-3">
                                     <label for="faq_question" class="form-label">FAQ Question</label>
-                                    <input type="text" class="form-control @error('faq_question') is-invalid @enderror" id="faq_question" name="faq_question" value="{{ old('faq_question') }}" required>
+                                    <input type="text" class="form-control @error('faq_question') is-invalid @enderror" id="faq_question" name="faq_question" value="{{ old('faq_question') }}" >
                                     @error('faq_question')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -858,7 +858,7 @@
                             <!-- <div class="col-12">
                                 <div class="mb-3">
                                     <label for="faq_answer" class="form-label">FAQ Answer</label>
-                                    <textarea class="form-control @error('faq_answer') is-invalid @enderror" id="faq_answer" name="faq_answer" rows="3" required>{{ old('faq_answer') }}</textarea>
+                                    <textarea class="form-control @error('faq_answer') is-invalid @enderror" id="faq_answer" name="faq_answer" rows="3" >{{ old('faq_answer') }}</textarea>
                                     @error('faq_answer')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

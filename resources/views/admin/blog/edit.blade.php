@@ -57,7 +57,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
-                                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Enter blog title" value="{{ $blog->title ?? '' }}" required>
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Enter blog title" value="{{ $blog->title ?? '' }}" >
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="heading" class="form-label">Heading <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('heading') is-invalid @enderror" id="heading" name="heading" placeholder="Enter blog heading" value="{{ $blog->slug ?? '' }}" required>
+                                    <input type="text" class="form-control @error('heading') is-invalid @enderror" id="heading" name="heading" placeholder="Enter blog heading" value="{{ $blog->slug ?? '' }}" >
                                     @error('heading')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -104,7 +104,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="meta_title" class="form-label">Meta Title <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" placeholder="Enter blog meta title" value="{{ $blog->meta_title ?? '' }}" required>
+                                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" placeholder="Enter blog meta title" value="{{ $blog->meta_title ?? '' }}" >
                                     @error('meta_title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -115,7 +115,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="meta_description" class="form-label">Meta Description <span class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="3" placeholder="Enter blog meta description" required>{{ $blog->meta_description ?? '' }}</textarea>
+                                    <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="3" placeholder="Enter blog meta description" >{{ $blog->meta_description ?? '' }}</textarea>
                                     @error('meta_description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -738,7 +738,7 @@
                                         multiple
                                         id="categories_select"
                                         name="categories[]"
-                                        required>
+                                        >
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ in_array($category->id, $blog->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
@@ -847,7 +847,7 @@
                             <!-- <div class="col-12">
                                 <div class="mb-3">
                                     <label for="faq_question" class="form-label">FAQ Question</label>
-                                    <input type="text" class="form-control @error('faq_question') is-invalid @enderror" id="faq_question" name="faq_question" value="{{ old('faq_question') }}" required>
+                                    <input type="text" class="form-control @error('faq_question') is-invalid @enderror" id="faq_question" name="faq_question" value="{{ old('faq_question') }}" >
                                     @error('faq_question')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -858,7 +858,7 @@
                             <!-- <div class="col-12">
                                 <div class="mb-3">
                                     <label for="faq_answer" class="form-label">FAQ Answer</label>
-                                    <textarea class="form-control @error('faq_answer') is-invalid @enderror" id="faq_answer" name="faq_answer" rows="3" required>{{ old('faq_answer') }}</textarea>
+                                    <textarea class="form-control @error('faq_answer') is-invalid @enderror" id="faq_answer" name="faq_answer" rows="3" >{{ old('faq_answer') }}</textarea>
                                     @error('faq_answer')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

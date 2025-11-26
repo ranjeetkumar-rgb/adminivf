@@ -32,4 +32,6 @@ Route::prefix('blog')->group(function () {
     Route::get('/{id}/comments', [App\Http\Controllers\Api\BlogCommentController::class, 'getComments']);
     Route::post('/comments/{id}/like', [App\Http\Controllers\Api\BlogCommentController::class, 'likeComment']);
     Route::post('/check-user', [App\Http\Controllers\Api\BlogCommentController::class, 'checkUser']);
+    Route::post('/login', [App\Http\Controllers\Api\BlogCommentController::class, 'login']);
+    Route::post('/register', [App\Http\Controllers\Api\BlogCommentController::class, 'register']);
 });

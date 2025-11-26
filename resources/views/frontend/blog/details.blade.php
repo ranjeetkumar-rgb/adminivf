@@ -838,7 +838,7 @@
                                             <path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path>
                                         </svg>
                                     </i>
-                                    324 likes
+                                    <span class="article-likes-count">{{ $blog->likes ?? 0 }}</span> likes
                                 </span>
                                 <span class="flex items-center gap-1">
                                     <i data-fa-i2svg="">
@@ -846,7 +846,7 @@
                                             <path fill="currentColor" d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"></path>
                                         </svg>
                                     </i>
-                                    47 comments
+                                    <span class="comments-count-display">{{ $blog->comments_count ?? 0 }}</span> comments
                                 </span>
                                 <span class="flex items-center gap-1">
                                     <i data-fa-i2svg="">
@@ -854,7 +854,7 @@
                                             <path fill="currentColor" d="M307 34.8c-11.5 5.1-19 16.6-19 29.2v64H176C78.8 128 0 206.8 0 304C0 417.3 81.5 467.9 100.2 478.1c2.5 1.4 5.3 1.9 8.1 1.9c10.9 0 19.7-8.9 19.7-19.7c0-7.5-4.3-14.4-9.8-19.5C108.8 431.9 96 414.4 96 384c0-53 43-96 96-96h96v64c0 12.6 7.4 24.1 19 29.2s25 3 34.4-5.4l160-144c6.7-6.1 10.6-14.7 10.6-23.8s-3.8-17.7-10.6-23.8l-160-144c-9.4-8.5-22.9-10.6-34.4-5.4z"></path>
                                         </svg>
                                     </i>
-                                    89 shares
+                                    <span class="article-shares-count">{{ $blog->shares ?? 0 }}</span> shares
                                 </span>
                                 </div>
                             </div>
@@ -1063,6 +1063,20 @@
 
                     <!-- Comment Form -->
                     <div class="border-b border-gray-200 pb-6 mb-6">
+                        <!-- Logged In User Info -->
+                        <div id="logged-in-info" class="mb-4 hidden">
+                            <div class="bg-gray-50 rounded-lg p-4 flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm text-gray-600">Commenting as: </span>
+                                    <span class="font-semibold text-gray-800" id="logged-in-name"></span>
+                                    <span class="text-sm text-gray-500 ml-2" id="logged-in-email"></span>
+                                </div>
+                                <button type="button" onclick="logoutUser()" class="text-gray-500 text-sm font-semibold hover:text-gray-700 hover:underline">
+                                    <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                                </button>
+                            </div>
+                        </div>
+
                         <form id="comment-form">
                             <div class="flex gap-4">
                                 <!-- Avatar Icon -->
@@ -1075,7 +1089,7 @@
                                 <!-- Comment Input Section -->
                                 <div class="flex-1">
                                     <!-- Comment Text -->
-                                    <textarea name="comment" placeholder="Share your thoughts or ask a question..." required
+                                    <textarea name="comment" id="comment-text" placeholder="Share your thoughts or ask a question..." required
                                         class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink resize-none h-24"></textarea>
 
                                     <div class="flex justify-between items-center mt-3">
@@ -1088,6 +1102,99 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+
+                    <!-- Login Modal -->
+                    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center" style="display: none;" onclick="if(event.target === this) closeLoginModal();">
+                        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4" onclick="event.stopPropagation();">
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-2xl font-bold brand-grey">Login to Comment</h3>
+                                    <button type="button" onclick="closeLoginModal()" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                                <form id="login-form" onsubmit="event.preventDefault(); handleLogin();">
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                        <input type="email" id="login-email" placeholder="your.email@example.com" required
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+                                        <input type="password" id="login-password" placeholder="Enter your password" required
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <button type="submit" id="login-submit-btn"
+                                            class="w-full bg-brand-pink text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                                            Login
+                                        </button>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-sm text-gray-600">Don't have an account?
+                                            <button type="button" onclick="switchToRegister()" class="text-brand-pink font-semibold hover:underline">
+                                                Register here
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registration Modal -->
+                    <div id="register-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center" style="display: none;" onclick="if(event.target === this) closeRegisterModal();">
+                        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation();">
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-2xl font-bold brand-grey">Create Account</h3>
+                                    <button type="button" onclick="closeRegisterModal()" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                                <form id="register-form" onsubmit="event.preventDefault(); handleRegister();">
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                                        <input type="text" id="register-name" placeholder="Your Name" required
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                        <input type="email" id="register-email" placeholder="your.email@example.com" required
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+                                        <input type="password" id="register-password" placeholder="Minimum 6 characters" required minlength="6"
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                        <input type="tel" id="register-phone" placeholder="Your Phone Number"
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                                        <input type="text" id="register-location" placeholder="Your Location"
+                                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink">
+                                    </div>
+                                    <div class="mb-4">
+                                        <button type="submit" id="register-submit-btn"
+                                            class="w-full bg-brand-pink text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                                            Create Account & Comment
+                                        </button>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-sm text-gray-600">Already have an account?
+                                            <button type="button" onclick="switchToLogin()" class="text-brand-pink font-semibold hover:underline">
+                                                Login here
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Comments List -->
@@ -1412,6 +1519,9 @@
             const blogId = {{ $blog->id }};
             let isLiked = false;
 
+            // Store logged in user (declare at top to avoid initialization errors)
+            let loggedInUser = null;
+
             // Initialize dynamic functionality
             console.log('Initializing blog functionality for blog ID:', blogId);
             initializeBlogInteractions();
@@ -1585,7 +1695,9 @@
 
             function loadComments() {
                 console.log('Loading comments for blog:', blogId);
-                fetch(`/api/blog/${blogId}/comments`)
+                // Add cache-busting parameter to ensure fresh data
+                const timestamp = new Date().getTime();
+                fetch(`/api/blog/${blogId}/comments?t=${timestamp}`)
                 .then(response => {
                     console.log('Comments API response status:', response.status);
                     if (!response.ok) {
@@ -1623,8 +1735,14 @@
                     return;
                 }
 
+                // Hide loading element
+                loadingElement.style.display = 'none';
+
+                // Clear existing comments
+                commentsList.innerHTML = '';
+
                 if (comments.length === 0) {
-                    loadingElement.innerHTML = '<div class="text-center text-gray-500 py-8">No comments yet. Be the first to comment!</div>';
+                    commentsList.innerHTML = '<div class="text-center text-gray-500 py-8">No comments yet. Be the first to comment!</div>';
                     return;
                 }
 
@@ -1633,8 +1751,7 @@
                     commentsHTML += createCommentHTML(comment);
                 });
 
-                // Hide loading and show comments
-                loadingElement.style.display = 'none';
+                // Show comments
                 commentsList.innerHTML = commentsHTML;
 
                 // Add event listeners to new comment elements
@@ -1716,6 +1833,17 @@
             }
 
             function showReplyForm(commentId) {
+                // Check if user is logged in
+                const savedUser = localStorage.getItem('logged_in_user');
+                if (!savedUser) {
+                    // User not logged in - show login modal
+                    showLoginModal();
+                    return;
+                }
+
+                // User is logged in - show reply form directly
+                loggedInUser = JSON.parse(savedUser);
+
                 // Remove any existing reply forms
                 document.querySelectorAll('.reply-form').forEach(form => form.remove());
 
@@ -1732,64 +1860,16 @@
                             <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg"
                                 alt="User Avatar" class="w-10 h-10 rounded-full flex-shrink-0">
                             <div class="flex-1">
-                                <!-- Email Check for Reply -->
-                                <div class="mb-3 p-3 bg-gray-50 rounded-lg">
-                                    <label class="block text-xs font-medium text-gray-700 mb-2">Enter your email to reply</label>
-                                    <div class="flex gap-2">
-                                        <input type="email" id="reply-email-check" placeholder="Your Email *" required
-                                            class="flex-1 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink text-sm">
-                                        <button type="button" id="check-reply-email-btn"
-                                            class="bg-brand-pink text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-opacity-90 transition-all">
-                                            Continue
-                                        </button>
-                                    </div>
+                                <!-- Logged in user info -->
+                                <div class="mb-2 text-xs text-gray-600">
+                                    <i class="fas fa-user me-1"></i>Replying as: <span class="font-semibold">${loggedInUser.name}</span>
                                 </div>
 
-                                <!-- User Details for Reply (Hidden by default) -->
-                                <div id="reply-user-details" class="hidden">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-                                        <input type="text" name="name" placeholder="Your Name *" required
-                                            class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink text-sm">
-                                        <input type="email" name="email" placeholder="Your Email *" required
-                                            class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink text-sm">
-                                    </div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-                                        <input type="tel" name="phone" placeholder="Phone (Optional)"
-                                            class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink text-sm">
-                                        <input type="text" name="location" placeholder="Location (Optional)"
-                                            class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink text-sm">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="block text-xs font-medium text-gray-700 mb-1">Consultation Interest:</label>
-                                        <div class="flex gap-3">
-                                            <label class="flex items-center">
-                                                <input type="radio" name="consultation_interest" value="yes" class="mr-1 text-brand-pink focus:ring-brand-pink">
-                                                <span class="text-xs">Yes</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="radio" name="consultation_interest" value="maybe" class="mr-1 text-brand-pink focus:ring-brand-pink">
-                                                <span class="text-xs">Maybe</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="radio" name="consultation_interest" value="no" class="mr-1 text-brand-pink focus:ring-brand-pink">
-                                                <span class="text-xs">No</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <button type="button" id="continue-reply-btn"
-                                        class="bg-brand-pink text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-opacity-90 transition-all mb-3">
-                                        Continue to Reply
-                                    </button>
-                                </div>
-
-                                <!-- Reply Text (Hidden by default) -->
-                                <div id="reply-text-section" class="hidden">
+                                <!-- Reply Text -->
+                                <div>
                                     <textarea name="comment" placeholder="Write your reply..." required
                                         class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink resize-none h-20 text-sm"></textarea>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <button type="button" id="back-to-reply-details-btn" class="text-sm text-gray-500 hover:text-brand-pink">
-                                            Back
-                                        </button>
+                                    <div class="flex justify-end items-center mt-2">
                                         <div class="flex gap-2">
                                             <button type="button" class="cancel-reply text-sm text-gray-500 hover:text-brand-pink">
                                                 Cancel
@@ -1811,9 +1891,6 @@
                 // Add event listeners
                 const form = replyForm.querySelector('.reply-form-inner');
                 const cancelBtn = replyForm.querySelector('.cancel-reply');
-                const checkReplyEmailBtn = replyForm.querySelector('#check-reply-email-btn');
-                const continueReplyBtn = replyForm.querySelector('#continue-reply-btn');
-                const backToReplyDetailsBtn = replyForm.querySelector('#back-to-reply-details-btn');
 
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
@@ -1823,46 +1900,42 @@
                 cancelBtn.addEventListener('click', function() {
                     replyForm.remove();
                 });
-
-                // Reply email check
-                if (checkReplyEmailBtn) {
-                    checkReplyEmailBtn.addEventListener('click', function() {
-                        const email = replyForm.querySelector('#reply-email-check').value.trim();
-                        if (email && email.includes('@')) {
-                            checkExistingUserForReply(email, replyForm);
-                        } else {
-                            alert('Please enter a valid email address');
-                        }
-                    });
-                }
-
-                // Continue to reply
-                if (continueReplyBtn) {
-                    continueReplyBtn.addEventListener('click', function() {
-                        showReplyTextSection(replyForm);
-                    });
-                }
-
-                // Back to reply details
-                if (backToReplyDetailsBtn) {
-                    backToReplyDetailsBtn.addEventListener('click', function() {
-                        showReplyDetailsSection(replyForm);
-                    });
-                }
             }
 
             function submitReply(parentCommentId, form) {
                 const formData = new FormData(form);
+                const comment = formData.get('comment');
 
+                if (!comment || !comment.trim()) {
+                    alert('Please enter a reply');
+                    return;
+                }
+
+                // Check if user is logged in
+                const savedUser = localStorage.getItem('logged_in_user');
+                if (!savedUser) {
+                    alert('Please login to reply');
+                    return;
+                }
+
+                loggedInUser = JSON.parse(savedUser);
+
+                // Prepare reply data using logged in user details
                 const replyData = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    location: formData.get('location'),
-                    consultation_interest: formData.get('consultation_interest'),
-                    comment: formData.get('comment'),
+                    name: loggedInUser.name,
+                    email: loggedInUser.email,
+                    phone: loggedInUser.phone || '',
+                    location: loggedInUser.location || '',
+                    consultation_interest: loggedInUser.consultation_interest || '',
+                    comment: comment,
                     parent_id: parentCommentId
                 };
+
+                // Disable submit button
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i>Posting...';
 
                 fetch(`/api/blog/${blogId}/comments`, {
                     method: 'POST',
@@ -1875,15 +1948,38 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Reload the page to show the new reply
-                        window.location.reload();
+                        // Remove reply form
+                        form.closest('.reply-form').remove();
+
+                        // Re-enable submit button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+
+                        // Reload comments after a short delay to ensure database is updated
+                        setTimeout(() => {
+                            loadComments();
+                        }, 500);
+
+                        // Show success message
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm';
+                        successMsg.innerHTML = '<i class="fas fa-check-circle me-2"></i>Reply posted successfully!';
+                        const commentsList = document.getElementById('comments-list');
+                        if (commentsList) {
+                            commentsList.parentNode.insertBefore(successMsg, commentsList);
+                            setTimeout(() => successMsg.remove(), 3000);
+                        }
                     } else {
                         alert('Error: ' + (data.message || 'Failed to post reply'));
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     alert('Something went wrong. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
                 });
             }
 
@@ -1895,7 +1991,125 @@
                         submitComment();
                     });
                 }
+
+                // Check if user is logged in
+                checkLoggedInUser();
+
+                // Close modals on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        const loginModal = document.getElementById('login-modal');
+                        const registerModal = document.getElementById('register-modal');
+                        if (loginModal && !loginModal.classList.contains('hidden')) {
+                            closeLoginModal();
+                        } else if (registerModal && !registerModal.classList.contains('hidden')) {
+                            closeRegisterModal();
+                        }
+                    }
+                });
             }
+
+            // Load saved commenter details (WordPress-style cookie behavior)
+            function loadCommenterDetails() {
+                // Wait a bit to ensure DOM elements exist
+                setTimeout(function() {
+                    const savedName = localStorage.getItem('commenter_name');
+                    const savedEmail = localStorage.getItem('commenter_email');
+                    const savedPhone = localStorage.getItem('commenter_phone');
+                    const savedLocation = localStorage.getItem('commenter_location');
+
+                    const nameInput = document.getElementById('commenter-name');
+                    const emailInput = document.getElementById('commenter-email');
+                    const phoneInput = document.getElementById('commenter-phone');
+                    const locationInput = document.getElementById('commenter-location');
+                    const infoSection = document.getElementById('commenter-info');
+                    const detailsSection = document.getElementById('commenter-details');
+                    const displayName = document.getElementById('display-name');
+                    const displayEmail = document.getElementById('display-email');
+
+                    // Check if elements exist
+                    if (!nameInput || !emailInput || !infoSection || !detailsSection) {
+                        console.log('Comment form elements not found');
+                        return;
+                    }
+
+                    if (savedName && savedEmail) {
+                        // User has commented before - auto-fill and show info bar
+                        nameInput.value = savedName;
+                        emailInput.value = savedEmail;
+                        if (savedPhone && phoneInput) phoneInput.value = savedPhone;
+                        if (savedLocation && locationInput) locationInput.value = savedLocation;
+
+                        // Show info bar and hide details section
+                        infoSection.classList.remove('hidden');
+                        if (displayName) displayName.textContent = savedName;
+                        if (displayEmail) displayEmail.textContent = '(' + savedEmail + ')';
+                        detailsSection.classList.add('hidden');
+                    } else {
+                        // First-time commenter - show details section
+                        infoSection.classList.add('hidden');
+                        detailsSection.classList.remove('hidden');
+                    }
+                }, 100);
+            }
+
+            // Toggle commenter details (WordPress-style edit functionality) - Make it globally accessible
+            window.toggleCommenterDetails = function() {
+                const detailsSection = document.getElementById('commenter-details');
+                const infoSection = document.getElementById('commenter-info');
+
+                if (detailsSection.classList.contains('hidden')) {
+                    // Show details section for editing
+                    detailsSection.classList.remove('hidden');
+                    infoSection.classList.add('hidden');
+                } else {
+                    // Hide details section and save any changes
+                    const name = document.getElementById('commenter-name').value;
+                    const email = document.getElementById('commenter-email').value;
+                    const phone = document.getElementById('commenter-phone').value;
+                    const location = document.getElementById('commenter-location').value;
+
+                    if (name && email) {
+                        // Save updated details
+                        saveCommenterDetails(name, email, phone, location);
+
+                        // Update info bar
+                        document.getElementById('display-name').textContent = name;
+                        document.getElementById('display-email').textContent = '(' + email + ')';
+                    }
+
+                    detailsSection.classList.add('hidden');
+                    infoSection.classList.remove('hidden');
+                }
+            };
+
+            // Save commenter details to localStorage (WordPress-style)
+            function saveCommenterDetails(name, email, phone, location) {
+                localStorage.setItem('commenter_name', name);
+                localStorage.setItem('commenter_email', email);
+                if (phone) localStorage.setItem('commenter_phone', phone);
+                if (location) localStorage.setItem('commenter_location', location);
+            }
+
+            // Logout commenter (clear saved details) - Make it globally accessible
+            window.logoutCommenter = function() {
+                if (confirm('Are you sure you want to logout? You will need to enter your details again for future comments.')) {
+                    localStorage.removeItem('commenter_name');
+                    localStorage.removeItem('commenter_email');
+                    localStorage.removeItem('commenter_phone');
+                    localStorage.removeItem('commenter_location');
+
+                    // Clear form fields
+                    document.getElementById('commenter-name').value = '';
+                    document.getElementById('commenter-email').value = '';
+                    document.getElementById('commenter-phone').value = '';
+                    document.getElementById('commenter-location').value = '';
+
+                    // Show details section and hide info bar
+                    document.getElementById('commenter-info').classList.add('hidden');
+                    document.getElementById('commenter-details').classList.remove('hidden');
+                }
+            };
 
             function checkExistingUser(email) {
                 if (!email || !email.includes('@')) return;
@@ -2108,12 +2322,233 @@
                 }
             }
 
+            // Store pending comment
+            let pendingComment = null;
+
             function submitComment() {
                 const form = document.getElementById('comment-form');
                 const formData = new FormData(form);
+                const comment = formData.get('comment');
+
+                // Validate comment first (ensure not empty)
+                if (!comment || !comment.trim()) {
+                    alert('Please enter a comment before posting');
+                    return;
+                }
+
+                // Store comment for later
+                pendingComment = comment;
+
+                // Check if user is logged in
+                const savedUser = localStorage.getItem('logged_in_user');
+                if (savedUser) {
+                    loggedInUser = JSON.parse(savedUser);
+                    // User is logged in, post comment directly
+                    postCommentDirectly(comment);
+                } else {
+                    // User not logged in - show login modal
+                    showLoginModal();
+                }
+            }
+
+            // Modal functions - Make globally accessible
+            window.showLoginModal = function() {
+                const modal = document.getElementById('login-modal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.style.display = 'flex';
+                    setTimeout(() => {
+                        const emailInput = document.getElementById('login-email');
+                        if (emailInput) emailInput.focus();
+                    }, 100);
+                }
+            };
+
+            window.closeLoginModal = function() {
+                const modal = document.getElementById('login-modal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    modal.style.display = 'none';
+                }
+            };
+
+            window.showRegisterModal = function() {
+                const modal = document.getElementById('register-modal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.style.display = 'flex';
+                    setTimeout(() => {
+                        const nameInput = document.getElementById('register-name');
+                        if (nameInput) nameInput.focus();
+                    }, 100);
+                }
+            };
+
+            window.closeRegisterModal = function() {
+                const modal = document.getElementById('register-modal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    modal.style.display = 'none';
+                }
+            };
+
+            window.switchToRegister = function() {
+                const email = document.getElementById('login-email').value;
+                closeLoginModal();
+                showRegisterModal();
+                if (email) document.getElementById('register-email').value = email;
+            };
+
+            window.switchToLogin = function() {
+                const email = document.getElementById('register-email').value;
+                closeRegisterModal();
+                showLoginModal();
+                if (email) document.getElementById('login-email').value = email;
+            };
+
+            // Login handler
+            window.handleLogin = function() {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                const submitBtn = document.getElementById('login-submit-btn');
+
+                if (!email || !password) {
+                    alert('Please enter email and password');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Logging in...';
+
+                fetch('/api/blog/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ email: email, password: password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Save logged in user
+                        loggedInUser = data.user;
+                        localStorage.setItem('logged_in_user', JSON.stringify(data.user));
+
+                        // Update UI
+                        updateLoggedInUI(data.user);
+                        closeLoginModal();
+
+                        // Clear login form
+                        document.getElementById('login-form').reset();
+
+                        // Post comment if pending
+                        if (pendingComment) {
+                            postCommentDirectly(pendingComment);
+                            pendingComment = null;
+                        }
+                    } else {
+                        alert(data.message || 'Login failed. Please check your credentials.');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Login';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Something went wrong. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Login';
+                });
+            };
+
+            // Register handler
+            window.handleRegister = function() {
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const phone = document.getElementById('register-phone').value;
+                const location = document.getElementById('register-location').value;
+                const submitBtn = document.getElementById('register-submit-btn');
+
+                if (!name || !email || !password) {
+                    alert('Please fill in all required fields (Name, Email, Password)');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    alert('Password must be at least 6 characters');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating account...';
+
+                fetch('/api/blog/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        password: password,
+                        phone: phone,
+                        location: location
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Save logged in user
+                        loggedInUser = data.user;
+                        localStorage.setItem('logged_in_user', JSON.stringify(data.user));
+
+                        // Update UI
+                        updateLoggedInUI(data.user);
+                        closeRegisterModal();
+
+                        // Clear register form
+                        document.getElementById('register-form').reset();
+
+                        // Post comment if pending
+                        if (pendingComment) {
+                            postCommentDirectly(pendingComment);
+                            pendingComment = null;
+                        }
+                    } else {
+                        alert(data.message || 'Registration failed. Please try again.');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Create Account & Comment';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Something went wrong. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Create Account & Comment';
+                });
+            };
+
+            // Post comment directly (user is logged in)
+            function postCommentDirectly(comment) {
+                if (!loggedInUser || !comment) {
+                    console.error('No user or comment to post');
+                    return;
+                }
+
+                const submitBtn = document.querySelector('#comment-form button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Posting...';
 
                 const commentData = {
-                    comment: formData.get('comment')
+                    name: loggedInUser.name,
+                    email: loggedInUser.email,
+                    phone: loggedInUser.phone || '',
+                    location: loggedInUser.location || '',
+                    consultation_interest: loggedInUser.consultation_interest || '',
+                    comment: comment
                 };
 
                 fetch(`/api/blog/${blogId}/comments`, {
@@ -2127,16 +2562,72 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Reload the page to show the new comment
-                        window.location.reload();
+                        // Clear comment
+                        document.getElementById('comment-text').value = '';
+
+                        // Re-enable submit button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+
+                        // Reload comments after a short delay to ensure database is updated
+                        setTimeout(() => {
+                            loadComments();
+                        }, 500);
+
+                        // Show success message
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700';
+                        successMsg.innerHTML = '<i class="fas fa-check-circle me-2"></i>Comment posted successfully!';
+                        const commentForm = document.getElementById('comment-form');
+                        commentForm.parentNode.insertBefore(successMsg, commentForm);
+                        setTimeout(() => successMsg.remove(), 3000);
                     } else {
                         alert('Error: ' + (data.message || 'Failed to post comment'));
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     alert('Something went wrong. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
                 });
+            }
+
+            // Update logged in UI
+            function updateLoggedInUI(user) {
+                const infoSection = document.getElementById('logged-in-info');
+
+                if (user) {
+                    // Show logged in info
+                    if (infoSection) {
+                        document.getElementById('logged-in-name').textContent = user.name;
+                        document.getElementById('logged-in-email').textContent = '(' + user.email + ')';
+                        infoSection.classList.remove('hidden');
+                    }
+                } else {
+                    // Hide logged in info
+                    if (infoSection) infoSection.classList.add('hidden');
+                }
+            }
+
+            // Logout function
+            window.logoutUser = function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.removeItem('logged_in_user');
+                    loggedInUser = null;
+                    updateLoggedInUI(null);
+                }
+            };
+
+            // Check if user is logged in on page load
+            function checkLoggedInUser() {
+                const savedUser = localStorage.getItem('logged_in_user');
+                if (savedUser) {
+                    loggedInUser = JSON.parse(savedUser);
+                    updateLoggedInUI(loggedInUser);
+                }
             }
 
             function updateCommentsCount(count) {
@@ -2144,6 +2635,10 @@
                 if (countElement) {
                     countElement.textContent = count;
                 }
+                const countDisplays = document.querySelectorAll('.comments-count-display');
+                countDisplays.forEach(el => {
+                    el.textContent = count;
+                });
             }
 
             function getTimeAgo(dateString) {
@@ -2212,13 +2707,10 @@
 
             function updateSharesCount(sharesCount) {
                 // Update shares count in article content
-                const sharesElement = document.querySelector('.fa-share').closest('span');
-                if (sharesElement) {
-                    const countSpan = sharesElement.querySelector('span:last-child');
-                    if (countSpan) {
-                        countSpan.textContent = sharesCount;
-                    }
-                }
+                const shareElements = document.querySelectorAll('.article-shares-count');
+                shareElements.forEach(el => {
+                    el.textContent = sharesCount;
+                });
             }
 
             function initializeLikeState() {

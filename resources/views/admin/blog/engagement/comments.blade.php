@@ -233,7 +233,22 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column">
-                                                <span class="fw-bold">{{ $comment->name }}</span>
+                                                <div class="d-flex align-items-center gap-2 mb-1">
+                                                    <span class="fw-bold">{{ $comment->name }}</span>
+                                                    @if($comment->userProfile && $comment->userProfile->password)
+                                                        <span class="badge bg-success" title="User has account with password">
+                                                            <i class="fas fa-user-check me-1"></i>Account
+                                                        </span>
+                                                    @elseif($comment->userProfile)
+                                                        <span class="badge bg-warning" title="User profile exists but no password">
+                                                            <i class="fas fa-user me-1"></i>Profile Only
+                                                        </span>
+                                                    @else
+                                                        <span class="badge bg-danger" title="No user profile - missing details">
+                                                            <i class="fas fa-exclamation-triangle me-1"></i>No Details
+                                                        </span>
+                                                    @endif
+                                                </div>
                                                 <small class="text-muted">{{ $comment->email }}</small>
                                                 @if($comment->userProfile)
                                                     <div class="mt-2">
@@ -241,10 +256,18 @@
                                                             <small class="text-info d-block">
                                                                 <i class="fas fa-phone me-1"></i>{{ $comment->userProfile->phone }}
                                                             </small>
+                                                        @else
+                                                            <small class="text-muted d-block">
+                                                                <i class="fas fa-phone me-1"></i>No phone
+                                                            </small>
                                                         @endif
                                                         @if($comment->userProfile->location)
                                                             <small class="text-info d-block">
                                                                 <i class="fas fa-map-marker-alt me-1"></i>{{ ucfirst($comment->userProfile->location) }}
+                                                            </small>
+                                                        @else
+                                                            <small class="text-muted d-block">
+                                                                <i class="fas fa-map-marker-alt me-1"></i>No location
                                                             </small>
                                                         @endif
                                                         @if($comment->userProfile->consultation_interest)
@@ -258,9 +281,31 @@
                                                                     <span class="text-muted">Not interested</span>
                                                                 @endif
                                                             </small>
+                                                        @else
+                                                            <small class="text-muted d-block">
+                                                                <i class="fas fa-calendar-check me-1"></i>No consultation interest
+                                                            </small>
                                                         @endif
                                                         <small class="text-muted d-block">
                                                             <i class="fas fa-comments me-1"></i>{{ $comment->userProfile->total_comments }} total comments
+                                                        </small>
+                                                        @if($comment->userProfile->password)
+                                                            <small class="text-success d-block">
+                                                                <i class="fas fa-lock me-1"></i>Has password (logged in user)
+                                                            </small>
+                                                        @else
+                                                            <small class="text-warning d-block">
+                                                                <i class="fas fa-unlock me-1"></i>No password (old user)
+                                                            </small>
+                                                        @endif
+                                                    </div>
+                                                @else
+                                                    <div class="mt-2">
+                                                        <small class="text-danger d-block">
+                                                            <i class="fas fa-exclamation-circle me-1"></i>User profile not found
+                                                        </small>
+                                                        <small class="text-muted d-block">
+                                                            <i class="fas fa-info-circle me-1"></i>This comment was posted before user account system
                                                         </small>
                                                     </div>
                                                 @endif
