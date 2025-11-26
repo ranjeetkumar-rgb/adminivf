@@ -1,14 +1,14 @@
 @php
     // Get SEO service
     $seoService = app(\App\Services\SeoService::class);
-    
+
     // Determine current page
     $currentPage = $page ?? null;
-    
+
     // Get SEO data with error handling
     try {
         $seoData = $seoService->getSeoData($currentPage, $data ?? []);
-        
+
         // Ensure $seoData is an array
         if (!is_array($seoData)) {
             \Log::error('Dynamic SEO: $seoData is not an array', [
@@ -16,7 +16,7 @@
                 'seoData' => $seoData,
                 'type' => gettype($seoData)
             ]);
-            
+
             // Fallback to default SEO data
             $seoData = [
                 'title' => 'India IVF - Fertility Treatment Center',
@@ -37,10 +37,10 @@
                 'twitter_image' => asset('images/og-default.jpg'),
             ];
         }
-        
+
         // Get structured data
         $structuredData = $seoService->getStructuredData($currentPage, $data ?? []);
-        
+
         // Ensure $structuredData is an array
         if (!is_array($structuredData)) {
             \Log::error('Dynamic SEO: $structuredData is not an array', [
@@ -48,7 +48,7 @@
                 'structuredData' => $structuredData,
                 'type' => gettype($structuredData)
             ]);
-            
+
             // Fallback to default structured data
             $structuredData = [
                 '@context' => 'https://schema.org',
@@ -63,7 +63,7 @@
             'currentPage' => $currentPage,
             'error' => $e->getMessage()
         ]);
-        
+
         // Fallback data
         $seoData = [
             'title' => 'India IVF - Fertility Treatment Center',
@@ -83,7 +83,7 @@
             'twitter_description' => 'Best IVF Center in Srinagar | Fertility Specialist',
             'twitter_image' => asset('images/og-default.jpg'),
         ];
-        
+
         $structuredData = [
             '@context' => 'https://schema.org',
             '@type' => 'MedicalOrganization',
@@ -110,8 +110,15 @@
 <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
 <meta property="og:title" content="{{ $seoData['og_title'] ?? $seoData['title'] ?? 'India IVF' }}">
 <meta property="og:description" content="{{ $seoData['og_description'] ?? $seoData['description'] ?? 'Best IVF Center in Srinagar' }}">
-<meta property="og:url" content="{{ $seoData['canonical'] ?? request()->url() }}">
-<meta property="og:image" content="{{ $seoData['og_image'] ?? asset('images/og-default.jpg') }}">
+<meta property="og:url" content="{{ $seoData['og_url'] ?? $seoData['canonical'] ?? request()->url() }}">
+@php
+    $ogImage = $seoData['og_image'] ?? asset('images/og-default.jpg');
+    // Ensure og_image is an absolute URL
+    if (!filter_var($ogImage, FILTER_VALIDATE_URL)) {
+        $ogImage = asset($ogImage);
+    }
+@endphp
+<meta property="og:image" content="{{ $ogImage }}">
 <meta property="og:site_name" content="India IVF">
 
 {{-- Article specific meta tags --}}
@@ -131,7 +138,14 @@
 <meta name="twitter:creator" content="{{ $seoData['twitter_creator'] ?? '@indiaivf' }}">
 <meta name="twitter:title" content="{{ $seoData['twitter_title'] ?? $seoData['title'] ?? 'India IVF' }}">
 <meta name="twitter:description" content="{{ $seoData['twitter_description'] ?? $seoData['description'] ?? 'Best IVF Center in Srinagar' }}">
-<meta name="twitter:image" content="{{ $seoData['twitter_image'] ?? $seoData['og_image'] ?? asset('images/og-default.jpg') }}">
+@php
+    $twitterImage = $seoData['twitter_image'] ?? $seoData['og_image'] ?? asset('images/og-default.jpg');
+    // Ensure twitter_image is an absolute URL
+    if (!filter_var($twitterImage, FILTER_VALIDATE_URL)) {
+        $twitterImage = asset($twitterImage);
+    }
+@endphp
+<meta name="twitter:image" content="{{ $twitterImage }}">
 
 {{-- Additional Meta Tags --}}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -184,4 +198,4 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com"> 
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">

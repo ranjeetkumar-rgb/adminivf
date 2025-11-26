@@ -491,23 +491,65 @@
                         <div class="my-12">
                     @if(!empty($blog->video_url))
                         @php
-                            // Extract YouTube video ID
-                            parse_str(parse_url($blog->video_url, PHP_URL_QUERY), $ytParams);
-                            $youtubeId = $ytParams['v'] ?? null;
+                            // Extract YouTube video ID from various URL formats
+                            $videoUrl = trim($blog->video_url);
+                            $youtubeId = null;
+                            $embedUrl = null;
+
+                            // Check if it's already an embed URL
+                            if (preg_match('/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/', $videoUrl, $matches)) {
+                                $youtubeId = $matches[1];
+                                $embedUrl = "https://www.youtube.com/embed/{$youtubeId}";
+                            }
+                            // Extract from standard YouTube watch URL
+                            elseif (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $videoUrl, $matches)) {
+                                $youtubeId = $matches[1];
+                                $embedUrl = "https://www.youtube.com/embed/{$youtubeId}";
+                            }
+                            // Fallback: try parse_url method for URLs with additional parameters
+                            elseif (strpos($videoUrl, 'youtube.com') !== false || strpos($videoUrl, 'youtu.be') !== false) {
+                                $parsedUrl = parse_url($videoUrl);
+                                if (isset($parsedUrl['query'])) {
+                                    parse_str($parsedUrl['query'], $params);
+                                    if (isset($params['v']) && !empty($params['v'])) {
+                                        $youtubeId = preg_replace('/[^a-zA-Z0-9_-]/', '', $params['v']);
+                                        if (strlen($youtubeId) === 11) {
+                                            $embedUrl = "https://www.youtube.com/embed/{$youtubeId}";
+                                        }
+                                    }
+                                }
+                                // For youtu.be short URLs
+                                if (!$embedUrl && isset($parsedUrl['path'])) {
+                                    $path = trim($parsedUrl['path'], '/');
+                                    if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $path)) {
+                                        $youtubeId = $path;
+                                        $embedUrl = "https://www.youtube.com/embed/{$youtubeId}";
+                                    }
+                                }
+                            }
                         @endphp
 
-                        @if($youtubeId)
-                                <div class="relative rounded-2xl overflow-hidden shadow-lg">
-                                    <iframe
-                                        width="100%"
-                                        height="400"
-                                        src="https://www.youtube.com/embed/{{ $youtubeId }}"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                            @endif
+                        @if($embedUrl)
+                            <div class="relative rounded-2xl overflow-hidden shadow-lg" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                                <iframe
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                                    src="{{ $embedUrl }}?rel=0"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        @else
+                            {{-- Fallback: Show video URL as link if extraction fails --}}
+                            <div class="bg-gray-100 rounded-2xl p-6 text-center">
+                                <p class="text-gray-600 mb-4">Video URL: <a href="{{ $videoUrl }}" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:underline break-all">{{ $videoUrl }}</a></p>
+                                <p class="text-sm text-gray-500 mb-4">Unable to extract video ID. Please check the URL format.</p>
+                                <a href="{{ $videoUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
+                                    <i class="fab fa-youtube mr-2"></i> Watch on YouTube
+                                </a>
+                            </div>
+                        @endif
                         @endif
                         <div id="lifestyle-impact" class="mb-12">
                              @if($blog->lifestyle)

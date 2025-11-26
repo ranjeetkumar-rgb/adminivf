@@ -423,8 +423,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="video_url" class="form-label">Video URL</label>
-                                    <input type="url" class="form-control @error('video_url') is-invalid @enderror" id="video_url" name="video_url" placeholder="Enter video URL (YouTube, Vimeo, etc.)" value="{{ $blog->video_url ?? '' }}">
-                                    <small class="form-text text-muted">URL to video content (YouTube, Vimeo, etc.)</small>
+                                    <input type="url" class="form-control @error('video_url') is-invalid @enderror" id="video_url" name="video_url" placeholder="https://www.youtube.com/watch?v=VIDEO_ID" value="{{ $blog->video_url ?? '' }}">
+                                    <small class="form-text text-muted">Enter YouTube video URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID). The video ID will be extracted automatically.</small>
                                     @error('video_url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

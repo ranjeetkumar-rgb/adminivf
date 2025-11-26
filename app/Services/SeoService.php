@@ -14,7 +14,7 @@ class SeoService
     {
         try {
             $defaultSeo = $this->getDefaultSeo();
-            
+
             // Ensure defaultSeo is an array
             if (!is_array($defaultSeo)) {
                 \Log::error('SeoService: getDefaultSeo() returned non-array', [
@@ -23,11 +23,11 @@ class SeoService
                 ]);
                 $defaultSeo = $this->getFallbackSeo();
             }
-            
+
             if (!$page) {
                 return $defaultSeo;
             }
-            
+
             // First try to get from PageSeo model
             $pageSeo = \App\Models\PageSeo::getSeoForPage($page);
             if ($pageSeo) {
@@ -42,11 +42,11 @@ class SeoService
                 }
                 return array_merge($defaultSeo, $pageSeoArray);
             }
-            
+
             // Fallback to hardcoded methods
             if ($page && is_string($page)) {
                 $method = 'get' . Str::studly($page) . 'Seo';
-                
+
                 if (method_exists($this, $method)) {
                     $methodResult = $this->$method($data);
                     if (!is_array($methodResult)) {
@@ -60,7 +60,7 @@ class SeoService
                     return array_merge($defaultSeo, $methodResult);
                 }
             }
-            
+
             return $defaultSeo;
         } catch (\Exception $e) {
             \Log::error('SeoService: Exception in getSeoData', [
@@ -71,7 +71,7 @@ class SeoService
             return $this->getFallbackSeo();
         }
     }
-    
+
     /**
      * Get default SEO settings
      */
@@ -93,7 +93,7 @@ class SeoService
             ];
         });
     }
-    
+
     /**
      * Get fallback SEO settings when everything else fails
      */
@@ -118,7 +118,7 @@ class SeoService
             'twitter_creator' => '@indiaivf',
         ];
     }
-    
+
     /**
      * Get SEO for home page
      */
@@ -131,19 +131,31 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for blog pages
      */
     private function getBlogSeo($data = [])
     {
         $blog = $data['blog'] ?? null;
-        
+
         if (!$blog) {
             return $this->getDefaultSeo();
         }
-        
+
         try {
+            // Handle og_image - check if it's a full URL or needs asset()
+            $ogImage = $blog->og_image;
+            if ($ogImage) {
+                // If it's already a full URL, use it; otherwise treat as storage path
+                if (!filter_var($ogImage, FILTER_VALIDATE_URL)) {
+                    $ogImage = asset('storage/' . $ogImage);
+                }
+            } else {
+                // Fallback to blog image or default
+                $ogImage = $blog->image ? asset('storage/' . $blog->image) : asset('images/og-default.jpg');
+            }
+
             return [
                 'title' => $blog->meta_title ?: $blog->title ?: 'Blog Post',
                 'description' => $blog->meta_description ?: ($blog->description ? Str::limit(strip_tags($blog->description), 160) : 'Blog post from India IVF'),
@@ -154,13 +166,15 @@ class SeoService
                 'og_type' => 'article',
                 'og_title' => $blog->og_title ?: $blog->meta_title ?: $blog->title ?: 'Blog Post',
                 'og_description' => $blog->og_description ?: $blog->meta_description ?: ($blog->description ? Str::limit(strip_tags($blog->description), 160) : 'Blog post from India IVF'),
-                'og_image' => $blog->og_image ?: ($blog->image ? asset('storage/' . $blog->image) : asset('images/og-default.jpg')),
+                'og_image' => $ogImage,
+                'og_url' => $blog->canonical_url ?: request()->url(),
                 'article_published_time' => $blog->created_at?->toISOString(),
                 'article_modified_time' => $blog->updated_at?->toISOString(),
                 'article_author' => $blog->author_name ?: 'India IVF',
                 'twitter_title' => $blog->og_title ?: $blog->meta_title ?: $blog->title ?: 'Blog Post',
                 'twitter_description' => $blog->og_description ?: $blog->meta_description ?: ($blog->description ? Str::limit(strip_tags($blog->description), 160) : 'Blog post from India IVF'),
-                'twitter_image' => $blog->og_image ?: ($blog->image ? asset('storage/' . $blog->image) : asset('images/og-default.jpg')),
+                'twitter_image' => $ogImage,
+                'focus_keyword' => $blog->focus_keyword ?: null,
             ];
         } catch (\Exception $e) {
             \Log::error('SeoService: Exception in getBlogSeo', [
@@ -170,7 +184,7 @@ class SeoService
             return $this->getFallbackSeo();
         }
     }
-    
+
     /**
      * Get SEO for about page
      */
@@ -183,7 +197,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for services page
      */
@@ -196,7 +210,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for contact page
      */
@@ -209,7 +223,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for FAQ page
      */
@@ -222,7 +236,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for testimonials page
      */
@@ -235,7 +249,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for doctors page
      */
@@ -248,7 +262,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for pricing page
      */
@@ -261,7 +275,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for treatments page
      */
@@ -274,7 +288,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for centres page
      */
@@ -287,7 +301,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for training page
      */
@@ -300,7 +314,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Get SEO for more page
      */
@@ -313,7 +327,7 @@ class SeoService
             'og_type' => 'website',
         ];
     }
-    
+
     /**
      * Generate structured data for any page
      */
@@ -334,11 +348,11 @@ class SeoService
                 }
                 return $structuredData;
             }
-            
+
             // Fallback to hardcoded methods
             if ($page && is_string($page)) {
                 $method = 'get' . Str::studly($page) . 'StructuredData';
-                
+
                 if (method_exists($this, $method)) {
                     $methodResult = $this->$method($data);
                     if (!is_array($methodResult)) {
@@ -352,7 +366,7 @@ class SeoService
                     return $methodResult;
                 }
             }
-            
+
             return $this->getDefaultStructuredData();
         } catch (\Exception $e) {
             \Log::error('SeoService: Exception in getStructuredData', [
@@ -363,7 +377,7 @@ class SeoService
             return $this->getDefaultStructuredData();
         }
     }
-    
+
     /**
      * Get default structured data
      */
@@ -389,23 +403,46 @@ class SeoService
             ]
         ];
     }
-    
+
     /**
      * Get structured data for blog
      */
     private function getBlogStructuredData($data = [])
     {
         $blog = $data['blog'] ?? null;
-        
+
         if (!$blog) {
             return $this->getDefaultStructuredData();
         }
-        
+
+        // If blog has custom schema, use it (after validating it's valid JSON)
+        if ($blog->schema) {
+            try {
+                $customSchema = is_string($blog->schema) ? json_decode($blog->schema, true) : $blog->schema;
+                if (json_last_error() === JSON_ERROR_NONE && is_array($customSchema)) {
+                    // Ensure required fields are present
+                    if (!isset($customSchema['@context'])) {
+                        $customSchema['@context'] = 'https://schema.org';
+                    }
+                    if (!isset($customSchema['@type'])) {
+                        $customSchema['@type'] = 'BlogPosting';
+                    }
+                    return $customSchema;
+                }
+            } catch (\Exception $e) {
+                \Log::warning('SeoService: Invalid schema JSON for blog', [
+                    'blog_id' => $blog->id,
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
+
+        // Default structured data
         return [
             '@context' => 'https://schema.org',
             '@type' => 'BlogPosting',
             'headline' => $blog->heading ?: $blog->title,
-            'description' => $blog->meta_description ?: Str::limit(strip_tags($blog->description), 160),
+            'description' => $blog->meta_description ?: Str::limit(strip_tags($blog->description ?? ''), 160),
             'image' => $blog->image ? asset('storage/' . $blog->image) : asset('images/og-default.jpg'),
             'author' => [
                 '@type' => 'Person',
@@ -423,11 +460,11 @@ class SeoService
             'dateModified' => $blog->updated_at?->toISOString(),
             'mainEntityOfPage' => [
                 '@type' => 'WebPage',
-                '@id' => request()->url()
+                '@id' => $blog->canonical_url ?: request()->url()
             ]
         ];
     }
-    
+
     /**
      * Get structured data for treatments page
      */
@@ -449,7 +486,7 @@ class SeoService
             'followup' => 'Regular monitoring and follow-up care provided'
         ];
     }
-    
+
     /**
      * Get structured data for centres page
      */
@@ -476,7 +513,7 @@ class SeoService
             ]
         ];
     }
-    
+
     /**
      * Get structured data for training page
      */
@@ -499,7 +536,7 @@ class SeoService
             ]
         ];
     }
-    
+
     /**
      * Get structured data for more page
      */
@@ -518,4 +555,4 @@ class SeoService
             ]
         ];
     }
-} 
+}
