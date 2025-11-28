@@ -25,37 +25,37 @@
 </section>
 
 <!-- Filter Bar -->
-<section id="filter-bar" class="bg-white shadow-sm border-b border-gray-100 py-4 sm:py-6">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col gap-6">
+<section id="filter-bar" class="bg-white shadow-sm border-b border-gray-100 py-3 sm:py-4 lg:py-6">
+    <div class="container mx-auto px-3 sm:px-4">
+        <div class="flex flex-col gap-4 sm:gap-6">
             <!-- Category Filters -->
-            <div class="flex flex-col gap-3">
-                <span class="font-semibold text-support-grey text-sm sm:text-base">Filter by Category:</span>
-                <div class="flex flex-wrap gap-2 sm:gap-3">
-                    <button class="filter-category px-4 py-2.5 rounded-full text-sm font-medium transition-all min-w-[60px] text-center {{ $categoryFilter === 'all' || !$categoryFilter ? 'bg-primary-pink text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-pink hover:text-white' }}"
+            <div class="flex flex-col gap-2 sm:gap-3">
+                <span class="font-semibold text-support-grey text-xs sm:text-sm lg:text-base">Filter by Category:</span>
+                <div class="flex flex-wrap gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0 -mx-3 sm:mx-0 px-3 sm:px-0">
+                    <button class="filter-category px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all min-w-[60px] text-center whitespace-nowrap {{ $categoryFilter === 'all' || !$categoryFilter ? 'bg-primary-pink text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-pink hover:text-white' }}"
                             data-category="all">All</button>
                     @foreach($categories as $category)
-                        <button class="filter-category px-4 py-2.5 rounded-full text-sm font-medium transition-all min-w-[80px] text-center {{ $categoryFilter == $category->id ? 'bg-primary-pink text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-pink hover:text-white' }}"
+                        <button class="filter-category px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all min-w-[80px] text-center whitespace-nowrap {{ $categoryFilter == $category->id ? 'bg-primary-pink text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-pink hover:text-white' }}"
                                 data-category="{{ $category->id }}">{{ $category->name }}</button>
                     @endforeach
                 </div>
             </div>
 
             <!-- Content Type Filters -->
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                <span class="font-semibold text-support-grey text-sm sm:text-base">Content Type:</span>
-                <div class="flex flex-wrap gap-2 sm:gap-3">
-                    <button class="filter-type px-4 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2 min-w-[100px] {{ $contentType === 'videos' ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white' }} transition-all"
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 lg:gap-4">
+                <span class="font-semibold text-support-grey text-xs sm:text-sm lg:text-base">Content Type:</span>
+                <div class="flex flex-wrap gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0 -mx-3 sm:mx-0 px-3 sm:px-0">
+                    <button class="filter-type px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium flex items-center justify-center gap-1 sm:gap-2 min-w-[90px] sm:min-w-[100px] whitespace-nowrap {{ $contentType === 'videos' ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white' }} transition-all"
                             data-type="videos">
-                        <i class="fas fa-play text-sm"></i> <span>Videos</span>
+                        <i class="fas fa-play text-xs sm:text-sm"></i> <span>Videos</span>
                     </button>
-                    <button class="filter-type px-4 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2 min-w-[100px] {{ $contentType === 'articles' ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white' }} transition-all"
+                    <button class="filter-type px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium flex items-center justify-center gap-1 sm:gap-2 min-w-[90px] sm:min-w-[100px] whitespace-nowrap {{ $contentType === 'articles' ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white' }} transition-all"
                             data-type="articles">
-                        <i class="fas fa-file-text text-sm"></i> <span>Articles</span>
+                        <i class="fas fa-file-text text-xs sm:text-sm"></i> <span>Articles</span>
                     </button>
-                    <button class="filter-type px-4 py-2.5 rounded-full text-sm font-medium flex items-center justify-center gap-2 min-w-[80px] {{ $contentType === 'all' || !$contentType ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white' }} transition-all"
+                    <button class="filter-type px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium flex items-center justify-center gap-1 sm:gap-2 min-w-[70px] sm:min-w-[80px] whitespace-nowrap {{ $contentType === 'all' || !$contentType ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-700 hover:bg-primary-blue hover:text-white' }} transition-all"
                             data-type="all">
-                        <i class="fas fa-list text-sm"></i> <span>All</span>
+                        <i class="fas fa-list text-xs sm:text-sm"></i> <span>All</span>
                     </button>
                 </div>
 
@@ -132,14 +132,14 @@
 @endif
 
 <!-- Main Content Grid -->
-<section id="main-content" class="py-8 sm:py-12 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
+<section id="main-content" class="py-6 sm:py-8 lg:py-12 bg-gray-50">
+    <div class="container mx-auto px-3 sm:px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             <!-- Blog Posts Grid -->
-            <div id="blog-posts-grid" class="lg:col-span-3">
-                <div id="blog-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+            <div id="blog-posts-grid" class="lg:col-span-3 order-2 lg:order-1">
+                <div id="blog-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 xl:gap-8">
                     @foreach($blogs as $blog)
-                    <a href="{{ route('blog.show', $blog->slug) }}" class="block bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
+                    <a href="{{ route('blog.show', $blog->slug) }}" class="block bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
                         <div class="relative">
                             @php
                                 // Prioritize image field over featured_image
@@ -164,7 +164,7 @@
                             </div>
                             @endif
                         </div>
-                        <div class="p-4 sm:p-6">
+                        <div class="p-3 sm:p-4 lg:p-6">
                             <h3 class="text-base sm:text-lg lg:text-xl font-bold text-support-grey mb-2 sm:mb-3 group-hover:text-primary-pink transition-colors leading-tight">{{ $blog->title }}</h3>
                             <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base line-clamp-2">{{ $blog->excerpt }}</p>
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
@@ -175,14 +175,14 @@
                                 </div>
                                 <span class="text-gray-500 text-xs sm:text-sm">{{ $blog->video_duration ?: $blog->reading_time }}</span>
                             </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
                                 <div class="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500" onclick="event.stopPropagation();">
-                                    <span class="flex items-center gap-1 like-btn cursor-pointer hover:text-red-500 transition-colors" data-blog-id="{{ $blog->id }}">
-                                        <i class="far fa-heart text-xs"></i> <span class="likes-count">{{ $blog->likes ?? 0 }}</span>
+                                    <span class="flex items-center gap-1 like-btn cursor-pointer hover:text-red-500 transition-colors px-2 py-1 -mx-2 -my-1 rounded" data-blog-id="{{ $blog->id }}">
+                                        <i class="far fa-heart text-xs sm:text-sm"></i> <span class="likes-count">{{ $blog->likes ?? 0 }}</span>
                                     </span>
-                                    <span class="flex items-center gap-1"><i class="fas fa-comment text-xs"></i> {{ $blog->comments_count ?? 0 }}</span>
-                                    <span class="flex items-center gap-1 share-btn cursor-pointer hover:text-blue-500 transition-colors" data-blog-id="{{ $blog->id }}">
-                                        <i class="fas fa-share text-xs"></i> <span class="shares-count">{{ $blog->shares ?? 0 }}</span>
+                                    <span class="flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded"><i class="fas fa-comment text-xs sm:text-sm"></i> {{ $blog->comments_count ?? 0 }}</span>
+                                    <span class="flex items-center gap-1 share-btn cursor-pointer hover:text-blue-500 transition-colors px-2 py-1 -mx-2 -my-1 rounded" data-blog-id="{{ $blog->id }}">
+                                        <i class="fas fa-share text-xs sm:text-sm"></i> <span class="shares-count">{{ $blog->shares ?? 0 }}</span>
                                     </span>
                                 </div>
                                 <span class="text-primary-pink font-semibold text-xs sm:text-sm">
@@ -205,7 +205,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div id="sidebar" class="lg:col-span-1 order-first lg:order-last">
+            <div id="sidebar" class="lg:col-span-1 order-1 lg:order-last mb-6 lg:mb-0">
                 <!-- Popular Posts -->
                 @if($popularPosts->count() > 0)
                 <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
@@ -484,6 +484,63 @@
         </div>
     </div>
 </section>
+<style>
+    /* Mobile-specific improvements for blog index */
+    @media (max-width: 640px) {
+        /* Blog cards mobile spacing */
+        #blog-cards-container > * {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Sidebar mobile */
+        #sidebar > * {
+            margin-bottom: 1rem;
+        }
+
+        /* Touch targets */
+        button, a, .cursor-pointer {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Popular posts mobile */
+        #sidebar .space-y-3 > * {
+            padding: 0.5rem;
+        }
+
+        /* Categories mobile */
+        #sidebar .space-y-2 > * {
+            padding: 0.75rem;
+        }
+
+        /* Statistics section mobile */
+        #success-stats .grid {
+            gap: 1rem;
+        }
+
+        /* Testimonials mobile */
+        #testimonials-section .grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Appointment form mobile */
+        #appointment-section .grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Expert insights mobile */
+        #expert-insights .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Tablet improvements */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        #blog-cards-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
 @endsection
 
 @section('scripts')
@@ -604,7 +661,7 @@ function filterBlogs() {
         if (container) {
             container.innerHTML = data.html;
             console.log('Updated blog container with new content');
-            
+
             // Re-initialize event listeners for dynamically loaded cards
             initializeBlogCardListeners();
         } else {
@@ -719,7 +776,7 @@ function initializeBlogCardListeners() {
 // Dynamic blog interactions
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Initializing blog index dynamic functionality');
-    
+
     // Initialize listeners for initial page load
     initializeBlogCardListeners();
 });

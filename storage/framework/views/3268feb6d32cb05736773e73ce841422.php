@@ -1,5 +1,5 @@
-<header id="header" class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
-    <div class="container mx-auto px-4 mb-4 md:mb-0 md:px-12">
+<header id="header" class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50 overflow-visible">
+    <div class="container mx-auto px-4 mb-4 md:mb-0 md:px-12 overflow-visible">
         <div class="flex flex-col md:flex-row md:items-center justify-between  space-y-4 md:space-y-0">
             <div class="flex items-center justify-between px-4 md:px-0 py-2 bg-white">
                 <div class="flex items-center">
@@ -76,14 +76,15 @@
                 </div>
             </div>
         </div>
-        <nav>
-            <div class="hidden md:flex py-3 justify-between items-center overflow-x-auto sm:text-sm">
+        <nav class="relative overflow-visible">
+            <div class="hidden md:flex py-3 justify-between items-center sm:text-sm relative overflow-visible">
                 <a href="<?php echo e(url('/')); ?>">
                     <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Home</span>
                 </a>
-                <div class="group">
+                <div class="group relative">
                     <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Planning for baby</button>
-                    <div class="absolute top-full bg-white border shadow-xl w-screen max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                    <div class="absolute left-0 top-full pt-2 bg-transparent z-[100] hidden group-hover:block" style="min-width: 600px;">
+                        <div class="bg-white border shadow-xl max-w-6xl p-4 rounded-md" style="width: max-content; min-width: 600px;">
                         <div class="grid grid-cols-3 gap-6 w-full">
                             <div>
                                 <h4 class="text-md font-semibold mb-2 text-brand-pink">Fertility Issues</h4>
@@ -131,28 +132,32 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="group">
-                    <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Fertility Preservation</button>
-                    <div class="absolute top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
-                        <div class="grid gap-6 w-full">
-                            <div>
-                                <ul class="space-y-2 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">Egg Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Sperm Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Embryo Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Fertility Preservation for Cancer Patients</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Social Egg Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Storage &amp; Legal Guidelines</a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="group">
+                <div class="group relative">
+                    <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Fertility Preservation</button>
+                    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 bg-transparent z-[100] hidden group-hover:block">
+                        <div class="bg-white border shadow-xl p-4 rounded-md" style="min-width: 300px; width: max-content;">
+                        <div class="grid gap-6 w-full">
+                            <div>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><a href="#" class="hover:text-pink-500 ">Egg Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500 ">Sperm Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500 ">Embryo Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500 ">Fertility Preservation for Cancer Patients</a></li>
+                                    <li><a href="#" class="hover:text-pink-500 ">Social Egg Freezing</a></li>
+                                    <li><a href="#" class="hover:text-pink-500 ">Storage &amp; Legal Guidelines</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative">
                     <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Fertility Wellness</button>
-                    <div class="absolute top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 bg-transparent z-[100] hidden group-hover:block">
+                        <div class="bg-white border shadow-xl p-4 rounded-md" style="min-width: 300px; width: max-content;">
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-2 text-gray-600">
@@ -164,11 +169,13 @@
                                 </ul>
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
-                <div class="group">
+                <div class="group relative">
                     <button class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Centres</button>
-                    <div class="absolute top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 hidden group-hover:flex transition-all duration-300">
+                    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 bg-transparent z-[100] hidden group-hover:block">
+                        <div class="bg-white border shadow-xl p-4 rounded-md" style="min-width: 300px; width: max-content;">
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-2 text-gray-600">
@@ -181,6 +188,7 @@
                                 </ul>
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
                 <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Our Pricing</span>
@@ -188,13 +196,14 @@
                 <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Academics</span>
                 <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">International Patients</span>
 
-                <div class="group">
+                <div class="group relative">
                     <button id="desktopMenuBtn" class="text-gray-700 hover:text-brand-pink focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
-                    <div class="absolute hidden top-full bg-white border shadow-xl max-w-6xl p-4 rounded-md z-50 group-hover:flex transition-all duration-300">
+                    <div class="absolute right-0 top-full pt-2 bg-transparent z-[100] hidden group-hover:block">
+                        <div class="bg-white border shadow-xl max-w-6xl p-4 rounded-md">
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-3">
@@ -204,6 +213,7 @@
                                     <li><a href="#" class="hover:text-pink-500">About Us</a></li>
                                 </ul>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

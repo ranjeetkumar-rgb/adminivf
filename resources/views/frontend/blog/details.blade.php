@@ -192,6 +192,174 @@
                 padding: 1rem;
                 margin: 1rem 0;
             }
+
+            /* TOC Mobile Improvements */
+            #toc-sidebar {
+                order: 2;
+            }
+
+            #toc-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            #toc-content.active {
+                max-height: 500px;
+                overflow-y: auto;
+            }
+
+            /* Statistics Grid Mobile */
+            .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            /* CTA Cards Mobile */
+            .cta-card {
+                padding: 1.5rem !important;
+            }
+
+            .cta-card .flex.flex-col.sm\:flex-row {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .cta-card button {
+                width: 100%;
+            }
+
+            /* Author Bio Mobile */
+            #author-bio .flex.flex-col.sm\:flex-row {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            /* Comments Mobile */
+            #comments-section .bg-white {
+                padding: 1rem !important;
+            }
+
+            /* Related Articles Mobile */
+            #related-articles .grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Success Statistics Mobile */
+            #success-statistics .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            /* Video Container Mobile */
+            .relative.rounded-2xl.overflow-hidden {
+                margin: 1rem 0;
+            }
+
+            /* Tables Mobile */
+            .article-content table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+            }
+
+            /* Images Mobile */
+            .article-content img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Author Section Mobile */
+            #author-bio .flex.flex-col.sm\:flex-row {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            /* Need Help Section Mobile */
+            #need-help-section .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Newsletter Mobile */
+            #newsletter-subscription .flex.flex-col.md\:flex-row {
+                flex-direction: column;
+            }
+
+            /* Specialists Carousel Mobile */
+            #specialists-carousel .grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Modal Mobile */
+            #login-modal .bg-white,
+            #register-modal .bg-white {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+
+            /* Footer spacing */
+            #main-content-area {
+                padding-bottom: 3rem;
+            }
+
+            #newsletter-subscription {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Ensure footer doesn't overlap */
+        @media (min-width: 1024px) {
+            #main-content-area {
+                padding-bottom: 4rem;
+            }
+
+            #toc-sidebar .lg\:sticky {
+                max-height: calc(100vh - 8rem);
+                overflow-y: auto;
+            }
+        }
+
+        /* Footer positioning */
+        footer {
+            position: relative;
+            z-index: 10;
+            clear: both;
+        }
+
+        /* Prevent sticky sidebar from overlapping footer */
+        #toc-sidebar {
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            #toc-sidebar > div {
+                position: sticky;
+                top: 5rem;
+                max-height: calc(100vh - 6rem);
+                overflow-y: auto;
+            }
+        }
+
+        /* Touch target improvements */
+        @media (max-width: 640px) {
+            button, a, .cursor-pointer {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* Tablet improvements */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            #toc-sidebar {
+                order: 2;
+            }
+
+            #article-content {
+                order: 1;
+            }
         }
 
         /* Line clamp utility for text truncation */
@@ -354,20 +522,20 @@
         </div>
     </section>
     <!-- Main Content Area -->
-    <section id="main-content-area" class="py-8 sm:py-12">
+    <section id="main-content-area" class="py-8 sm:py-12 pb-16 sm:pb-20 lg:pb-24">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
                 <!-- Table of Contents Sidebar -->
-                <div id="toc-sidebar" class="lg:col-span-1 order-first lg:order-first">
-                    <div class="sticky top-20 sm:top-24">
+                <div id="toc-sidebar" class="lg:col-span-1 order-2 lg:order-first mb-6 lg:mb-0">
+                    <div class="lg:sticky lg:top-20 lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pb-4">
                         <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
                             <div class="flex items-center justify-between mb-3 sm:mb-4">
                                 <h3 class="text-base sm:text-lg font-bold brand-grey">Table of Contents</h3>
-                                <button id="toc-toggle" class="lg:hidden">
-                                    <i class="fas fa-chevron-down text-sm"></i>
+                                <button id="toc-toggle" class="lg:hidden text-brand-pink hover:text-brand-blue transition-colors p-2">
+                                    <i class="fas fa-chevron-down text-sm transition-transform" id="toc-icon"></i>
                                 </button>
                             </div>
-                            <div id="toc-content" class="space-y-1 sm:space-y-2">
+                            <div id="toc-content" class="space-y-1 sm:space-y-2 hidden lg:block">
                                 <!-- Dynamic TOC will be generated here by JavaScript -->
                                 <div id="toc-loading" class="text-center text-gray-500 text-xs sm:text-sm py-3 sm:py-4">
                                     <i class="fas fa-spinner fa-spin mr-2"></i>Generating table of contents...
@@ -397,7 +565,7 @@
                     </div>
                 </div>
                 <!-- Article Content -->
-                <div id="article-content" class="lg:col-span-3">
+                <div id="article-content" class="lg:col-span-3 order-1 lg:order-2">
                     <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 xl:p-12 article-content" id="blog-content">
                         @if($blog->description)
                         {!! $blog->description !!}
@@ -425,11 +593,11 @@
                             @endif
                         </div>
                         <!-- Mid-Article CTA Card -->
-                        <div class="cta-card rounded-2xl p-8 my-12 text-center">
+                        <div class="cta-card rounded-2xl p-4 sm:p-6 lg:p-8 my-8 sm:my-12 text-center">
                             <div class="max-w-lg mx-auto">
-                                <h3 class="text-2xl font-bold brand-grey mb-4">Ready to Start Your IVF Journey?</h3>
-                                <p class="text-gray-600 mb-6">Get a personalized consultation with our fertility experts to understand your unique success factors</p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <h3 class="text-xl sm:text-2xl font-bold brand-grey mb-3 sm:mb-4">Ready to Start Your IVF Journey?</h3>
+                                <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Get a personalized consultation with our fertility experts to understand your unique success factors</p>
+                                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                                 <button class="bg-brand-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
                                 Book Free Consultation
                                 </button>
@@ -653,11 +821,11 @@
                         </div>
                         @endif
                         <!-- Another CTA Card -->
-                        <div class="cta-card rounded-2xl p-8 my-12 text-center">
+                        <div class="cta-card rounded-2xl p-4 sm:p-6 lg:p-8 my-8 sm:my-12 text-center">
                             <div class="max-w-lg mx-auto">
-                                <h3 class="text-2xl font-bold brand-grey mb-4">Want to Know Your Personal Success Rate?</h3>
-                                <p class="text-gray-600 mb-6">Our fertility calculator provides personalized estimates based on your specific factors</p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <h3 class="text-xl sm:text-2xl font-bold brand-grey mb-3 sm:mb-4">Want to Know Your Personal Success Rate?</h3>
+                                <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Our fertility calculator provides personalized estimates based on your specific factors</p>
+                                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                                 <button class="bg-brand-blue text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
                                 Try Fertility Calculator
                                 </button>
@@ -749,24 +917,24 @@
                         </div>
                         @endif
                         <div id="success-statistics" class="mb-12">
-                            <h2>India IVF Success Statistics</h2>
-                            <p>Our commitment to excellence is reflected in our success rates, which consistently exceed national averages across all age groups and treatment types.</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
-                                <div class="text-center p-6 bg-gradient-to-br from-brand-pink to-pink-400 text-white rounded-xl">
-                                <div class="text-3xl font-bold mb-2">85%</div>
-                                <div class="text-sm opacity-90">Overall Success Rate</div>
+                            <h2 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">India IVF Success Statistics</h2>
+                            <p class="text-sm sm:text-base mb-4 sm:mb-6">Our commitment to excellence is reflected in our success rates, which consistently exceed national averages across all age groups and treatment types.</p>
+                            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 my-6 sm:my-8">
+                                <div class="text-center p-4 sm:p-6 bg-gradient-to-br from-brand-pink to-pink-400 text-white rounded-xl">
+                                <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">85%</div>
+                                <div class="text-xs sm:text-sm opacity-90">Overall Success Rate</div>
                                 </div>
-                                <div class="text-center p-6 bg-gradient-to-br from-brand-blue to-blue-400 text-white rounded-xl">
-                                <div class="text-3xl font-bold mb-2">15,000+</div>
-                                <div class="text-sm opacity-90">Happy Families</div>
+                                <div class="text-center p-4 sm:p-6 bg-gradient-to-br from-brand-blue to-blue-400 text-white rounded-xl">
+                                <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">15,000+</div>
+                                <div class="text-xs sm:text-sm opacity-90">Happy Families</div>
                                 </div>
-                                <div class="text-center p-6 bg-gradient-to-br from-green-500 to-green-400 text-white rounded-xl">
-                                <div class="text-3xl font-bold mb-2">25+</div>
-                                <div class="text-sm opacity-90">Years Experience</div>
+                                <div class="text-center p-4 sm:p-6 bg-gradient-to-br from-green-500 to-green-400 text-white rounded-xl">
+                                <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">25+</div>
+                                <div class="text-xs sm:text-sm opacity-90">Years Experience</div>
                                 </div>
-                                <div class="text-center p-6 bg-gradient-to-br from-purple-500 to-purple-400 text-white rounded-xl">
-                                <div class="text-3xl font-bold mb-2">98%</div>
-                                <div class="text-sm opacity-90">Patient Satisfaction</div>
+                                <div class="text-center p-4 sm:p-6 bg-gradient-to-br from-purple-500 to-purple-400 text-white rounded-xl">
+                                <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">98%</div>
+                                <div class="text-xs sm:text-sm opacity-90">Patient Satisfaction</div>
                                 </div>
                             </div>
                             <h3>Age-Specific Success Rates at India IVF</h3>
@@ -832,40 +1000,40 @@
                                     @endforeach
                                 </div>
                             @endif
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                <span class="text-gray-600 font-medium">Share:</span>
-                                <div class="flex gap-2">
-                                    <button class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-all">
-                                        <i data-fa-i2svg="">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
+                                <span class="text-gray-600 font-medium text-sm sm:text-base">Share:</span>
+                                <div class="flex flex-wrap gap-2 sm:gap-2">
+                                    <button class="w-9 h-9 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-all">
+                                        <i data-fa-i2svg="" class="text-xs sm:text-sm">
                                             <svg class="svg-inline--fa fa-facebook-f" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
                                             <path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
                                             </svg>
                                         </i>
                                     </button>
-                                    <button class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-all">
-                                        <i data-fa-i2svg="">
+                                    <button class="w-9 h-9 sm:w-10 sm:h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-all">
+                                        <i data-fa-i2svg="" class="text-xs sm:text-sm">
                                             <svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                             <path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
                                             </svg>
                                         </i>
                                     </button>
-                                    <button class="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition-all">
-                                        <i data-fa-i2svg="">
+                                    <button class="w-9 h-9 sm:w-10 sm:h-10 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition-all">
+                                        <i data-fa-i2svg="" class="text-xs sm:text-sm">
                                             <svg class="svg-inline--fa fa-linkedin-in" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                                             <path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
                                             </svg>
                                         </i>
                                     </button>
-                                    <button class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all">
-                                        <i data-fa-i2svg="">
+                                    <button class="w-9 h-9 sm:w-10 sm:h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-all">
+                                        <i data-fa-i2svg="" class="text-xs sm:text-sm">
                                             <svg class="svg-inline--fa fa-whatsapp" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="whatsapp" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                                             <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
                                             </svg>
                                         </i>
                                     </button>
-                                    <button class="w-10 h-10 bg-gray-600 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-all">
-                                        <i data-fa-i2svg="">
+                                    <button class="w-9 h-9 sm:w-10 sm:h-10 bg-gray-600 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-all">
+                                        <i data-fa-i2svg="" class="text-xs sm:text-sm">
                                             <svg class="svg-inline--fa fa-envelope" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                             <path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path>
                                             </svg>
@@ -873,7 +1041,7 @@
                                     </button>
                                 </div>
                                 </div>
-                                <div class="flex items-center gap-4 text-sm text-gray-500">
+                                <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500 w-full sm:w-auto">
                                 <span class="flex items-center gap-1">
                                     <i data-fa-i2svg="">
                                         <svg class="svg-inline--fa fa-heart" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
@@ -1033,15 +1201,15 @@
     <!-- Related Articles Slider -->
     {{-- @if($relatedBlogs->count() > 0 || $similarBlogs->count() > 0) --}}
     @if($relatedBlogs->count() > 0)
-    <section id="related-articles" class="py-12 bg-white">
+    <section id="related-articles" class="py-8 sm:py-12 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                <div class="flex items-center justify-between mb-8">
-                    <h2 class="text-3xl font-bold text-support-grey">Related Articles</h2>
-                    <a href="{{ route('blog.category', $blog->categories->first()->slug ?? '#') }}" class="text-primary-pink font-semibold hover:underline">View All in {{ $blog->categories->first()->name ?? 'Category' }}</a>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-support-grey">Related Articles</h2>
+                    <a href="{{ route('blog.category', $blog->categories->first()->slug ?? '#') }}" class="text-primary-pink font-semibold hover:underline text-sm sm:text-base">View All in {{ $blog->categories->first()->name ?? 'Category' }}</a>
                     {{-- <a href="{{ route('blog.category', $blog->category->slug) }}" class="text-primary-pink font-semibold hover:underline">View All in {{ $blog->categories->first()->name }}</a> --}}
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                     @foreach(($relatedBlogs->count() > 0 ? $relatedBlogs : $similarBlogs)->take(3) as $relatedBlog)
                     <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all group">
                         <div class="relative">
@@ -1097,11 +1265,11 @@
     </section>
     @endif
     <!-- Comments Section -->
-    <section id="comments-section" class="py-12 bg-gray-50">
-        <div class="container mx-auto">
+    <section id="comments-section" class="py-8 sm:py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                    <h3 class="text-2xl font-bold brand-grey mb-6">Comments (<span id="comments-count">{{ $blog->comments_count ?? 0 }}</span>)</h3>
+                <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+                    <h3 class="text-xl sm:text-2xl font-bold brand-grey mb-4 sm:mb-6">Comments (<span id="comments-count">{{ $blog->comments_count ?? 0 }}</span>)</h3>
 
                     <!-- Comment Form -->
                     <div class="border-b border-gray-200 pb-6 mb-6">
@@ -1132,12 +1300,12 @@
                                 <div class="flex-1">
                                     <!-- Comment Text -->
                                     <textarea name="comment" id="comment-text" placeholder="Share your thoughts or ask a question..." required
-                                        class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink resize-none h-24"></textarea>
+                                        class="w-full p-3 sm:p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-brand-pink resize-none h-24 text-sm sm:text-base"></textarea>
 
-                                    <div class="flex justify-between items-center mt-3">
-                                        <span class="text-sm text-gray-500">Please be respectful and constructive</span>
+                                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mt-3">
+                                        <span class="text-xs sm:text-sm text-gray-500">Please be respectful and constructive</span>
                                         <button type="submit"
-                                            class="bg-brand-pink text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                                            class="bg-brand-pink text-white px-4 sm:px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all text-sm sm:text-base w-full sm:w-auto">
                                             Post Comment
                                         </button>
                                     </div>
@@ -1317,7 +1485,7 @@
         </div>
     </section>
     <!-- Newsletter Subscription -->
-    <section id="newsletter-subscription" class="py-12 bg-white">
+    <section id="newsletter-subscription" class="py-12 bg-white mb-8 sm:mb-12">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl font-bold brand-grey mb-4">Stay Updated on Fertility Insights</h2>
@@ -1421,10 +1589,12 @@
                 function handleTocToggle() {
                     if (tocContent) {
                         tocContent.classList.toggle('hidden');
-                        const icon = tocToggle.querySelector('i');
+                        tocContent.classList.toggle('active');
+                        const icon = document.getElementById('toc-icon');
                         if (icon) {
                             icon.classList.toggle('fa-chevron-down');
                             icon.classList.toggle('fa-chevron-up');
+                            icon.classList.toggle('rotate-180');
                         }
                     }
                 }
