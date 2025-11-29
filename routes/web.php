@@ -80,7 +80,6 @@ Route::get('/test-slug', function() {
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'root'])->name('admin.dashboard');
     Route::resource('manage-users', UserController::class);
-
     // Blog Engagement Management - Must be before blog resource routes
     Route::prefix('blog')->group(function () {
         Route::get('engagement', [App\Http\Controllers\Admin\BlogEngagementController::class, 'index'])->name('admin.blog.engagement.index');

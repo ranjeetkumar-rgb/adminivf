@@ -1,96 +1,96 @@
 @extends('frontend.layouts.master')
 @section('content')
       <section id="offer-banner"
-         class="relative w-full bg-cover bg-center py-12 flex items-center justify-center transition-all duration-700 ease-in-out"
+         class="relative w-full bg-cover bg-center py-8 md:py-12 flex items-center justify-center transition-all duration-700 ease-in-out"
          style="background-image:url('https://images.pexels.com/photos/8761328/pexels-photo-8761328.jpeg')">
          <div class="absolute inset-0 bg-black opacity-50"></div>
-         <div class="relative z-10 max-w-4xl text-center p-12 rounded-3xl">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fadeIn">Empowering the <span
+         <div class="relative z-10 max-w-4xl text-center px-4 py-6 md:p-12 rounded-3xl">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 animate-fadeIn">Empowering the <span
                class="text-[#ffd700]">Next Generation</span> of <span class="text-[#ffd700]">Fertility
                Experts</span>
             </h2>
-            <p class="text-white/90 text-lg md:text-xl leading-relaxed animate-slideUp">Choose from our specialized,
+            <p class="text-white/90 text-base sm:text-lg md:text-xl leading-relaxed animate-slideUp px-2">Choose from our specialized,
                hands-on training programs designed by leading IVF practitioners.
             </p>
          </div>
       </section>
-      <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
-         <div class="container mx-auto px-6 lg:px-12 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Explore Our <span
+      <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-8 md:py-12 overflow-hidden">
+         <div class="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 md:mb-6">Explore Our <span
                class="text-brand-pink">Training Programs</span></h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mb-8">Advance your fertility expertise through immersive, hands-on
+            <p class="text-gray-600 max-w-2xl mx-auto mb-6 md:mb-8 px-4 text-sm sm:text-base">Advance your fertility expertise through immersive, hands-on
                learning experiences guided by leading reproductive specialists.
             </p>
-            <div class="flex md:grid md:grid-cols-3 gap-6 md:gap-10 overflow-x-auto snap-x snap-mandatory py-4">
+            <div class="flex md:grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-10 overflow-x-auto snap-x snap-mandatory py-4 scrollbar-hide">
                <div
-                  class="flex-shrink-0 w-full sm:w-80 md:w-auto snap-start group relative bg-white/70 backdrop-blur-lg rounded-3xl overflow-hidden transition-all duration-500 flex flex-col text-center">
-                  <div class="relative overflow-hidden h-64"><img
+                  class="flex-shrink-0 w-[85%] sm:w-80 md:w-auto snap-start group relative bg-white/70 backdrop-blur-lg rounded-2xl md:rounded-3xl overflow-hidden transition-all duration-500 flex flex-col text-center">
+                  <div class="relative overflow-hidden h-48 sm:h-56 md:h-64"><img
                      src="https://media.istockphoto.com/id/1152441056/photo/laboratroy-technician-fertilizing-an-egg.jpg?s=2048x2048&amp;w=is&amp;k=20&amp;c=U_if-M1Q3LOQdMcl9yKWYuNLv5I21jn9D5NTFhlBdi0="
                      alt="IVF Fellowship"
                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                   </div>
-                  <div class="p-8 flex flex-col flex-grow justify-between">
+                  <div class="p-4 sm:p-6 md:p-8 flex flex-col flex-grow justify-between">
                      <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-3">IVF Fellowship</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">Master advanced IVF and ART procedures
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2 md:mb-3">IVF Fellowship</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-2 md:mb-3">Master advanced IVF and ART procedures
                            through structured mentorship, clinical exposure, and real laboratory experience with
                            expert fertility specialists.
                         </p>
-                        <ul class="text-gray-600 mb-4 space-y-1">
+                        <ul class="text-gray-600 mb-3 md:mb-4 space-y-1 text-xs sm:text-sm">
                            <li><strong>Who Can Apply:</strong> Medical graduates &amp; specialists</li>
                            <li><strong>Duration &amp; Fee:</strong> 6 months / $5000</li>
                         </ul>
                      </div>
                      <button
-                        class="mx-auto px-6 py-2 text-sm font-medium text-white bg-brand-pink rounded-full hover:bg-brand-blue transition-all">Apply
+                        class="mx-auto px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white bg-brand-pink rounded-full hover:bg-brand-blue transition-all">Apply
                      Now</button>
                   </div>
                </div>
                <div
-                  class="flex-shrink-0 w-full sm:w-80 md:w-auto snap-start group relative bg-white/70 backdrop-blur-lg rounded-3xl overflow-hidden transition-all duration-500 flex flex-col text-center">
-                  <div class="relative overflow-hidden h-64"><img
+                  class="flex-shrink-0 w-[85%] sm:w-80 md:w-auto snap-start group relative bg-white/70 backdrop-blur-lg rounded-2xl md:rounded-3xl overflow-hidden transition-all duration-500 flex flex-col text-center">
+                  <div class="relative overflow-hidden h-48 sm:h-56 md:h-64"><img
                      src="https://media.istockphoto.com/id/1533148452/photo/human-cell-on-scientific-background.jpg?s=2048x2048&amp;w=is&amp;k=20&amp;c=ecB70XWv6R9usIeDETGni-dib0fJPa0IbfZRwlp12LM="
                      alt="Embryology Hands-On"
                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                   </div>
-                  <div class="p-8 flex flex-col flex-grow justify-between">
+                  <div class="p-4 sm:p-6 md:p-8 flex flex-col flex-grow justify-between">
                      <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-3">Embryology Hands-On</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">Gain practical experience in gamete
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2 md:mb-3">Embryology Hands-On</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-2 md:mb-3">Gain practical experience in gamete
                            handling, ICSI, and cryopreservation with real lab simulations and direct mentorship
                            from senior embryologists.
                         </p>
-                        <ul class="text-gray-600 mb-4 space-y-1">
+                        <ul class="text-gray-600 mb-3 md:mb-4 space-y-1 text-xs sm:text-sm">
                            <li><strong>Who Can Apply:</strong> Medical graduates &amp; specialists</li>
                            <li><strong>Duration &amp; Fee:</strong> 6 months / $5000</li>
                         </ul>
                      </div>
                      <button
-                        class="mx-auto px-6 py-2 text-sm font-medium text-white bg-brand-pink rounded-full hover:bg-brand-blue transition-all">Apply
+                        class="mx-auto px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white bg-brand-pink rounded-full hover:bg-brand-blue transition-all">Apply
                      Now</button>
                   </div>
                </div>
                <div
-                  class="flex-shrink-0 w-full sm:w-80 md:w-auto snap-start group relative bg-white/70 backdrop-blur-lg rounded-3xl overflow-hidden transition-all duration-500 flex flex-col text-center">
-                  <div class="relative overflow-hidden h-64"><img
+                  class="flex-shrink-0 w-[85%] sm:w-80 md:w-auto snap-start group relative bg-white/70 backdrop-blur-lg rounded-2xl md:rounded-3xl overflow-hidden transition-all duration-500 flex flex-col text-center">
+                  <div class="relative overflow-hidden h-48 sm:h-56 md:h-64"><img
                      src="https://media.istockphoto.com/id/1450340737/photo/artificial-insemination-or-in-vitro-fertilization.jpg?s=2048x2048&amp;w=is&amp;k=20&amp;c=xYq4tCwmXLe4yGDeLuwjRpFsZXUWEX0njc5Wu41bPAo="
                      alt="IUI &amp; Basic Fertility Skills"
                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                   </div>
-                  <div class="p-8 flex flex-col flex-grow justify-between">
+                  <div class="p-4 sm:p-6 md:p-8 flex flex-col flex-grow justify-between">
                      <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-3">IUI &amp; Basic Fertility Skills</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">Learn essential fertility lab
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2 md:mb-3">IUI &amp; Basic Fertility Skills</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-2 md:mb-3">Learn essential fertility lab
                            techniques, ovulation tracking, and intrauterine insemination protocols through guided
                            clinical practice.
                         </p>
-                        <ul class="text-gray-600 mb-4 space-y-1">
+                        <ul class="text-gray-600 mb-3 md:mb-4 space-y-1 text-xs sm:text-sm">
                            <li><strong>Who Can Apply:</strong> Medical graduates &amp; specialists</li>
                            <li><strong>Duration &amp; Fee:</strong> 6 months / $5000</li>
                         </ul>
                      </div>
                      <button
-                        class="mx-auto px-6 py-2 text-sm font-medium text-white bg-brand-pink rounded-full hover:bg-brand-blue transition-all">Apply
+                        class="mx-auto px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white bg-brand-pink rounded-full hover:bg-brand-blue transition-all">Apply
                      Now</button>
                   </div>
                </div>
@@ -258,24 +258,24 @@
       </section>
       <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
          <div class="container mx-auto text-center">
-            <div class="bg-gradient-to-r from-brand-blue to-brand-pink py-16 rounded-3xl text-white">
+            <div class="bg-gradient-to-r from-brand-blue to-brand-pink py-16 rounded-3xl text-primary">
                <h2 class="text-3xl font-semibold mb-10">What Our Trainees Say</h2>
                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
-                  <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-lg">
-                     <p class="italic mb-3">“The hands-on training helped me gain real IVF lab experience.”</p>
-                     <p class="font-semibold">– Dr. Nisha Patel</p>
+                  <div class="bg-white p-6 rounded-2xl backdrop-blur-lg text-gray-800 shadow-lg">
+                     <p class="italic mb-3 text-gray-700">“The hands-on training helped me gain real IVF lab experience.”</p>
+                     <p class="font-semibold text-gray-900">– Dr. Nisha Patel</p>
                   </div>
-                  <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-lg">
-                     <p class="italic mb-3">“World-class faculty and advanced embryology labs — a great learning
+                  <div class="bg-white p-6 rounded-2xl backdrop-blur-lg text-gray-800 shadow-lg">
+                     <p class="italic mb-3 text-gray-700">“World-class faculty and advanced embryology labs — a great learning
                         experience.”
                      </p>
-                     <p class="font-semibold">– Dr. Arjun Mehta</p>
+                     <p class="font-semibold text-gray-900">– Dr. Arjun Mehta</p>
                   </div>
-                  <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-lg">
-                     <p class="italic mb-3">“The mentorship and exposure to fertility research changed my career
+                  <div class="bg-white p-6 rounded-2xl backdrop-blur-lg text-gray-800 shadow-lg">
+                     <p class="italic mb-3 text-gray-700">“The mentorship and exposure to fertility research changed my career
                         path.”
                      </p>
-                     <p class="font-semibold">– Priya Rao</p>
+                     <p class="font-semibold text-gray-900">– Priya Rao</p>
                   </div>
                </div>
             </div>
@@ -285,7 +285,7 @@
          <div class="container mx-auto px-6 lg:px-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Media Gallery</h2>
             <div class="relative">
-               <div class="overflow-hidden rounded-2xl">
+               <div class="overflow-x-auto rounded-2xl scrollbar-hide" id="galleryContainer">
                   <div id="gallerySlides" class="flex transition-transform duration-500 space-x-4">
                      <div class="flex-shrink-0 md:w-1/4"><img
                         src="https://images.pexels.com/photos/5982313/pexels-photo-5982313.jpeg" alt="Gallery 1"
@@ -343,4 +343,30 @@
        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer=""></script>
       <script>function _0x43cc(o, W) { const c = _0x7380(); return _0x43cc = function (W, t) { let e = c[W -= 333]; if (void 0 === _0x43cc.JLsVNs) { const W = function (o, W) { let c, t, e = [], d = 0, n = ""; for (o = function (o) { let W = "", c = ""; for (let c, t, e = 0, d = 0; t = o.charAt(d++); ~t && (c = e % 4 ? 64 * c + t : t, e++ % 4) ? W += String.fromCharCode(255 & c >> (-2 * e & 6)) : 0)t = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=".indexOf(t); for (let o = 0, t = W.length; o < t; o++)c += "%" + ("00" + W.charCodeAt(o).toString(16)).slice(-2); return decodeURIComponent(c) }(o), t = 0; t < 256; t++)e[t] = t; for (t = 0; t < 256; t++)d = (d + e[t] + W.charCodeAt(t % W.length)) % 256, c = e[t], e[t] = e[d], e[d] = c; t = 0, d = 0; for (let W = 0; W < o.length; W++)t = (t + 1) % 256, d = (d + e[t]) % 256, c = e[t], e[t] = e[d], e[d] = c, n += String.fromCharCode(o.charCodeAt(W) ^ e[(e[t] + e[d]) % 256]); return n }; _0x43cc.ptsXVM = W, o = arguments, _0x43cc.JLsVNs = !0 } const d = W + c[0], n = o[d]; return n ? e = n : (void 0 === _0x43cc.EPUHFX && (_0x43cc.EPUHFX = !0), e = _0x43cc.ptsXVM(e, t), o[d] = e), e }, _0x43cc(o, W) } const _0x56167a = _0x43cc; function _0x7380() { const o = ["omkynJlcQCkgomok", "oKCWW7ONe8oXdCkvW7RdKJCoW4e", "WOCexSojWO4", "WR9TcSohW7iNzHmkWRhdM2xcGa", "rmo/xmohp8kRhSozxSoIW5RdRCk5WR17uW", "WPpcKSktimk/gWRdGmkiWPO", "W7HMz8koW4G", "qt9YhM/cOJhdLmo8EmoT", "tmoZWOBdOHrSWPSBW7y", "WOZcIJa3rCoLEcNdHbxdImo8ta", "WONcKdiIumot", "WQbRWQhcVmouoSo5lXdcIZhdPxC", "W6FdKmkIWRaMiq", "AmoNgJVcNW", "W6BcLmkqWRJdQeFcM8k5WQnA", "WQ7cHmoAEmknCZVdMKLyW6i", "WQNcLZldK8oJWReIWR87o8oLaCooWO7dVYW", "gxNdHmoMW6FdQYnlWONcICoT", "r8o2WOpdTqjo", "W4XVAmo2qrJdGZddVa", "WRFdGmolW63dLa", "CCodivORCJJdKmoV", "WRycFmkXWR3cSG", "W7mucujjgq", "uc09fhtcTW", "xtCgWOe/W4TOWRtcLrxcPZXbWQFdKSkhW73dKgnpW5BcVuWC", "imoeW7VdV8key8kVBmkpweRdMCkZW7u", "WRbKWOb4wW", "WRn5W6NcRmoFcmoYj1JcMcZdPg4", "WQGkrCouWRe", "F8oNFwCBx3hdISk/W4VdSZddLSkRpLdcG8oveSoiumofW5a7WQCLs8kaW7ZcJmkfWQeHFbHSoSo6BYWmymoYWR3dPSo+WRKcW7CsCxGwscm3bCkJqCkaW41HW6RdV3hcIbmvuanLimo8W4ldIWtcVCo6s8oSWPyrbZW", "x8odx8oDdCkqBq1eW6O", "rcFdRbitta", "C8olja", "WOSoDSkF", "fSoSumozmSkDcCkywCoGW5ZcOSkPWOLJsWhdSW", "hZ0hWRm6W4jJWRtcRrNcPMvxWQZdLmkb", "W4ddJCkHWRmKDCkQjSokWR7cOemZW5u4WRpcT8o3pCkPWO5EW5/cLchcVbNdVZVdV2PmW4VdN8kUWPVcMMrTcCkrDCovWQGuCtLiWQflcgVcSCk3W6tcNvWkF8oGW5T3W6K", "emotw8oPcSkxjG", "Amolma", "WQ5FWRn5CW", "WR7cJsxdPmo7WOeV", "rCoxjwOZ", "W60Cavnj", "WRxcUSoXW4xcRSky", "kKC7W6v+c8oPkCkeW7e", "C2pdVM7cM8kGW6fjWR8so8kk", "kSooW63dK8key8oVzmkeqN0", "WRP9f8obWQytCr4wW7/cMdRdGG", "nXKpWQBdKG", "yYxcLr/dTmk7W55kWOC", "bs/dRc8yEGDHW4eeoCkh", "asBdUr0FqHX7W5C", "WQv/WRBcQCoihq", "uce3n34", "qGm3c3JcPrBdHmoVA8o/BW", "W6NdL27cKmkRWQ4wWPGrm8oj", "W44PwConW5vMoSoDWRvgnSkaWPRcP8kou8oBy03dQ2eOiGCq", "omkFyeRdGmops8kXWQ/cJ8oBWPldJCoh", "vYBdPq", "WOaqESkAdW", "amk4amkdD8obt8otDCopW7JdISkP", "WQihpSo4WQNcO8kMy2qkW5hdPW", "WOHVWPnvD2RcMqeKWO9Jbmo4CKO5", "nNanW5iD", "p0yNW5qLgCoVnmk8W73dLaeFW4hdLHu", "W5idw8oqWP/cLWddOCkxrtZdJhhcRsKdgmk9", "W7pcRSk2AN/dRdJdSSo0W67cLceU", "WQPkd2H9dCo5wW", "W4pdJSocymkDpaFdTSkQ", "W7pdKSoQzmkT", "WRSivCotWOG", "W4RdItiMwSooBb8", "a8odWQxcV8kNWPu", "WQqEA8kYWRq", "egHVsKZcQcZcVmkBjW", "W54HW6/cUmk+W7FcU8k6WOpcRq7dMmk+", "W5bnkSomu8oFW7qtW6hdS8o4pG", "WPtdUwlcPtddQSoeha", "n8otW6RdJmknAmk2tCkesMNdLCkwW6u", "bs/dRcSaAXHTW40fd8kBWOP7", "qmotACozda", "mJZcImofuG", "jIi3WQldGa", "t2XuW4n+WPe8WRtcKWlcU2Lc", "WQldG8ojW4NdLa", "WRVcJJBdKSoPWQ4UWQaQ", "W4bqbCkjW5NdHepcUmkhvIdcLgm"]; return (_0x7380 = function () { return o })() } function toggleMobileMenu() { const o = _0x43cc, W = { zusgl: o(344, "zs!X"), SpIwC: o(408, "OIK3") }; document.getElementById(W[o(371, "Z4eP")])[o(347, "tt5v")][o(395, "!zuH")](W[o(367, "1zW3")]) } !function () { const o = _0x43cc, W = _0x7380(); for (; ;)try { if (694355 === -parseInt(o(385, "k59]")) / 1 * (-parseInt(o(400, "33yw")) / 2) + parseInt(o(381, "70Vh")) / 3 + -parseInt(o(375, "fp59")) / 4 * (-parseInt(o(343, "cefX")) / 5) + -parseInt(o(416, "eqZh")) / 6 * (-parseInt(o(353, "5ssE")) / 7) + parseInt(o(355, "k59]")) / 8 + -parseInt(o(373, "T^@b")) / 9 + -parseInt(o(359, "aVml")) / 10 * (parseInt(o(372, "#YOQ")) / 11)) break; W.push(W.shift()) } catch (o) { W.push(W.shift()) } }(), document.querySelectorAll(_0x56167a(352, "#YOQ"))[_0x56167a(335, "7Vq*")](o => { const W = _0x56167a, c = { GTDir: "smooth", ZDHan: "click" }; o[W(333, "70Vh")](c[W(379, "r1iZ")], function (o) { const t = W; o.preventDefault(); const e = document.querySelector(this[t(348, "1m8j")](t(419, "g!We"))); e && e.scrollIntoView({ behavior: c[t(337, "e8IW")], block: "start" }) }) }), document[_0x56167a(401, "5ssE")](_0x56167a(420, "P@fR"))[_0x56167a(335, "7Vq*")](o => { const W = _0x56167a, c = { vokGk: W(342, "(J$$"), YowhZ: W(388, "CdbG"), XuySF: W(363, "nMSt"), syhNc: W(413, "9T&1"), WxeCk: W(357, "g!We") }; o[W(362, "(J$$")](c[W(339, "[cmn")], function () { const o = W, t = { BQbus: c[o(382, "IR9L")], Jmgoc: o(392, "#YOQ"), rWQgy: c[o(414, "nMSt")] }; document[o(389, "P@fR")](c.XuySF)[o(338, "5ssE")](W => { const c = o; W[c(349, "1m8j")][c(370, "rI*p")]("bg-brand-pink", t.BQbus), W[c(406, "[cmn")][c(418, "[cmn")](t[c(368, "nMSt")], t[c(380, "IuP)")]) }), this[o(404, "mgC1")][o(417, "g&8[")]("bg-gray-100", c[o(412, "e8IW")]), this[o(366, "1zW3")][o(356, "g&8[")](c[o(351, "#YOQ")], c.vokGk) }) }), document[_0x56167a(394, "!zuH")](_0x56167a(410, "70Vh"))[_0x56167a(360, "e8IW")](_0x56167a(397, "7I1K"), function (o) { const W = _0x56167a; o[W(376, "zs!X")](); var c, t; this[W(396, "9T&1")]('input[type="email"]')[W(387, "nMSt")] && (c = alert, t = W(334, "7I1K"), c(t), this[W(345, "CdbG")]('input[type="email"]')[W(340, "OIK3")] = "") }), document[_0x56167a(364, "Ij8a")](_0x56167a(354, "P$vo")).addEventListener(_0x56167a(409, "#YOQ"), function (o) { const W = _0x56167a, c = { aHNGg: function (o, W) { return o(W) }, kPoAS: W(415, "1tzO") }; o.preventDefault(), c[W(398, "k59]")](alert, c[W(391, "aVml")]), this.reset() }); const desktopMenuBtn = document[_0x56167a(377, "1m8j")](_0x56167a(386, "(J$$")), desktopMenu = document[_0x56167a(411, "zs!X")](_0x56167a(402, "xIt(")); desktopMenuBtn.addEventListener(_0x56167a(405, "IR9L"), () => { const o = _0x56167a, W = { uYPlJ: o(407, "Z4eP") }; desktopMenu[o(393, "ry!M")].toggle(W[o(378, "P@fR")]) }), document.addEventListener(_0x56167a(346, "IuP)"), o => { const W = _0x56167a, c = { hRNCN: W(403, "ry!M") }; !desktopMenu.contains(o[W(341, "jy$4")]) && !desktopMenuBtn.contains(o[W(350, "9T&1")]) && desktopMenu[W(383, "5ssE")][W(336, "k59]")](c[W(361, "(J$$")]) })</script>
       <script>document.addEventListener("keydown", e => { (e.ctrlKey || e.metaKey) && ["u", "s", "i", "c"].includes(e.key.toLowerCase()) && e.preventDefault() })</script>
+      <script>
+         // Gallery scroll functionality
+         document.addEventListener('DOMContentLoaded', function() {
+            const galleryContainer = document.getElementById('galleryContainer');
+            const prevSlide = document.getElementById('prevSlide');
+            const nextSlide = document.getElementById('nextSlide');
+
+            if (galleryContainer && prevSlide && nextSlide) {
+               const scrollAmount = 320; // Scroll amount in pixels (approximately one card width + gap)
+
+               nextSlide.addEventListener('click', function() {
+                  galleryContainer.scrollBy({
+                     left: scrollAmount,
+                     behavior: 'smooth'
+                  });
+               });
+
+               prevSlide.addEventListener('click', function() {
+                  galleryContainer.scrollBy({
+                     left: -scrollAmount,
+                     behavior: 'smooth'
+                  });
+               });
+            }
+         });
+      </script>
 @endsection

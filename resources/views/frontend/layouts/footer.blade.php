@@ -66,7 +66,9 @@
 
                 <h3 class="text-lg font-semibold mb-2">About Us</h3>
                 <ul class="space-y-1 text-gray-300">
-                    <li><span class="hover:text-brand-pink transition-colors cursor-pointer">About India IVF Fertility</span></li>
+                    <a href="{{'/about'}}">
+                        <li><span class="hover:text-brand-pink transition-colors cursor-pointer">About India IVF Fertility</span></li>
+                    </a>
                     <li><span class="hover:text-brand-pink transition-colors cursor-pointer">Our IVF Specialists</span></li>
                     <li><span class="hover:text-brand-pink transition-colors cursor-pointer">Founder's Story</span></li>
                     <li><span class="hover:text-brand-pink transition-colors cursor-pointer">Technology &amp; Facilities</span></li>

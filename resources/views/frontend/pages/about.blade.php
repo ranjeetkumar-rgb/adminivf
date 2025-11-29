@@ -258,41 +258,41 @@
             scrollbar-width: none
         }
     </style>
-    <section class="py-12 bg-gradient-to-r from-[#20417e] via-[#3e73b9] to-[#20417e]">
-        <div class="container mx-auto px-6 lg:px-12 grid md:grid-cols-4 gap-8 text-center">
+    <section class="py-8 md:py-12 bg-gradient-to-r from-[#20417e] via-[#3e73b9] to-[#20417e]">
+        <div class="container mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
             <div>
-                <h3 class="text-5xl font-bold text-[#ffd700]">1200+</h3>
-                <p class="text-white">Happy Families</p>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffd700]">1200+</h3>
+                <p class="text-white text-sm md:text-base">Happy Families</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold text-[#ffd700]">95%</h3>
-                <p class="text-white">Success Rate</p>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffd700]">95%</h3>
+                <p class="text-white text-sm md:text-base">Success Rate</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold text-[#ffd700]">20+</h3>
-                <p class="text-white">Years of Experience</p>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffd700]">20+</h3>
+                <p class="text-white text-sm md:text-base">Years of Experience</p>
             </div>
             <div>
-                <h3 class="text-5xl font-bold text-[#ffd700]">50+</h3>
-                <p class="text-white">Expert Doctors</p>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ffd700]">50+</h3>
+                <p class="text-white text-sm md:text-base">Expert Doctors</p>
             </div>
         </div>
     </section>
-    <section id="our-story" class="py-12 bg-white">
-        <div class="container mx-auto px-6 lg:px-12 flex flex-col-reverse md:flex-row items-center gap-16 md:gap-8">
-            <div class="md:w-3/4 space-y-6 text-left">
-                <h2 class="text-4xl font-bold text-gray-800">Our Story</h2>
-                <p class="text-gray-600 text-lg">India IVF was founded to provide compassionate and technologically
+    <section id="our-story" class="py-8 md:py-12 bg-white">
+        <div class="container mx-auto px-6 lg:px-12 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-8">
+            <div class="w-full md:w-3/4 space-y-4 md:space-y-6 text-left">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">Our Story</h2>
+                <p class="text-gray-600 text-base md:text-lg">India IVF was founded to provide compassionate and technologically
                     advanced fertility solutions. With years of experience, our team is committed to guiding couples and
                     individuals through every step of their fertility journey.
                 </p>
-                <p class="text-gray-600 text-lg">We believe in holistic care, combining medical expertise with emotional
+                <p class="text-gray-600 text-base md:text-lg">We believe in holistic care, combining medical expertise with emotional
                     support, personalized treatment plans, and innovative technologies to maximize the chance of
                     success.
                 </p>
             </div>
-            <div class="md:w-1/4 flex relative"><img src="doctor.png" alt="Clinic Team"
-                    class="object-contain transform scale-125"></div>
+            <div class="w-full md:w-1/4 flex relative justify-center md:justify-start"><img src="doctor.png" alt="Clinic Team"
+                    class="object-contain w-full md:w-auto transform md:scale-125 max-w-xs md:max-w-none"></div>
         </div>
     </section>
     <section class="py-12 bg-gradient-to-b from-pink-50 via-white to-blue-50">

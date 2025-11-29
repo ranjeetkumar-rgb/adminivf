@@ -218,39 +218,144 @@
                     </div>
                 </div>
             </div>
-            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white py-4 space-y-2">
-                <a href="{{ url('/') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink">Home</a>
-                <hr>
-                <button class="w-full flex justify-between items-center px-4 py-1 text-gray-700 hover:text-brand-pink" data-toggle="submenu">
-                    Planning for baby <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white py-4 space-y-2 max-h-[calc(100vh-200px)] overflow-y-auto">
+                <a href="{{ url('/') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Home</a>
+                <hr class="my-2">
+                
+                <!-- Planning for baby -->
+                <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
+                    <span>Planning for baby</span>
+                    <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                 </button>
-                <div class="px-8 hidden submenu space-y-1">
-                    <button class="w-full flex justify-between items-center text-gray-700 hover:text-brand-pink" data-toggle="submenu">
-                        Fertility Issues <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                <div class="hidden submenu space-y-2 pl-4">
+                    <!-- Fertility Issues -->
+                    <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
+                        <span>Fertility Issues</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
                     </button>
-                    <div class="px-4 hidden submenu space-y-1">
-                        <a href="#" class="block text-gray-600 hover:text-pink-500">Difficulty Conceiving</a>
-                        <a href="#" class="block text-gray-600 hover:text-pink-500">Female Infertility</a>
-                        <a href="#" class="block text-gray-600 hover:text-pink-500">Male Infertility</a>
-                        <a href="#" class="block text-gray-600 hover:text-pink-500">Unexplained Infertility</a>
-                        <a href="#" class="block text-gray-600 hover:text-pink-500">Pregnancy Loss Care</a>
-                        <a href="#" class="block text-gray-600 hover:text-pink-500">Failed IVF Solutions</a>
+                    <div class="hidden submenu space-y-1 pl-4">
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Difficulty Conceiving</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Female Infertility</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Male Infertility</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Unexplained Infertility</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Pregnancy Loss Care</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Failed IVF Solutions</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Second Opinion</a>
                     </div>
-                    <button class="w-full flex justify-between items-center text-gray-700 hover:text-brand-pink" data-toggle="submenu">
-                        IVF &amp; Related Treatments <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    
+                    <!-- IVF & Related Treatments -->
+                    <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
+                        <span>IVF &amp; Related Treatments</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
                     </button>
+                    <div class="hidden submenu space-y-1 pl-4">
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">ICSI</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IUI</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Donor Egg Program</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Donor Sperm Program</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surrogacy</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for Single Mothers</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for HIV-positive Couples</a>
+                    </div>
+                    
+                    <!-- Advanced Techniques -->
+                    <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
+                        <span>Advanced Techniques</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="hidden submenu space-y-1 pl-4">
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Blastocyst Transfer</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Embryo Glue</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Laser Assisted Hatching</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Time-Lapse Embryo Monitoring</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Double Witnessing</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">MACS</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Microfluidic Sperm Sorting</a>
+                    </div>
+                    
+                    <!-- Male Surgical Procedures -->
+                    <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
+                        <span>Male Surgical Procedures</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
+                    </button>
+                    <div class="hidden submenu space-y-1 pl-4">
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">TESA</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">PESA</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Micro-TESE</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Testicular Mapping</a>
+                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surgical Innovations / Stem Cell Research</a>
+                    </div>
                 </div>
-                <hr>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink">Fertility Preservation</a>
-                <hr>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink">Fertility Wellness</a>
-                <hr>
-                <button class="w-full flex justify-between items-center px-4 py-1 text-gray-700 hover:text-brand-pink" data-toggle="submenu">
-                    Centres <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                
+                <hr class="my-2">
+                
+                <!-- Fertility Preservation -->
+                <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
+                    <span>Fertility Preservation</span>
+                    <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                 </button>
-                <div class="pl-4 hidden submenu space-y-1">
-                    <a href="#" class="block text-gray-600 hover:text-pink-500">Noida</a>
-                    <a href="#" class="block text-gray-600 hover:text-pink-500">Gurugram</a>
+                <div class="hidden submenu space-y-1 pl-4">
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Egg Freezing</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Sperm Freezing</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Embryo Freezing</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Preservation for Cancer Patients</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Social Egg Freezing</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Storage &amp; Legal Guidelines</a>
+                </div>
+                
+                <hr class="my-2">
+                
+                <!-- Fertility Wellness -->
+                <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
+                    <span>Fertility Wellness</span>
+                    <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="hidden submenu space-y-1 pl-4">
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Tests &amp; Assessments</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">BMI Calculator &amp; Weight Management</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Diet &amp; Lifestyle Consultations</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Stress &amp; Mind-Body Support</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Supplements &amp; Products</a>
+                </div>
+                
+                <hr class="my-2">
+                
+                <!-- Centres -->
+                <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
+                    <span>Centres</span>
+                    <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="hidden submenu space-y-1 pl-4">
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Delhi – South (Vasant Lok)</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Delhi – North (Rohini)</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Gurugram</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Noida</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Ghaziabad</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Srinagar</a>
+                </div>
+                
+                <hr class="my-2">
+                
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Our Pricing</a>
+                <hr class="my-2">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Patient Resources</a>
+                <hr class="my-2">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Academics</a>
+                <hr class="my-2">
+                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">International Patients</a>
+                <hr class="my-2">
+                
+                <!-- More Menu -->
+                <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
+                    <span>More</span>
+                    <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="hidden submenu space-y-1 pl-4">
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Franchise Opportunities</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Corporate Health Talks</a>
+                    <a href="{{ url('blog') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Blog</a>
+                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">About Us</a>
                 </div>
             </div>
         </nav>
@@ -259,17 +364,47 @@
         const mobileBtn = document.getElementById("mobileMenuBtn");
         const mobileMenu = document.getElementById("mobileMenu");
 
-        if (mobileBtn) {
-            mobileBtn.addEventListener("click", () => {
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener("click", function(e) {
+                e.stopPropagation();
                 mobileMenu.classList.toggle("hidden");
+                // Toggle hamburger icon
+                const icon = mobileBtn.querySelector('svg');
+                if (icon) {
+                    if (mobileMenu.classList.contains("hidden")) {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>';
+                    } else {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>';
+                    }
+                }
             });
         }
 
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function(event) {
+            if (mobileMenu && !mobileMenu.contains(event.target) && !mobileBtn.contains(event.target)) {
+                if (!mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.add("hidden");
+                    const icon = mobileBtn.querySelector('svg');
+                    if (icon) {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>';
+                    }
+                }
+            }
+        });
+
+        // Handle submenu toggles
         document.querySelectorAll('[data-toggle="submenu"]').forEach(btn => {
-            btn.addEventListener("click", function() {
+            btn.addEventListener("click", function(e) {
+                e.stopPropagation();
                 const submenu = this.nextElementSibling;
+                if (submenu) {
                 submenu.classList.toggle("hidden");
-                this.querySelector("i").classList.toggle("rotate-180");
+                    const icon = this.querySelector("i");
+                    if (icon) {
+                        icon.classList.toggle("rotate-180");
+                    }
+                }
             });
         });
     </script>
