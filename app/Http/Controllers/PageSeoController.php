@@ -28,53 +28,117 @@ class PageSeoController extends Controller
     }
 
     /**
+     * Get pages from routes dynamically
+     */
+    private function getPagesFromRoutes()
+    {
+        $pages = [];
+
+        // Get all routes
+        $routes = \Illuminate\Support\Facades\Route::getRoutes();
+
+        foreach ($routes as $route) {
+            $uri = $route->uri();
+            $name = $route->getName();
+            $action = $route->getAction();
+
+            // Skip admin routes, API routes, and routes with parameters
+            if (strpos($uri, 'admin') !== false ||
+                strpos($uri, 'api') !== false ||
+                strpos($uri, '{') !== false ||
+                strpos($uri, 'debug') !== false ||
+                strpos($uri, 'test') !== false ||
+                strpos($uri, 'submit-consultation') !== false) {
+                continue;
+            }
+
+            // Skip routes without names (except home)
+            if (!$name && $uri !== '/') {
+                continue;
+            }
+
+            // Skip if route name contains admin or api
+            if ($name && (str_contains($name, 'admin') || str_contains($name, 'api'))) {
+                continue;
+            }
+
+            // Get page name from route name or URI
+            $pageName = null;
+            $pageTitle = null;
+
+            // Handle home route
+            if ($uri === '/' || $name === 'home') {
+                $pageName = 'home';
+                $pageTitle = 'Home Page';
+            }
+            // If route has a name, use it
+            elseif ($name) {
+                $pageName = $name;
+                // Convert route name to readable title
+                $pageTitle = ucwords(str_replace(['-', '_'], ' ', $pageName)) . ' Page';
+            }
+            // Use URI as page name if no name
+            elseif ($uri && $uri !== '/') {
+                $pageName = trim($uri, '/');
+                $pageTitle = ucwords(str_replace(['-', '_'], ' ', $pageName)) . ' Page';
+            }
+
+            // Skip if no valid page name
+            if (!$pageName || empty($pageName)) {
+                continue;
+            }
+
+            // Skip blog detail routes (they use slugs, not page names)
+            if (in_array($pageName, ['blog.show', 'blog.category'])) {
+                continue;
+            }
+
+            // Add to pages array if not already exists
+            if ($pageName && !isset($pages[$pageName])) {
+                $pages[$pageName] = $pageTitle;
+            }
+        }
+
+        // Add blog index page if it exists
+        if (!isset($pages['blog.index'])) {
+            $pages['blog'] = 'Blog Page';
+        } else {
+            // Rename blog.index to blog
+            if (isset($pages['blog.index'])) {
+                $pages['blog'] = $pages['blog.index'];
+                unset($pages['blog.index']);
+            }
+        }
+
+        // Sort pages alphabetically
+        ksort($pages);
+
+        return $pages;
+    }
+
+    /**
      * Show the form for creating a new page SEO setting
      */
     public function create()
     {
-        $pages = [
-            'home' => 'Home Page',
-            'services' => 'Services Page',
-            'treatments' => 'Treatments Page',
-            'centres' => 'Centres Page',
-            'training' => 'Training Page',
-            'about' => 'About Page',
-            'more' => 'More Page',
-            'contact' => 'Contact Page',
-            'faq' => 'FAQ Page',
-            'testimonials' => 'Testimonials Page',
-            'doctors' => 'Doctors Page',
-            'pricing' => 'Pricing Page',
-            'blog' => 'Blog Page',
+        // Get pages dynamically from routes
+        $pages = $this->getPagesFromRoutes();
+
+        // Also include common pages that might not be in routes
+        $commonPages = [
             'blog-category' => 'Blog Category Page',
             'privacy-policy' => 'Privacy Policy Page',
             'terms-conditions' => 'Terms & Conditions Page',
             'sitemap' => 'Sitemap Page',
             'search' => 'Search Results Page',
-            'ivf-treatment' => 'IVF Treatment Page',
-            'fertility-services' => 'Fertility Services Page',
-            'infertility-treatment' => 'Infertility Treatment Page',
-            'surrogacy' => 'Surrogacy Page',
-            'egg-donation' => 'Egg Donation Page',
-            'sperm-donation' => 'Sperm Donation Page',
-            'embryo-transfer' => 'Embryo Transfer Page',
-            'pregnancy-care' => 'Pregnancy Care Page',
-            'gynecology' => 'Gynecology Page',
-            'urology' => 'Urology Page',
-            'genetic-testing' => 'Genetic Testing Page',
-            'counselling' => 'Counselling Page',
-            'success-stories' => 'Success Stories Page',
-            'patient-reviews' => 'Patient Reviews Page',
-            'cost-calculator' => 'Cost Calculator Page',
-            'appointment' => 'Appointment Page',
-            'emergency-contact' => 'Emergency Contact Page',
-            'location' => 'Location Page',
-            'careers' => 'Careers Page',
-            'news' => 'News Page',
-            'events' => 'Events Page',
-            'research' => 'Research Page',
-            'publications' => 'Publications Page'
         ];
+
+        // Merge common pages with route pages
+        $pages = array_merge($pages, $commonPages);
+
+        // Remove duplicates and sort
+        $pages = array_unique($pages);
+        ksort($pages);
 
         $existingPages = PageSeo::pluck('page_name')->toArray();
         $availablePages = array_diff_key($pages, array_flip($existingPages));
@@ -135,49 +199,24 @@ class PageSeoController extends Controller
      */
     public function edit(PageSeo $pageSeo)
     {
-        $pages = [
-            'home' => 'Home Page',
-            'services' => 'Services Page',
-            'treatments' => 'Treatments Page',
-            'centres' => 'Centres Page',
-            'training' => 'Training Page',
-            'about' => 'About Page',
-            'more' => 'More Page',
-            'contact' => 'Contact Page',
-            'faq' => 'FAQ Page',
-            'testimonials' => 'Testimonials Page',
-            'doctors' => 'Doctors Page',
-            'pricing' => 'Pricing Page',
-            'blog' => 'Blog Page',
+        // Get pages dynamically from routes
+        $pages = $this->getPagesFromRoutes();
+
+        // Also include common pages that might not be in routes
+        $commonPages = [
             'blog-category' => 'Blog Category Page',
             'privacy-policy' => 'Privacy Policy Page',
             'terms-conditions' => 'Terms & Conditions Page',
             'sitemap' => 'Sitemap Page',
             'search' => 'Search Results Page',
-            'ivf-treatment' => 'IVF Treatment Page',
-            'fertility-services' => 'Fertility Services Page',
-            'infertility-treatment' => 'Infertility Treatment Page',
-            'surrogacy' => 'Surrogacy Page',
-            'egg-donation' => 'Egg Donation Page',
-            'sperm-donation' => 'Sperm Donation Page',
-            'embryo-transfer' => 'Embryo Transfer Page',
-            'pregnancy-care' => 'Pregnancy Care Page',
-            'gynecology' => 'Gynecology Page',
-            'urology' => 'Urology Page',
-            'genetic-testing' => 'Genetic Testing Page',
-            'counselling' => 'Counselling Page',
-            'success-stories' => 'Success Stories Page',
-            'patient-reviews' => 'Patient Reviews Page',
-            'cost-calculator' => 'Cost Calculator Page',
-            'appointment' => 'Appointment Page',
-            'emergency-contact' => 'Emergency Contact Page',
-            'location' => 'Location Page',
-            'careers' => 'Careers Page',
-            'news' => 'News Page',
-            'events' => 'Events Page',
-            'research' => 'Research Page',
-            'publications' => 'Publications Page'
         ];
+
+        // Merge common pages with route pages
+        $pages = array_merge($pages, $commonPages);
+
+        // Remove duplicates and sort
+        $pages = array_unique($pages);
+        ksort($pages);
 
         return view('admin.page-seo.edit', compact('pageSeo', 'pages'));
     }
@@ -290,7 +329,7 @@ class PageSeoController extends Controller
     public function preview($pageName)
     {
         $pageSeo = PageSeo::where('page_name', $pageName)->first();
-        
+
         if (!$pageSeo) {
             return response()->json(['error' => 'Page SEO not found'], 404);
         }
@@ -363,7 +402,7 @@ class PageSeoController extends Controller
     public function validatePageName(Request $request)
     {
         $pageName = $request->input('page_name');
-        
+
         if (!$pageName) {
             return response()->json(['valid' => false, 'message' => 'Page name is required']);
         }
@@ -371,7 +410,7 @@ class PageSeoController extends Controller
         // Check format
         if (!preg_match('/^[a-z0-9-]+$/', $pageName)) {
             return response()->json([
-                'valid' => false, 
+                'valid' => false,
                 'message' => 'Page name can only contain lowercase letters, numbers, and hyphens'
             ]);
         }
@@ -379,14 +418,14 @@ class PageSeoController extends Controller
         // Check length
         if (strlen($pageName) < 3) {
             return response()->json([
-                'valid' => false, 
+                'valid' => false,
                 'message' => 'Page name should be at least 3 characters long'
             ]);
         }
 
         if (strlen($pageName) > 50) {
             return response()->json([
-                'valid' => false, 
+                'valid' => false,
                 'message' => 'Page name should be less than 50 characters'
             ]);
         }
@@ -395,11 +434,11 @@ class PageSeoController extends Controller
         $exists = PageSeo::where('page_name', $pageName)->exists();
         if ($exists) {
             return response()->json([
-                'valid' => false, 
+                'valid' => false,
                 'message' => 'Page name already exists'
             ]);
         }
 
         return response()->json(['valid' => true, 'message' => 'Valid page name']);
     }
-} 
+}

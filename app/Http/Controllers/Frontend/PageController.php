@@ -94,4 +94,8 @@ class PageController extends BaseController
     public function secondOpinion(){
         return $this->renderWithSeo('frontend.pages.second-opinion', 'second-opinion');
     }
+
+    public function shop(){
+        return $this->renderWithSeo('frontend.pages.shop', 'shop');
+    }
 }

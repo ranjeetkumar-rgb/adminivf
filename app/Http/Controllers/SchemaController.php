@@ -16,7 +16,7 @@ class SchemaController extends Controller
         $this->middleware('permission:edit-seo-settings')->only('edit', 'update');
         $this->middleware('permission:delete-seo-settings')->only('destroy');
     }
-    
+
     /**
      * Display a listing of schemas
      */
@@ -34,7 +34,7 @@ class SchemaController extends Controller
         $schemaTypes = $this->getSchemaTypes();
         $contentTypes = $this->getContentTypes();
         $templates = $this->getSchemaTemplates();
-        
+
         return view('admin.schema.create', compact('schemaTypes', 'contentTypes', 'templates'));
     }
 
@@ -105,7 +105,7 @@ class SchemaController extends Controller
         $schemaTypes = $this->getSchemaTypes();
         $contentTypes = $this->getContentTypes();
         $templates = $this->getSchemaTemplates();
-        
+
         return view('admin.schema.edit', compact('schema', 'schemaTypes', 'contentTypes', 'templates'));
     }
 
@@ -200,7 +200,7 @@ class SchemaController extends Controller
                         ->where('is_active', true)
                         ->orderBy('created_at', 'desc')
                         ->get();
-        
+
         return view('admin.schema.landing-page', compact('schemas'));
     }
 
@@ -228,20 +228,125 @@ class SchemaController extends Controller
     }
 
     /**
+     * Get pages from routes dynamically
+     */
+    private function getPagesFromRoutes()
+    {
+        $pages = [];
+
+        // Get all routes
+        $routes = \Illuminate\Support\Facades\Route::getRoutes();
+
+        foreach ($routes as $route) {
+            $uri = $route->uri();
+            $name = $route->getName();
+            $action = $route->getAction();
+
+            // Skip admin routes, API routes, and routes with parameters
+            if (strpos($uri, 'admin') !== false ||
+                strpos($uri, 'api') !== false ||
+                strpos($uri, '{') !== false ||
+                strpos($uri, 'debug') !== false ||
+                strpos($uri, 'test') !== false ||
+                strpos($uri, 'submit-consultation') !== false) {
+                continue;
+            }
+
+            // Skip routes without names (except home)
+            if (!$name && $uri !== '/') {
+                continue;
+            }
+
+            // Skip if route name contains admin or api
+            if ($name && (str_contains($name, 'admin') || str_contains($name, 'api'))) {
+                continue;
+            }
+
+            // Get page name from route name or URI
+            $pageName = null;
+            $pageTitle = null;
+
+            // Handle home route
+            if ($uri === '/' || $name === 'home') {
+                $pageName = 'home';
+                $pageTitle = 'Landing Page (Home)';
+            }
+            // If route has a name, use it
+            elseif ($name) {
+                $pageName = $name;
+                // Convert route name to readable title
+                $pageTitle = ucwords(str_replace(['-', '_'], ' ', $pageName)) . ' Page';
+            }
+            // Use URI as page name if no name
+            elseif ($uri && $uri !== '/') {
+                $pageName = trim($uri, '/');
+                $pageTitle = ucwords(str_replace(['-', '_'], ' ', $pageName)) . ' Page';
+            }
+
+            // Skip if no valid page name
+            if (!$pageName || empty($pageName)) {
+                continue;
+            }
+
+            // Skip blog detail routes (they use slugs, not page names)
+            if (in_array($pageName, ['blog.show', 'blog.category'])) {
+                continue;
+            }
+
+            // Add to pages array if not already exists
+            if ($pageName && !isset($pages[$pageName])) {
+                $pages[$pageName] = $pageTitle;
+            }
+        }
+
+        // Add blog index page if it exists
+        if (!isset($pages['blog.index'])) {
+            $pages['blog'] = 'Blog Page';
+        } else {
+            // Rename blog.index to blog
+            if (isset($pages['blog.index'])) {
+                $pages['blog'] = $pages['blog.index'];
+                unset($pages['blog.index']);
+            }
+        }
+
+        // Sort pages alphabetically
+        ksort($pages);
+
+        return $pages;
+    }
+
+    /**
      * Get content types
      */
     private function getContentTypes()
     {
-        return [
-            'home' => 'Landing Page (Home)',
+        // Get pages dynamically from routes
+        $pages = $this->getPagesFromRoutes();
+
+        // Add common content types that might not be in routes
+        $commonTypes = [
             'blog' => 'Blog Posts',
             'testimonial' => 'Testimonials',
             'faq' => 'FAQs',
             'product' => 'Products',
             'service' => 'Services',
             'page' => 'Pages',
-            'global' => 'Global (All Pages)',
         ];
+
+        // Merge common types with route pages
+        $contentTypes = array_merge($pages, $commonTypes);
+
+        // Add global option at the beginning
+        $contentTypes = ['global' => 'Global (All Pages)'] + $contentTypes;
+
+        // Remove duplicates and sort (but keep global first)
+        $global = ['global' => 'Global (All Pages)'];
+        $rest = array_diff_key($contentTypes, $global);
+        ksort($rest);
+        $contentTypes = $global + $rest;
+
+        return $contentTypes;
     }
 
     /**
@@ -419,4 +524,4 @@ class SchemaController extends Controller
             ]
         ];
     }
-} 
+}

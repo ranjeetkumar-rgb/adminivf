@@ -22,7 +22,7 @@ class BlogEngagementController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with(['category', 'comments'])
+        $blogs = Blog::with(['comments'])
             ->withCount(['comments as total_comments', 'comments as approved_comments' => function($query) {
                 $query->where('is_approved', true);
             }])
@@ -38,8 +38,7 @@ class BlogEngagementController extends Controller
             'approved_comments' => Comment::where('is_approved', true)->count(),
         ];
 
-        $topPerformingBlogs = Blog::with('category')
-            ->orderBy('views', 'desc')
+        $topPerformingBlogs = Blog::orderBy('views', 'desc')
             ->take(5)
             ->get();
 
@@ -49,9 +48,9 @@ class BlogEngagementController extends Controller
             ->get();
 
         return view('admin.blog.engagement.index', compact(
-            'blogs', 
-            'engagementStats', 
-            'topPerformingBlogs', 
+            'blogs',
+            'engagementStats',
+            'topPerformingBlogs',
             'recentComments'
         ));
     }
@@ -62,12 +61,12 @@ class BlogEngagementController extends Controller
     public function comments(Request $request)
     {
         $query = Comment::with(['blog', 'parent', 'userProfile']);
-        
+
         // Filter by blog_id if provided
         if ($request->has('blog_id') && $request->blog_id) {
             $query->where('blog_id', $request->blog_id);
         }
-        
+
         // Filter by status if provided
         if ($request->has('status') && $request->status) {
             if ($request->status === 'approved') {
@@ -76,7 +75,7 @@ class BlogEngagementController extends Controller
                 $query->where('is_approved', false);
             }
         }
-        
+
         // Search in comment text, author name, or email
         if ($request->has('search') && $request->search) {
             $search = $request->search;
@@ -86,7 +85,7 @@ class BlogEngagementController extends Controller
                   ->orWhere('email', 'like', "%{$search}%");
             });
         }
-        
+
         $comments = $query->orderBy('created_at', 'desc')->paginate(20);
 
         // Get stats based on the same filter (excluding search for stats)
@@ -101,7 +100,7 @@ class BlogEngagementController extends Controller
                 $baseQuery->where('is_approved', false);
             }
         }
-        
+
         $commentStats = [
             'total' => $baseQuery->count(),
             'pending' => (clone $baseQuery)->where('is_approved', false)->count(),
@@ -182,7 +181,7 @@ class BlogEngagementController extends Controller
         try {
             $comment = Comment::findOrFail($id);
             $blog = $comment->blog;
-            
+
             $comment->delete();
 
             // Update blog comments count
@@ -210,7 +209,7 @@ class BlogEngagementController extends Controller
     {
         try {
             $commentIds = $request->input('comment_ids', []);
-            
+
             if (empty($commentIds)) {
                 return response()->json([
                     'success' => false,
@@ -220,7 +219,7 @@ class BlogEngagementController extends Controller
 
             // Get blog IDs before updating comments
             $blogIds = Comment::whereIn('id', $commentIds)->pluck('blog_id')->unique();
-            
+
             Comment::whereIn('id', $commentIds)->update(['is_approved' => true]);
 
             // Update all affected blogs
@@ -251,7 +250,7 @@ class BlogEngagementController extends Controller
     {
         try {
             $commentIds = $request->input('comment_ids', []);
-            
+
             if (empty($commentIds)) {
                 return response()->json([
                     'success' => false,
@@ -261,7 +260,7 @@ class BlogEngagementController extends Controller
 
             // Get blog IDs before deleting comments
             $blogIds = Comment::whereIn('id', $commentIds)->pluck('blog_id')->unique();
-            
+
             Comment::whereIn('id', $commentIds)->delete();
 
             // Update all affected blogs
@@ -335,12 +334,12 @@ class BlogEngagementController extends Controller
     public function userProfiles(Request $request)
     {
         $query = UserProfile::query();
-        
+
         // Filter by consultation interest if provided
         if ($request->has('consultation_interest') && $request->consultation_interest) {
             $query->where('consultation_interest', $request->consultation_interest);
         }
-        
+
         // Search in name or email
         if ($request->has('search') && $request->search) {
             $search = $request->search;
@@ -349,7 +348,7 @@ class BlogEngagementController extends Controller
                   ->orWhere('email', 'like', "%{$search}%");
             });
         }
-        
+
         $userProfiles = $query->orderBy('last_comment_at', 'desc')->paginate(20);
 
         // Get user stats

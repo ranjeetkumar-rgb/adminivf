@@ -68,7 +68,8 @@ Route::get('pregnancy-loss-care', [App\Http\Controllers\Frontend\PageController:
 Route::get('failed-ivf-solutions', [App\Http\Controllers\Frontend\PageController::class, 'failedIVFSolutions'])->name('failed-ivf-solutions');
 // secondSecondOpinion
 Route::get('second-opinion', [App\Http\Controllers\Frontend\PageController::class, 'secondOpinion'])->name('second-opinion');
-
+// ShopPage
+Route::get('shop', [App\Http\Controllers\Frontend\PageController::class, 'shop'])->name('shop');
 // Route::get('/fertility-services', [App\Http\Controllers\Frontend\PageController::class, 'fertilityServices'])->name('fertility-services');
 // IVFRelatedTreatment
 Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');

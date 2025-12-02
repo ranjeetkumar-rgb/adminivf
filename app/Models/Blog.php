@@ -44,6 +44,13 @@ class Blog extends Model
         return $this->belongsToMany(BlogCategory::class);
     }
 
+    // Accessor to get the first category (for backward compatibility)
+    public function getCategoryAttribute()
+    {
+        $categories = $this->getCategoriesAttribute($this->attributes['categories'] ?? null);
+        return $categories->first();
+    }
+
     public function getCategoriesAttribute($value)
     {
         if (empty($value)) {
