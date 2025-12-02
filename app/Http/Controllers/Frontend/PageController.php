@@ -57,4 +57,41 @@ class PageController extends BaseController
         return $this->renderWithSeo('frontend.pages.ivf-related-treatments', 'ivf-related-treatments');
     }
 
+    public function difficultyConceiving()
+    {
+        return $this->renderWithSeo('frontend.pages.difficulty-conceiving', 'difficulty-conceiving');
+    }
+
+    public function femaleInfertility()
+    {
+        return $this->renderWithSeo('frontend.pages.female-infertility', 'female-infertility');
+    }
+
+    public function maleInfertility()
+    {
+        return $this->renderWithSeo('frontend.pages.male-infertility', 'male-infertility');
+    }
+
+    public function delhiCenter()
+    {
+        return $this->renderWithSeo('frontend.pages.delhi-center', 'delhi-center');
+    }
+
+    public function UnexplainedInfertility()
+    {
+        return $this->renderWithSeo('frontend.pages.unexplained-infertility', 'unexplained-infertility');
+    }
+
+    public function pregnancyLossCare()
+    {
+        return $this->renderWithSeo('frontend.pages.pregnancy-loss-care', 'pregnancy-loss-care');
+    }
+    public function failedIVFSolutions()
+    {
+        return $this->renderWithSeo('frontend.pages.failed-ivf-solutions', 'failed-ivf-solutions');
+    }
+
+    public function secondOpinion(){
+        return $this->renderWithSeo('frontend.pages.second-opinion', 'second-opinion');
+    }
 }

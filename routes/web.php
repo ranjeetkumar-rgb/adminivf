@@ -53,6 +53,22 @@ Route::get('/advanced-techniques', [App\Http\Controllers\Frontend\PageController
 Route::get('/faq', [App\Http\Controllers\Frontend\PageController::class, 'faq'])->name('faq');
 // FertilityIssue
 Route::get('/fertility-issue', [App\Http\Controllers\Frontend\PageController::class, 'fertilityIssue'])->name('fertility-issue');
+// Difficulty Conceiving
+Route::get('/difficulty-conceiving', [App\Http\Controllers\Frontend\PageController::class, 'difficultyConceiving'])->name('difficulty-conceiving');
+// FemaleInfertility_final
+Route::get('female-infertility',[App\Http\Controllers\Frontend\PageController::class, 'femaleInfertility'])->name('female-infertility');
+// maleInfertility_final
+Route::get('male-infertility',[App\Http\Controllers\Frontend\PageController::class, 'maleInfertility'])->name('male-infertility');
+Route::get('delhi-center',[App\Http\Controllers\Frontend\PageController::class, 'delhiCenter'])->name('delhi-center');
+// UnexplainedInfertility_final
+Route::get('unexplained-infertility',[App\Http\Controllers\Frontend\PageController::class, 'UnexplainedInfertility'])->name('unexplained-infertility');
+// PregnancyLossCarePage
+Route::get('pregnancy-loss-care', [App\Http\Controllers\Frontend\PageController::class, 'pregnancyLossCare'])->name('pregnancy-loss-care');
+// FailedIVFSolutions_final
+Route::get('failed-ivf-solutions', [App\Http\Controllers\Frontend\PageController::class, 'failedIVFSolutions'])->name('failed-ivf-solutions');
+// secondSecondOpinion
+Route::get('second-opinion', [App\Http\Controllers\Frontend\PageController::class, 'secondOpinion'])->name('second-opinion');
+
 // Route::get('/fertility-services', [App\Http\Controllers\Frontend\PageController::class, 'fertilityServices'])->name('fertility-services');
 // IVFRelatedTreatment
 Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');

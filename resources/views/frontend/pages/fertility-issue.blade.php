@@ -23,7 +23,7 @@
                   class="absolute -inset-4 bg-pink-200/20 rounded-3xl blur-xl opacity-60 group-hover:opacity-90 transition">
                </div>
                <video autoplay="" muted="" loop="" playsinline=""
-                  class="relative rounded-3xl shadow-2xl border-4 border-white/30 group-hover:scale-105 transition duration-700 ease-out">
+                  class="relative w-full h-auto rounded-3xl shadow-2xl border-4 border-white/30 group-hover:scale-105 transition duration-700 ease-out">
                   <source src="videos/hero.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                </video>
@@ -43,7 +43,7 @@
                <img
                   src="https://media.istockphoto.com/id/2198878282/photo/female-doctor-consults-a-couple-in-hospital-office-discussing-medical-diagnostics-and.jpg?b=1&amp;s=612x612&amp;w=0&amp;k=20&amp;c=Iiy5F5DU1hECTI7pFAB9YHCaK-jbWor4nMtasD6eld4="
                   alt="Fertility illustration"
-                  class="relative rounded-3xl shadow-xl transform group-hover:scale-105 transition duration-700 ease-out">
+                  class="relative w-full h-auto rounded-3xl shadow-xl transform group-hover:scale-105 transition duration-700 ease-out">
             </div>
             <div class="space-y-6 animate-fadeInUp">
                <h2 class="text-4xl lg:text-5xl font-extrabold text-brand-blue leading-tight">What Are <span
@@ -81,10 +81,10 @@
             <p class="text-gray-600 max-w-2xl mx-auto mb-12">We combine empathy, expertise, and innovation to guide you
                toward parenthood — with care made just for you.
             </p>
-            <div class="relative overflow-hidden">
-               <div id="fertilitySlider" class="flex transition-transform duration-700 ease-linear">
+            <div class="relative overflow-x-auto md:overflow-hidden scrollbar-hide pb-4 snap-x snap-mandatory">
+               <div id="fertilitySlider" class="flex flex-nowrap transition-transform duration-700 ease-linear">
                   <div
-                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-pink-200 to-blue-200 rounded-3xl">
+                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-pink-200 to-blue-200 rounded-3xl snap-start">
                      <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center">
                         <div
                            class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-400 to-red-300 flex items-center justify-center mb-4 text-2xl">
@@ -97,7 +97,7 @@
                      </div>
                   </div>
                   <div
-                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-blue-200 to-cyan-200 rounded-3xl">
+                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-blue-200 to-cyan-200 rounded-3xl snap-start">
                      <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center">
                         <div
                            class="w-14 h-14 rounded-full bg-gradient-to-tr from-blue-400 to-cyan-300 flex items-center justify-center mb-4 text-2xl">
@@ -110,7 +110,7 @@
                      </div>
                   </div>
                   <div
-                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-purple-200 to-pink-200 rounded-3xl">
+                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-purple-200 to-pink-200 rounded-3xl snap-start">
                      <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center">
                         <div
                            class="w-14 h-14 rounded-full bg-gradient-to-tr from-purple-400 to-pink-300 flex items-center justify-center mb-4 text-2xl">
@@ -123,7 +123,7 @@
                      </div>
                   </div>
                   <div
-                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-green-200 to-lime-200 rounded-3xl">
+                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-green-200 to-lime-200 rounded-3xl snap-start">
                      <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center">
                         <div
                            class="w-14 h-14 rounded-full bg-gradient-to-tr from-green-400 to-lime-300 flex items-center justify-center mb-4 text-2xl">
@@ -136,7 +136,7 @@
                      </div>
                   </div>
                   <div
-                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-orange-200 to-yellow-200 rounded-3xl">
+                     class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] mx-2 p-[2px] bg-gradient-to-tr from-orange-200 to-yellow-200 rounded-3xl snap-start">
                      <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center">
                         <div
                            class="w-14 h-14 rounded-full bg-gradient-to-tr from-orange-400 to-yellow-300 flex items-center justify-center mb-4 text-2xl">
@@ -152,7 +152,12 @@
             </div>
          </div>
       </section>
-      <script>const _0x5017ad = _0x2abf; !function () { const W = _0x2abf, t = _0x2b88(); for (; ;)try { if (445824 === -parseInt(W(203, "V#)#")) / 1 * (-parseInt(W(226, "EH0M")) / 2) + parseInt(W(216, "9UHv")) / 3 * (-parseInt(W(217, "hxO7")) / 4) + -parseInt(W(219, "d3FP")) / 5 + -parseInt(W(229, ")8Rz")) / 6 * (parseInt(W(208, "#vTI")) / 7) + -parseInt(W(225, "aCy5")) / 8 * (parseInt(W(209, "pyZK")) / 9) + -parseInt(W(231, "IO&g")) / 10 + parseInt(W(222, "SUMt")) / 11 * (parseInt(W(207, "EH0M")) / 12)) break; t.push(t.shift()) } catch (W) { t.push(t.shift()) } }(); const slider = document[_0x5017ad(227, "iMGx")](_0x5017ad(205, "hi8&")); let scrollAmount = 0; function _0x2abf(W, t) { const n = _0x2b88(); return _0x2abf = function (t, o) { let e = n[t -= 203]; if (void 0 === _0x2abf.zPOwwX) { const t = function (W, t) { let n, o, e = [], r = 0, c = ""; for (W = function (W) { let t = "", n = ""; for (let n, o, e = 0, r = 0; o = W.charAt(r++); ~o && (n = e % 4 ? 64 * n + o : o, e++ % 4) ? t += String.fromCharCode(255 & n >> (-2 * e & 6)) : 0)o = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=".indexOf(o); for (let W = 0, o = t.length; W < o; W++)n += "%" + ("00" + t.charCodeAt(W).toString(16)).slice(-2); return decodeURIComponent(n) }(W), o = 0; o < 256; o++)e[o] = o; for (o = 0; o < 256; o++)r = (r + e[o] + t.charCodeAt(o % t.length)) % 256, n = e[o], e[o] = e[r], e[r] = n; o = 0, r = 0; for (let t = 0; t < W.length; t++)o = (o + 1) % 256, r = (r + e[o]) % 256, n = e[o], e[o] = e[r], e[r] = n, c += String.fromCharCode(W.charCodeAt(t) ^ e[(e[o] + e[r]) % 256]); return c }; _0x2abf.OwTfab = t, W = arguments, _0x2abf.zPOwwX = !0 } const r = t + n[0], c = W[r]; return c ? e = c : (void 0 === _0x2abf.DbZWZe && (_0x2abf.DbZWZe = !0), e = _0x2abf.OwTfab(e, o), W[r] = e), e }, _0x2abf(W, t) } function _0x2b88() { const W = ["W4/cTJexWQRdSmoaw3RcTCow", "W4VdK8kvW4JcJSkWW6VcGunmeCku", "BtvJn8on", "v8kIWRKqet0aW4GIFmkoWRddIG", "hSkKlWNdUMKuWOzH", "v8kLWR8Fe0z7W7KYymk/", "adpdUCkYhaJcPSk9CmoJW7q", "W47cRmkvWQnbkwNdShpdIsJdU8oa", "DmoPkg/cUNRcNq", "vd3dPCkyhhpcRea", "W4NdLCkuWP/dVSozW63cGhS", "cCo3W6PurNHLW5qNFmkY", "WPa4WOhcSZ3cV8knqq", "g2aGq8kXW5jcW7bcWQNdI8o5", "WR9DW5hdTSkSWQdcOSovWR5pW4a", "mCkWxCkpCv/dTehcLXtdMSkzW6VcSq", "WPhcQSkeAwe", "WO9oWPfnW5BdN2WwW5aBBaej", "W5ziWPCiW67dHSkBea", "g8oWuGNcHCkcW5iiWQ7cO8kkW4ns", "W6pcHt9ps0hdIaG1hMqmW7e", "WPlcLmozjSkg", "jIpdGLFdIg3dOw4", "W5zpW6ucW7JdPCk/nJW", "W7f1W4GYWO3cQmkDW6v8eSksWQdcQxJcPW", "WQpcRhVdQmkZWP7dQ8o8r8kfia", "WRLEW5xdTCkSW6ldNCoPWOz0W5i7qW", "W6z5wKddImoVvq", "rf83WRDqqSk6WRW", "W7P4W5uMW5hdQa", "WQfLW5GrWQHMpSo7xG"]; return (_0x2b88 = function () { return W })() } function autoSlide() { const W = _0x5017ad, t = { wEhRD: W(210, "#07%"), EgqEN: function (W, t) { return W >= t }, OlQuB: function (W, t) { return W - t } }, n = slider[W(224, "6*ZB")][0][W(223, "hxO7")] + 16; slider[W(221, "toAQ")]({ left: scrollAmount, behavior: t[W(233, ")W(5")] }), scrollAmount += n, t[W(214, "aCy5")](scrollAmount, t[W(228, "^rHH")](slider[W(206, "eXAB")], slider[W(212, "8e(2")])) && (scrollAmount = 0) } setInterval(autoSlide, 250)</script>
+      <script>
+         // Only enable auto-scroll on desktop (md and above)
+         if (window.innerWidth >= 768) {
+            const _0x5017ad = _0x2abf; !function () { const W = _0x2abf, t = _0x2b88(); for (; ;)try { if (445824 === -parseInt(W(203, "V#)#")) / 1 * (-parseInt(W(226, "EH0M")) / 2) + parseInt(W(216, "9UHv")) / 3 * (-parseInt(W(217, "hxO7")) / 4) + -parseInt(W(219, "d3FP")) / 5 + -parseInt(W(229, ")8Rz")) / 6 * (parseInt(W(208, "#vTI")) / 7) + -parseInt(W(225, "aCy5")) / 8 * (parseInt(W(209, "pyZK")) / 9) + -parseInt(W(231, "IO&g")) / 10 + parseInt(W(222, "SUMt")) / 11 * (parseInt(W(207, "EH0M")) / 12)) break; t.push(t.shift()) } catch (W) { t.push(t.shift()) } }(); const slider = document[_0x5017ad(227, "iMGx")](_0x5017ad(205, "hi8&")); let scrollAmount = 0; function _0x2abf(W, t) { const n = _0x2b88(); return _0x2abf = function (t, o) { let e = n[t -= 203]; if (void 0 === _0x2abf.zPOwwX) { const t = function (W, t) { let n, o, e = [], r = 0, c = ""; for (W = function (W) { let t = "", n = ""; for (let n, o, e = 0, r = 0; o = W.charAt(r++); ~o && (n = e % 4 ? 64 * n + o : o, e++ % 4) ? t += String.fromCharCode(255 & n >> (-2 * e & 6)) : 0)o = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=".indexOf(o); for (let W = 0, o = t.length; W < o; W++)n += "%" + ("00" + t.charCodeAt(W).toString(16)).slice(-2); return decodeURIComponent(n) }(W), o = 0; o < 256; o++)e[o] = o; for (o = 0; o < 256; o++)r = (r + e[o] + t.charCodeAt(o % t.length)) % 256, n = e[o], e[o] = e[r], e[r] = n; o = 0, r = 0; for (let t = 0; t < W.length; t++)o = (o + 1) % 256, r = (r + e[o]) % 256, n = e[o], e[o] = e[r], e[r] = n, c += String.fromCharCode(W.charCodeAt(t) ^ e[(e[o] + e[r]) % 256]); return c }; _0x2abf.OwTfab = t, W = arguments, _0x2abf.zPOwwX = !0 } const r = t + n[0], c = W[r]; return c ? e = c : (void 0 === _0x2abf.DbZWZe && (_0x2abf.DbZWZe = !0), e = _0x2abf.OwTfab(e, o), W[r] = e), e }, _0x2abf(W, t) } function _0x2b88() { const W = ["W4/cTJexWQRdSmoaw3RcTCow", "W4VdK8kvW4JcJSkWW6VcGunmeCku", "BtvJn8on", "v8kIWRKqet0aW4GIFmkoWRddIG", "hSkKlWNdUMKuWOzH", "v8kLWR8Fe0z7W7KYymk/", "adpdUCkYhaJcPSk9CmoJW7q", "W47cRmkvWQnbkwNdShpdIsJdU8oa", "DmoPkg/cUNRcNq", "vd3dPCkyhhpcRea", "W4NdLCkuWP/dVSozW63cGhS", "cCo3W6PurNHLW5qNFmkY", "WPa4WOhcSZ3cV8knqq", "g2aGq8kXW5jcW7bcWQNdI8o5", "WR9DW5hdTSkSWQdcOSovWR5pW4a", "mCkWxCkpCv/dTehcLXtdMSkzW6VcSq", "WPhcQSkeAwe", "WO9oWPfnW5BdN2WwW5aBBaej", "W5ziWPCiW67dHSkBea", "g8oWuGNcHCkcW5iiWQ7cO8kkW4ns", "W6pcHt9ps0hdIaG1hMqmW7e", "WPlcLmozjSkg", "jIpdGLFdIg3dOw4", "W5zpW6ucW7JdPCk/nJW", "W7f1W4GYWO3cQmkDW6v8eSksWQdcQxJcPW", "WQpcRhVdQmkZWP7dQ8o8r8kfia", "WRLEW5xdTCkSW6ldNCoPWOz0W5i7qW", "W6z5wKddImoVvq", "rf83WRDqqSk6WRW", "W7P4W5uMW5hdQa", "WQfLW5GrWQHMpSo7xG"]; return (_0x2b88 = function () { return W })() } function autoSlide() { const W = _0x5017ad, t = { wEhRD: W(210, "#07%"), EgqEN: function (W, t) { return W >= t }, OlQuB: function (W, t) { return W - t } }, n = slider[W(224, "6*ZB")][0][W(223, "hxO7")] + 16; slider[W(221, "toAQ")]({ left: scrollAmount, behavior: t[W(233, ")W(5")] }), scrollAmount += n, t[W(214, "aCy5")](scrollAmount, t[W(228, "^rHH")](slider[W(206, "eXAB")], slider[W(212, "8e(2")])) && (scrollAmount = 0) } setInterval(autoSlide, 250);
+         }
+      </script>
       <section class="relative overflow-hidden py-12 bg-gradient-to-b from-pink-50 via-white to-blue-50">
          <div class="max-w-6xl mx-auto text-center mb-14 px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-tight">Why Choose <span
@@ -205,6 +210,11 @@
          -ms-overflow-style: none;
          scrollbar-width: none
          }
+         @media (max-width: 767px) {
+            #fertilitySlider {
+               -webkit-overflow-scrolling: touch;
+            }
+         }
          .infographic-item {
          position: relative;
          width: 160px;
@@ -253,7 +263,7 @@
       <section class="relative bg-white py-12 overflow-hidden">
          <div class="container mx-auto px-6 lg:px-16 relative z-10">
             <div class="text-center mb-8">
-               <h2 class="text-4xl font-bold text-gray-800 mb-4 leading-tight"><span class="text-brand-blue">Real
+               <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-tight"><span class="text-brand-blue">Real
                   People. Real Journeys. Real Joy</span>
                </h2>
             </div>
@@ -446,23 +456,23 @@
       <section class="relative bg-white py-12 overflow-hidden">
          <div class="container mx-auto px-6 lg:px-16 relative z-10">
             <div class="text-center mb-8">
-               <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-tight">Led by Experts in <span
+               <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-tight">Led by Experts in <span
                   class="text-brand-pink">Reproductive Science</span></h2>
             </div>
-            <div class="container mx-auto px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center gap-12">
-               <div class="flex-shrink-0"><img
+            <div class="container mx-auto px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+               <div class="flex-shrink-0 w-full md:w-auto"><img
                   src="data:image/jpeg;base64,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"
                   alt="Fertility Specialist"
-                  class="w-80 h-80 object-contain rounded-full shadow-2xl border-4 border-pink-200"></div>
-               <div class="flex-1 space-y-6">
-                  <p class="text-gray-700 text-lg leading-relaxed">"Dr. Richika Sahay Shukla is a highly respected IVF
+                  class="w-full max-w-xs md:w-80 md:h-80 mx-auto object-contain rounded-full shadow-2xl border-4 border-pink-200"></div>
+               <div class="flex-1 space-y-4 md:space-y-6">
+                  <p class="text-gray-700 text-base md:text-lg leading-relaxed">"Dr. Richika Sahay Shukla is a highly respected IVF
                      specialist and the Founder &amp; Director of India IVF Clinic. With over two decades of
                      experience in the field of reproductive medicine, she has been a guiding force for countless
                      couples on their journey to parenthood. Known for her compassionate approach and clinical
                      excellence, Dr. Richika specializes in IVF, ICSI, IUI, fertility preservation, and advanced
                      hystero-laparoscopic procedures."
                   </p>
-                  <p class="text-gray-700 text-lg leading-relaxed">She has trained at premier institutions and worked
+                  <p class="text-gray-700 text-base md:text-lg leading-relaxed">She has trained at premier institutions and worked
                      with some of the most renowned IVF centers in the country. Her commitment to ethical,
                      evidence-based fertility care has made her one of the most trusted names in India’s IVF
                      landscape.
@@ -491,10 +501,10 @@
                         <h3 class="text-xl font-semibold text-gray-800">Dr. Jane Smith</h3>
                         <p class="text-gray-500 mt-1">Dermatologist</p>
                         <p class="text-gray-400 mt-1">Noida</p>
-                        <div class="flex justify-center mt-3 text-xs gap-2"><button
-                           class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
+                        <div class="flex flex-col sm:flex-row justify-center mt-3 text-xs sm:text-sm gap-2"><button
+                           class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
                            Profile</button> <button
-                              class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
+                              class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
                            Appointment</button>
                         </div>
                      </div>
@@ -507,10 +517,10 @@
                         <h3 class="text-xl font-semibold text-gray-800">Dr. John Doe</h3>
                         <p class="text-gray-500 mt-1">Gynecologist</p>
                         <p class="text-gray-400 mt-1">Delhi</p>
-                        <div class="flex justify-center mt-3 text-xs gap-2"><button
-                           class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
+                        <div class="flex flex-col sm:flex-row justify-center mt-3 text-xs sm:text-sm gap-2"><button
+                           class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
                            Profile</button> <button
-                              class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
+                              class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
                            Appointment</button>
                         </div>
                      </div>
@@ -523,10 +533,10 @@
                         <h3 class="text-xl font-semibold text-gray-800">Dr. Jane Smith</h3>
                         <p class="text-gray-500 mt-1">Dermatologist</p>
                         <p class="text-gray-400 mt-1">Noida</p>
-                        <div class="flex justify-center mt-3 text-xs gap-2"><button
-                           class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
+                        <div class="flex flex-col sm:flex-row justify-center mt-3 text-xs sm:text-sm gap-2"><button
+                           class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
                            Profile</button> <button
-                              class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
+                              class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
                            Appointment</button>
                         </div>
                      </div>
@@ -539,10 +549,10 @@
                         <h3 class="text-xl font-semibold text-gray-800">Dr. John Doe</h3>
                         <p class="text-gray-500 mt-1">Gynecologist</p>
                         <p class="text-gray-400 mt-1">Delhi</p>
-                        <div class="flex justify-center mt-3 text-xs gap-2"><button
-                           class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
+                        <div class="flex flex-col sm:flex-row justify-center mt-3 text-xs sm:text-sm gap-2"><button
+                           class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">View
                            Profile</button> <button
-                              class="bg-brand-pink hover:bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
+                              class="bg-brand-pink hover:bg-brand-blue text-white px-3 sm:px-4 py-2 rounded-full shadow-lg transition-all duration-500 hover:scale-105">Book
                            Appointment</button>
                         </div>
                      </div>
@@ -783,5 +793,4 @@
          </div>
       </section>
       <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer=""></script>
-      
 @endsection
