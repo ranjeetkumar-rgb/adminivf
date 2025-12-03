@@ -103,6 +103,8 @@ Route::get('/ivf', [App\Http\Controllers\Frontend\PageController::class, 'ivf'])
 Route::get('/ivf-hiv', [App\Http\Controllers\Frontend\PageController::class, 'ivfHiv'])->name('ivf-hiv');
 // ICSI_final.
 Route::get('/icsi', [App\Http\Controllers\Frontend\PageController::class, 'icsi'])->name('icsi');
+// IUI_final
+Route::get('/iui', [App\Http\Controllers\Frontend\PageController::class, 'iui'])->name('iui');
 
 
 

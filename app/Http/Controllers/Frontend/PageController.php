@@ -133,4 +133,9 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.icsi', 'icsi');
     }
+
+    public function iui()
+    {
+        return $this->renderWithSeo('frontend.pages.iui', 'iui');
+    }
 }
