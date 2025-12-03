@@ -8,7 +8,7 @@ use App\Http\Controllers\{HomeController, AdminController,UserController, BlogCo
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+| 
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -30,6 +30,21 @@ Route::get('/blog/category/{slug}', [App\Http\Controllers\Frontend\BlogControlle
 // Blog AJAX Routes
 Route::post('/blog/filter', [App\Http\Controllers\Frontend\BlogController::class, 'filter'])->name('blog.filter');
 Route::post('/blog/load-more', [App\Http\Controllers\Frontend\BlogController::class, 'loadMore'])->name('blog.load-more');
+Route::get('/blog/search', [App\Http\Controllers\Frontend\BlogController::class, 'search'])->name('blog.search');
+
+// Test route to check if blogs exist
+Route::get('/blog/search-test', function() {
+    $totalBlogs = \App\Models\Blog::count();
+    $publishedBlogs = \App\Models\Blog::published()->count();
+    $sampleBlogs = \App\Models\Blog::published()->take(5)->get(['id', 'title', 'slug', 'published']);
+
+    return response()->json([
+        'total_blogs' => $totalBlogs,
+        'published_blogs' => $publishedBlogs,
+        'sample_blogs' => $sampleBlogs,
+        'search_route' => route('blog.search')
+    ]);
+});
 
 // Blog Like Routes
 Route::post('/blog/{id}/like', [App\Http\Controllers\Frontend\BlogController::class, 'toggleLike'])->name('blog.like');
@@ -67,12 +82,26 @@ Route::get('pregnancy-loss-care', [App\Http\Controllers\Frontend\PageController:
 // FailedIVFSolutions_final
 Route::get('failed-ivf-solutions', [App\Http\Controllers\Frontend\PageController::class, 'failedIVFSolutions'])->name('failed-ivf-solutions');
 // secondSecondOpinion
+
 Route::get('second-opinion', [App\Http\Controllers\Frontend\PageController::class, 'secondOpinion'])->name('second-opinion');
 // ShopPage
 Route::get('shop', [App\Http\Controllers\Frontend\PageController::class, 'shop'])->name('shop');
 // Route::get('/fertility-services', [App\Http\Controllers\Frontend\PageController::class, 'fertilityServices'])->name('fertility-services');
 // IVFRelatedTreatment
 Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');
+// FertilityPreservation
+Route::get('/fertility-preservation', [App\Http\Controllers\Frontend\PageController::class, 'fertilityPreservation'])->name('fertility-preservation');
+// FertilityWellness
+Route::get('/fertility-wellness', [App\Http\Controllers\Frontend\PageController::class, 'fertilityWellness'])->name('fertility-wellness');
+// GuidesDownloads
+Route::get('/guides-downloads', [App\Http\Controllers\Frontend\PageController::class, 'guidesDownloads'])->name('guides-downloads');
+// IndiaIVFCenter
+Route::get('/indiaivf-center', [App\Http\Controllers\Frontend\PageController::class, 'indiaIVFCenter'])->name('indiaivf-center');
+// IVF_final
+Route::get('/ivf', [App\Http\Controllers\Frontend\PageController::class, 'ivf'])->name('ivf');
+// IVFHIV
+Route::get('/ivf-hiv', [App\Http\Controllers\Frontend\PageController::class, 'ivfHiv'])->name('ivf-hiv');
+
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');
 // Route::get('/contact', [App\Http\Controllers\Frontend\PageController::class, 'contact'])->name('contact');

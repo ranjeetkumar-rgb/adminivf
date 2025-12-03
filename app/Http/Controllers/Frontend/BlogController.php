@@ -79,7 +79,19 @@ class BlogController extends BaseController
         $categoryFilter = $request->get('category');
         $contentType = $request->get('type', 'all'); // all, articles, videos
         $sortBy = $request->get('sort', 'recent'); // recent, popular, featured
+        $searchQuery = $request->get('search');
         $query = Blog::published();
+
+        // Handle search query
+        if ($searchQuery && strlen($searchQuery) >= 2) {
+            $query->where(function($q) use ($searchQuery) {
+                $q->where('title', 'like', "%{$searchQuery}%")
+                  ->orWhere('excerpt', 'like', "%{$searchQuery}%")
+                  ->orWhere('content', 'like', "%{$searchQuery}%")
+                  ->orWhere('description', 'like', "%{$searchQuery}%");
+            });
+        }
+
         if ($categoryFilter && $categoryFilter !== 'all') {
             $query->whereJsonContains('categories', $categoryFilter);
         }
@@ -130,7 +142,7 @@ class BlogController extends BaseController
             'frontend.blog.index',
             'blogs',
             [],
-            compact('blogs', 'categories', 'featuredBlogs', 'popularPosts', 'recentPosts', 'categoryFilter', 'contentType', 'sortBy')
+            compact('blogs', 'categories', 'featuredBlogs', 'popularPosts', 'recentPosts', 'categoryFilter', 'contentType', 'sortBy', 'searchQuery')
         );
     }
 
@@ -174,30 +186,59 @@ class BlogController extends BaseController
     // }
     public function show($slug)
     {
-        $blog = Blog::published()
-            ->where('slug', $slug)
-            ->with(['approvedComments.replies' => function($query) {
-                $query->approved();
-            }])
-            ->firstOrFail();
-        $blog->incrementViews();
-        $relatedBlogs = Blog::published()
-            ->related($blog->categories->pluck('id')->toArray(), $blog->id, 3)
-            ->get();
-        $popularPosts = Blog::published()->popular()->take(5)->get();
-        $categories = BlogCategory::active()->ordered()->get();
-        $categories->each(function ($category) {
-            $category->blogs_count = Blog::published()
-                ->whereJsonContains('categories', $category->id)
-                ->count();
-        });
-        $recentPosts = Blog::published()->recent()->take(5)->get();
-        return $this->renderWithSeo(
-            'frontend.blog.details',
-            'blog',
-            ['blog' => $blog],
-            compact('blog', 'relatedBlogs', 'popularPosts', 'categories', 'recentPosts')
-        );
+        try {
+            // Decode URL-encoded slug
+            $slug = urldecode($slug);
+
+            $blog = Blog::published()
+                ->where('slug', $slug)
+                ->with(['approvedComments.replies' => function($query) {
+                    $query->approved();
+                }])
+                ->first();
+
+            if (!$blog) {
+                // Try to find the blog without published scope to see if it exists
+                $blogExists = Blog::where('slug', $slug)->first();
+
+                \Log::warning('Blog not found or not published', [
+                    'slug' => $slug,
+                    'blog_exists' => $blogExists ? true : false,
+                    'blog_published' => $blogExists ? $blogExists->published : false,
+                    'blog_index_follow' => $blogExists ? $blogExists->index_follow : false,
+                    'blog_published_at' => $blogExists ? $blogExists->published_at : null,
+                    'published_count' => Blog::published()->count(),
+                    'total_count' => Blog::count()
+                ]);
+                abort(404, 'Article not found or is no longer available.');
+            }
+
+            $blog->incrementViews();
+            $relatedBlogs = Blog::published()
+                ->related($blog->categories->pluck('id')->toArray(), $blog->id, 3)
+                ->get();
+            $popularPosts = Blog::published()->popular()->take(5)->get();
+            $categories = BlogCategory::active()->ordered()->get();
+            $categories->each(function ($category) {
+                $category->blogs_count = Blog::published()
+                    ->whereJsonContains('categories', $category->id)
+                    ->count();
+            });
+            $recentPosts = Blog::published()->recent()->take(5)->get();
+            return $this->renderWithSeo(
+                'frontend.blog.details',
+                'blog',
+                ['blog' => $blog],
+                compact('blog', 'relatedBlogs', 'popularPosts', 'categories', 'recentPosts')
+            );
+        } catch (\Exception $e) {
+            \Log::error('Error showing blog', [
+                'slug' => $slug,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            abort(404, 'Article not found.');
+        }
     }
 
     // public function category($slug)
@@ -608,6 +649,145 @@ class BlogController extends BaseController
                 'message' => 'Error loading likes: ' . $e->getMessage(),
                 'likes_count' => 0,
                 'has_liked' => false
+            ], 500);
+        }
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        try {
+            $query = $request->get('q', '');
+            $limit = $request->get('limit', 10);
+
+            \Log::info('Search request received', [
+                'query' => $query,
+                'limit' => $limit
+            ]);
+
+            if (empty($query) || strlen($query) < 2) {
+                return response()->json([
+                    'success' => true,
+                    'results' => []
+                ]);
+            }
+
+            // Get all published blogs first to debug
+            $totalPublished = Blog::published()->count();
+            \Log::info('Total published blogs', ['count' => $totalPublished]);
+
+            // If no published blogs exist, return empty results
+            if ($totalPublished === 0) {
+                \Log::warning('No published blogs found in database');
+                return response()->json([
+                    'success' => true,
+                    'results' => [],
+                    'message' => 'No published articles available'
+                ]);
+            }
+
+            // Build search query
+            $searchQuery = Blog::published();
+
+            // Search in multiple fields
+            $searchQuery->where(function($q) use ($query) {
+                $q->where('title', 'like', "%{$query}%")
+                  ->orWhere('excerpt', 'like', "%{$query}%")
+                  ->orWhere('description', 'like', "%{$query}%")
+                  ->orWhere('content', 'like', "%{$query}%");
+            });
+
+            $blogs = $searchQuery
+                ->select('id', 'title', 'slug', 'excerpt', 'content', 'image', 'published_at')
+                ->whereNotNull('slug') // Ensure slug exists
+                ->where('slug', '!=', '') // Ensure slug is not empty
+                ->orderBy('published_at', 'desc')
+                ->limit($limit)
+                ->get();
+
+            // Check if query returned any results
+            if ($blogs->isEmpty()) {
+                \Log::info('No search results found for query', ['query' => $query]);
+                return response()->json([
+                    'success' => true,
+                    'results' => [],
+                    'count' => 0,
+                    'message' => 'No articles found matching your search'
+                ]);
+            }
+
+            \Log::info('Search results found', [
+                'query' => $query,
+                'count' => $blogs->count()
+            ]);
+
+            $results = $blogs->map(function($blog) {
+                try {
+                    // Validate blog has required fields
+                    if (empty($blog->slug) || empty($blog->id)) {
+                        \Log::warning('Blog found without required fields', [
+                            'blog_id' => $blog->id ?? 'unknown',
+                            'has_slug' => !empty($blog->slug)
+                        ]);
+                        return null;
+                    }
+
+                    $excerpt = $blog->excerpt;
+                    if (empty($excerpt) && !empty($blog->content)) {
+                        $excerpt = \Str::limit(strip_tags($blog->content), 100);
+                    }
+
+                    // Generate URL - encode slug to handle special characters
+                    // Since we're already filtering by published(), all blogs should be accessible
+                    $url = url('/blog/' . urlencode($blog->slug));
+
+                    return [
+                        'id' => $blog->id,
+                        'title' => $blog->title ?? 'Untitled',
+                        'slug' => $blog->slug,
+                        'excerpt' => $excerpt,
+                        'image' => $blog->image ? asset('storage/' . $blog->image) : null,
+                        'url' => $url,
+                        'published_at' => $blog->published_at ? $blog->published_at->format('M d, Y') : null
+                    ];
+                } catch (\Exception $e) {
+                    \Log::error('Error mapping blog result', [
+                        'blog_id' => $blog->id ?? 'unknown',
+                        'error' => $e->getMessage()
+                    ]);
+                    return null;
+                }
+            })->filter()->values(); // Remove null entries and reindex
+
+            return response()->json([
+                'success' => true,
+                'results' => $results,
+                'count' => $results->count()
+            ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            \Log::error('Database error searching blogs', [
+                'query' => $request->get('q'),
+                'error' => $e->getMessage(),
+                'sql' => $e->getSql() ?? 'N/A'
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Database error while searching. Please try again.',
+                'results' => []
+            ], 500);
+        } catch (\Exception $e) {
+            \Log::error('Error searching blogs', [
+                'query' => $request->get('q'),
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while searching. Please try again.',
+                'results' => []
             ], 500);
         }
     }

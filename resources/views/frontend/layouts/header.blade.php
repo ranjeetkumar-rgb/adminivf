@@ -20,9 +20,20 @@
                 </div>
             </div>
             <div class="flex items-center space-x-2 md:space-x-4 w-full md:w-auto">
-                <div class="relative block">
-                    <input placeholder="Search articles..." class="w-[100%] md:w-72 pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:border-brand-pink">
+                <div class="relative block w-full md:w-auto">
+                    <input
+                        id="article-search-input"
+                        type="text"
+                        placeholder="Search articles..."
+                        class="w-[100%] md:w-72 pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:border-brand-pink"
+                        autocomplete="off"
+                    >
                     <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <div id="search-results" class="hidden absolute top-full left-0 right-0 md:right-auto md:w-96 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl z-[9999] max-h-96 overflow-y-auto">
+                        <div id="search-results-content" class="p-2">
+                            <!-- Search results will be inserted here -->
+                        </div>
+                    </div>
                 </div>
                 <button class="hidden md:block bg-brand-blue hover:bg-brand-pink text-white px-4 md:px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all text-sm md:text-base">Shop</button>
                 <div class="flex flex-row items-center space-x-2 md:space-x-3">
@@ -221,7 +232,7 @@
             <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white py-4 space-y-2 max-h-[calc(100vh-200px)] overflow-y-auto">
                 <a href="{{ url('/') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Home</a>
                 <hr class="my-2">
-                
+
                 <!-- Planning for baby -->
                 <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
                     <span>Planning for baby</span>
@@ -242,7 +253,7 @@
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Failed IVF Solutions</a>
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Second Opinion</a>
                     </div>
-                    
+
                     <!-- IVF & Related Treatments -->
                     <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
                         <span>IVF &amp; Related Treatments</span>
@@ -258,7 +269,7 @@
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for Single Mothers</a>
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for HIV-positive Couples</a>
                     </div>
-                    
+
                     <!-- Advanced Techniques -->
                     <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
                         <span>Advanced Techniques</span>
@@ -273,7 +284,7 @@
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">MACS</a>
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Microfluidic Sperm Sorting</a>
                     </div>
-                    
+
                     <!-- Male Surgical Procedures -->
                     <button class="w-full flex justify-between items-center text-gray-600 hover:text-brand-pink text-sm" data-toggle="submenu">
                         <span>Male Surgical Procedures</span>
@@ -287,9 +298,9 @@
                         <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surgical Innovations / Stem Cell Research</a>
                     </div>
                 </div>
-                
+
                 <hr class="my-2">
-                
+
                 <!-- Fertility Preservation -->
                 <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
                     <span>Fertility Preservation</span>
@@ -303,9 +314,9 @@
                     <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Social Egg Freezing</a>
                     <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Storage &amp; Legal Guidelines</a>
                 </div>
-                
+
                 <hr class="my-2">
-                
+
                 <!-- Fertility Wellness -->
                 <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
                     <span>Fertility Wellness</span>
@@ -318,9 +329,9 @@
                     <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Stress &amp; Mind-Body Support</a>
                     <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Supplements &amp; Products</a>
                 </div>
-                
+
                 <hr class="my-2">
-                
+
                 <!-- Centres -->
                 <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
                     <span>Centres</span>
@@ -334,9 +345,9 @@
                     <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Ghaziabad</a>
                     <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Srinagar</a>
                 </div>
-                
+
                 <hr class="my-2">
-                
+
                 <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Our Pricing</a>
                 <hr class="my-2">
                 <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Patient Resources</a>
@@ -345,7 +356,7 @@
                 <hr class="my-2">
                 <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">International Patients</a>
                 <hr class="my-2">
-                
+
                 <!-- More Menu -->
                 <button class="w-full flex justify-between items-center px-4 py-2 text-gray-700 hover:text-brand-pink font-medium" data-toggle="submenu">
                     <span>More</span>
@@ -407,5 +418,165 @@
                 }
             });
         });
+
+        // Article Search Functionality
+        (function() {
+            const searchInput = document.getElementById('article-search-input');
+            const searchResults = document.getElementById('search-results');
+            const searchResultsContent = document.getElementById('search-results-content');
+            let searchTimeout;
+
+            if (!searchInput || !searchResults || !searchResultsContent) {
+                console.error('Search elements not found:', {
+                    searchInput: !!searchInput,
+                    searchResults: !!searchResults,
+                    searchResultsContent: !!searchResultsContent
+                });
+                return;
+            }
+
+            console.log('Search functionality initialized');
+
+            // Debounced search function
+            function performSearch(query) {
+                if (query.length < 2) {
+                    searchResults.classList.add('hidden');
+                    return;
+                }
+
+                const searchUrl = `{{ route('blog.search') }}?q=${encodeURIComponent(query)}`;
+                console.log('Searching with URL:', searchUrl);
+
+                fetch(searchUrl, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    console.log('Search response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Search response data:', data);
+                    if (data.success && data.results && data.results.length > 0) {
+                        displayResults(data.results);
+                    } else {
+                        displayNoResults();
+                    }
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                    displayError();
+                });
+            }
+
+            function escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            function displayResults(results) {
+                let html = '';
+                results.forEach(result => {
+                    const title = escapeHtml(result.title);
+                    const excerpt = result.excerpt ? escapeHtml(result.excerpt) : '';
+                    const publishedAt = result.published_at ? escapeHtml(result.published_at) : '';
+                    const image = result.image ? `<img src="${escapeHtml(result.image)}" alt="${title}" class="w-16 h-16 object-cover rounded" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : '';
+                    const placeholderImage = '<div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center" style="display: ' + (result.image ? 'none' : 'flex') + ';"><i class="fas fa-file-alt text-gray-400"></i></div>';
+                    html += `
+                        <a href="${escapeHtml(result.url)}" class="block p-3 hover:bg-gray-50 rounded transition-colors border-b border-gray-100 last:border-b-0">
+                            <div class="flex space-x-3">
+                                ${image}${placeholderImage}
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-semibold text-gray-900 truncate">${title}</h4>
+                                    ${excerpt ? `<p class="text-xs text-gray-600 mt-1 line-clamp-2">${excerpt}</p>` : ''}
+                                    ${publishedAt ? `<p class="text-xs text-gray-400 mt-1">${publishedAt}</p>` : ''}
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                });
+                searchResultsContent.innerHTML = html;
+                searchResults.classList.remove('hidden');
+            }
+
+            function displayNoResults() {
+                searchResultsContent.innerHTML = `
+                    <div class="p-4 text-center text-gray-500">
+                        <i class="fas fa-search text-2xl mb-2"></i>
+                        <p class="text-sm">No articles found</p>
+                    </div>
+                `;
+                searchResults.classList.remove('hidden');
+            }
+
+            function displayError() {
+                searchResultsContent.innerHTML = `
+                    <div class="p-4 text-center text-red-500">
+                        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                        <p class="text-sm">Error searching articles</p>
+                    </div>
+                `;
+                searchResults.classList.remove('hidden');
+            }
+
+            // Input event listener with debouncing
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.trim();
+
+                clearTimeout(searchTimeout);
+
+                if (query.length < 2) {
+                    searchResults.classList.add('hidden');
+                    searchResultsContent.innerHTML = '';
+                    return;
+                }
+
+                // Show loading state
+                searchResultsContent.innerHTML = `
+                    <div class="p-4 text-center text-gray-500">
+                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                        <p class="text-sm">Searching...</p>
+                    </div>
+                `;
+                searchResults.classList.remove('hidden');
+
+                searchTimeout = setTimeout(() => {
+                    performSearch(query);
+                }, 300);
+            });
+
+            // Handle Enter key to navigate to search results page
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const query = e.target.value.trim();
+                    if (query.length >= 2) {
+                        window.location.href = `{{ route('blog.index') }}?search=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+
+            // Close search results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+
+            // Close search results on escape key
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        })();
     </script>
 </header>

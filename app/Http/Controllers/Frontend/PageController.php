@@ -98,4 +98,34 @@ class PageController extends BaseController
     public function shop(){
         return $this->renderWithSeo('frontend.pages.shop', 'shop');
     }
+
+    public function fertilityPreservation()
+    {
+        return $this->renderWithSeo('frontend.pages.fertility-preservation', 'fertility-preservation');
+    }
+
+    public function fertilityWellness()
+    {
+        return $this->renderWithSeo('frontend.pages.fertility-wellness', 'fertility-wellness');
+    }
+
+    public function guidesDownloads()
+    {
+        return $this->renderWithSeo('frontend.pages.fertility-wellness', 'fertility-wellness');
+    }
+
+    public function indiaIVFCenter()
+    {
+        return $this->renderWithSeo('frontend.pages.indiaivf-center', 'indiaivf-center');
+    }
+
+    public function ivf()
+    {
+        return $this->renderWithSeo('frontend.pages.ivf', 'ivf');
+    }
+
+    public function ivfHiv()
+    {
+        return $this->renderWithSeo('frontend.pages.ivf-hiv', 'ivf-hiv');
+    }
 }

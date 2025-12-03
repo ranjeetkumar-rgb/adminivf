@@ -1,5 +1,29 @@
 @extends('frontend.layouts.master')
 @section('content')
+   <style>
+         .highlighted-section {
+         outline: 2px solid #3F20FB;
+         background-color: rgba(63, 32, 251, .1)
+         }
+         .edit-button {
+         position: absolute;
+         z-index: 1000
+         }
+         ::-webkit-scrollbar {
+         display: none
+         }
+         body,
+         html {
+         -ms-overflow-style: none;
+         scrollbar-width: none
+         }
+         .nav-overlay {
+         display: none
+         }
+         .nav-item:hover .nav-overlay {
+         display: flex
+         }
+      </style>
       <section id="offer-banner"
          class="relative w-full bg-cover bg-center py-8 md:py-12 flex items-center justify-center transition-all duration-700 ease-in-out"
          style="background-image:url('https://images.pexels.com/photos/8761328/pexels-photo-8761328.jpeg')">

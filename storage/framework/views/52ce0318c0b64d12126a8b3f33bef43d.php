@@ -38,7 +38,99 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&display=swap">
       <script src="https://cdn.tailwindcss.com"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <style>
+        /* Brand Color Definitions */
+        .brand-pink {
+            color: #d45276;
+        }
 
+        .brand-blue {
+            color: #3e73b9;
+        }
+
+        .brand-grey {
+            color: #414042;
+        }
+
+        /* Background Colors */
+        .bg-brand-pink {
+            background-color: #d45276;
+        }
+
+        .bg-brand-blue {
+            background-color: #3e73b9;
+        }
+
+        .bg-brand-grey {
+            background-color: #414042;
+        }
+
+        /* Border Colors */
+        .border-brand-pink {
+            border-color: #d45276;
+        }
+
+        .border-brand-blue {
+            border-color: #3e73b9;
+        }
+
+        /* Hover Colors */
+        .hover-brand-pink:hover {
+            color: #d45276;
+        }
+
+        .hover-brand-blue:hover {
+            color: #3e73b9;
+        }
+
+        /* Tailwind-style utility classes */
+        .text-brand-pink {
+            color: #d45276;
+        }
+
+        .text-brand-blue {
+            color: #3e73b9;
+        }
+
+        .text-brand-grey {
+            color: #414042;
+        }
+
+        /* Hover text colors (for use with Tailwind hover: prefix) */
+        .hover\:text-brand-pink:hover {
+            color: #d45276;
+        }
+
+        .hover\:text-brand-blue:hover {
+            color: #3e73b9;
+        }
+
+        .hover\:bg-brand-pink:hover {
+            background-color: #d45276;
+        }
+
+        .hover\:bg-brand-blue:hover {
+            background-color: #3e73b9;
+        }
+
+        .hover\:border-brand-pink:hover {
+            border-color: #d45276;
+        }
+
+        .hover\:border-brand-blue:hover {
+            border-color: #3e73b9;
+        }
+
+        /* Focus states */
+        .focus\:border-brand-pink:focus {
+            border-color: #d45276;
+        }
+
+        .focus\:border-brand-blue:focus {
+            border-color: #3e73b9;
+        }
+
+      </style>
       <!-- Inline critical CSS -->
       <style>
          body { font-family: 'Inter', sans-serif !important; }
