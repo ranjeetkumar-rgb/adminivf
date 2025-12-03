@@ -8,7 +8,7 @@ use App\Http\Controllers\{HomeController, AdminController,UserController, BlogCo
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-| 
+|
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -101,6 +101,9 @@ Route::get('/indiaivf-center', [App\Http\Controllers\Frontend\PageController::cl
 Route::get('/ivf', [App\Http\Controllers\Frontend\PageController::class, 'ivf'])->name('ivf');
 // IVFHIV
 Route::get('/ivf-hiv', [App\Http\Controllers\Frontend\PageController::class, 'ivfHiv'])->name('ivf-hiv');
+// ICSI_final.
+Route::get('/icsi', [App\Http\Controllers\Frontend\PageController::class, 'icsi'])->name('icsi');
+
 
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');

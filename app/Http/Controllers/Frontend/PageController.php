@@ -128,4 +128,9 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.ivf-hiv', 'ivf-hiv');
     }
+
+    public function icsi()
+    {
+        return $this->renderWithSeo('frontend.pages.icsi', 'icsi');
+    }
 }
