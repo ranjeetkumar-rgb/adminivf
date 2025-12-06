@@ -105,8 +105,14 @@ Route::get('/ivf-hiv', [App\Http\Controllers\Frontend\PageController::class, 'iv
 Route::get('/icsi', [App\Http\Controllers\Frontend\PageController::class, 'icsi'])->name('icsi');
 // IUI_final
 Route::get('/iui', [App\Http\Controllers\Frontend\PageController::class, 'iui'])->name('iui');
-
-
+// DonorEgg_final
+Route::get('/donor-egg', [App\Http\Controllers\Frontend\PageController::class, 'donorEgg'])->name('donor-egg');
+// DonorSperm_final
+Route::get('/donor-sperm', [App\Http\Controllers\Frontend\PageController::class, 'donorSperm'])->name('donor-sperm');
+// DonorEmbryo_final
+Route::get('/donor-embryo', [App\Http\Controllers\Frontend\PageController::class, 'donorEmbryo'])->name('donor-embryo');
+// Surrogacy_final
+Route::get('/surrogacy', [App\Http\Controllers\Frontend\PageController::class, 'Surrogacy'])->name('surrogacy');
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');
 // Route::get('/contact', [App\Http\Controllers\Frontend\PageController::class, 'contact'])->name('contact');

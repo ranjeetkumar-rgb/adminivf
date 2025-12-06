@@ -23,6 +23,36 @@
          .nav-item:hover .nav-overlay {
          display: flex
          }
+         /* Media Gallery Mobile Scroll Fix */
+         #galleryContainer {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            overflow-y: hidden;
+         }
+         #galleryContainer::-webkit-scrollbar {
+            display: none;
+         }
+         #gallerySlides {
+            display: flex;
+            flex-wrap: nowrap;
+         }
+         @media (max-width: 768px) {
+            #galleryContainer {
+               padding-left: 1rem;
+               padding-right: 1rem;
+            }
+            #gallerySlides {
+               padding-right: 1rem;
+            }
+            #prevSlide, #nextSlide {
+               background-color: rgba(255, 255, 255, 0.95) !important;
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+            }
+         }
+         #prevSlide:active, #nextSlide:active {
+            transform: translateY(-50%) scale(0.95);
+         }
       </style>
       <section id="offer-banner"
          class="relative w-full bg-cover bg-center py-8 md:py-12 flex items-center justify-center transition-all duration-700 ease-in-out"
@@ -306,47 +336,47 @@
          </div>
       </section>
       <section class="py-12 bg-white">
-         <div class="container mx-auto px-6 lg:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Media Gallery</h2>
+         <div class="container mx-auto px-4 sm:px-6 lg:px-12">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8 md:mb-12">Media Gallery</h2>
             <div class="relative">
-               <div class="overflow-x-auto rounded-2xl scrollbar-hide" id="galleryContainer">
-                  <div id="gallerySlides" class="flex transition-transform duration-500 space-x-4">
-                     <div class="flex-shrink-0 md:w-1/4"><img
+               <div class="overflow-x-auto rounded-2xl scrollbar-hide" id="galleryContainer" style="-webkit-overflow-scrolling: touch;">
+                  <div id="gallerySlides" class="flex transition-transform duration-500 gap-4 snap-x snap-mandatory pb-4 md:pb-0">
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start"><img
                         src="https://images.pexels.com/photos/5982313/pexels-photo-5982313.jpeg" alt="Gallery 1"
                         class="w-full h-48 md:h-64 object-cover rounded-xl"></div>
-                     <div class="flex-shrink-0 md:w-1/4">
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start">
                         <video controls=""
                            class="w-full h-48 md:h-64 object-cover rounded-xl">
                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                         </video>
                      </div>
-                     <div class="flex-shrink-0 md:w-1/4"><img
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start"><img
                         src="https://images.pexels.com/photos/5939653/pexels-photo-5939653.jpeg" alt="Gallery 2"
                         class="w-full h-48 md:h-64 object-cover rounded-xl"></div>
-                     <div class="flex-shrink-0 md:w-1/4"><img
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start"><img
                         src="https://images.pexels.com/photos/3771831/pexels-photo-3771831.jpeg" alt="Gallery 3"
                         class="w-full h-48 md:h-64 object-cover rounded-xl"></div>
-                     <div class="flex-shrink-0 md:w-1/4"><img
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start"><img
                         src="https://images.pexels.com/photos/5982313/pexels-photo-5982313.jpeg" alt="Gallery 1"
                         class="w-full h-48 md:h-64 object-cover rounded-xl"></div>
-                     <div class="flex-shrink-0 md:w-1/4">
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start">
                         <video controls=""
                            class="w-full h-48 md:h-64 object-cover rounded-xl">
                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                         </video>
                      </div>
-                     <div class="flex-shrink-0 md:w-1/4"><img
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start"><img
                         src="https://images.pexels.com/photos/3771831/pexels-photo-3771831.jpeg" alt="Gallery 3"
                         class="w-full h-48 md:h-64 object-cover rounded-xl"></div>
-                     <div class="flex-shrink-0 md:w-1/4"><img
+                     <div class="flex-shrink-0 min-w-[85%] sm:min-w-[280px] md:min-w-0 md:w-1/4 snap-start"><img
                         src="https://images.pexels.com/photos/5939653/pexels-photo-5939653.jpeg" alt="Gallery 2"
                         class="w-full h-48 md:h-64 object-cover rounded-xl"></div>
                   </div>
                </div>
                <button id="prevSlide"
-                  class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-3 rounded-full shadow-lg">❮</button>
+                  class="absolute top-1/2 left-1 sm:left-2 transform -translate-y-1/2 bg-white/90 hover:bg-white p-2.5 sm:p-3 rounded-full shadow-lg z-10 text-lg sm:text-xl font-bold min-w-[44px] min-h-[44px] flex items-center justify-center">❮</button>
                <button id="nextSlide"
-                  class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-3 rounded-full shadow-lg">❯</button>
+                  class="absolute top-1/2 right-1 sm:right-2 transform -translate-y-1/2 bg-white/90 hover:bg-white p-2.5 sm:p-3 rounded-full shadow-lg z-10 text-lg sm:text-xl font-bold min-w-[44px] min-h-[44px] flex items-center justify-center">❯</button>
             </div>
          </div>
       </section>
@@ -371,13 +401,29 @@
          // Gallery scroll functionality
          document.addEventListener('DOMContentLoaded', function() {
             const galleryContainer = document.getElementById('galleryContainer');
+            const gallerySlides = document.getElementById('gallerySlides');
             const prevSlide = document.getElementById('prevSlide');
             const nextSlide = document.getElementById('nextSlide');
 
-            if (galleryContainer && prevSlide && nextSlide) {
-               const scrollAmount = 320; // Scroll amount in pixels (approximately one card width + gap)
+            if (galleryContainer && gallerySlides && prevSlide && nextSlide) {
+               function getScrollAmount() {
+                  // Get the first slide element
+                  const firstSlide = gallerySlides.querySelector('.flex-shrink-0');
+                  if (firstSlide) {
+                     // Get the width of the first slide plus gap (16px = gap-4)
+                     return firstSlide.offsetWidth + 16;
+                  }
+                  // Fallback to responsive values
+                  if (window.innerWidth < 640) {
+                     return window.innerWidth * 0.85 + 16; // 85% width + gap
+                  } else if (window.innerWidth < 768) {
+                     return 280 + 16; // min-w-[280px] + gap
+                  }
+                  return 320; // Desktop fallback
+               }
 
                nextSlide.addEventListener('click', function() {
+                  const scrollAmount = getScrollAmount();
                   galleryContainer.scrollBy({
                      left: scrollAmount,
                      behavior: 'smooth'
@@ -385,10 +431,20 @@
                });
 
                prevSlide.addEventListener('click', function() {
+                  const scrollAmount = getScrollAmount();
                   galleryContainer.scrollBy({
                      left: -scrollAmount,
                      behavior: 'smooth'
                   });
+               });
+
+               // Update scroll amount on window resize
+               let resizeTimer;
+               window.addEventListener('resize', function() {
+                  clearTimeout(resizeTimer);
+                  resizeTimer = setTimeout(function() {
+                     // Force recalculation on resize
+                  }, 250);
                });
             }
          });

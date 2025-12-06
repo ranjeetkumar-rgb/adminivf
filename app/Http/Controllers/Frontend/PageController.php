@@ -111,7 +111,7 @@ class PageController extends BaseController
 
     public function guidesDownloads()
     {
-        return $this->renderWithSeo('frontend.pages.fertility-wellness', 'fertility-wellness');
+        return $this->renderWithSeo('frontend.pages.guides-downloads', 'guides-downloads');
     }
 
     public function indiaIVFCenter()
@@ -137,5 +137,24 @@ class PageController extends BaseController
     public function iui()
     {
         return $this->renderWithSeo('frontend.pages.iui', 'iui');
+    }
+
+    public function donorEgg()
+    {
+        return $this->renderWithSeo('frontend.pages.donor-egg', 'donor-egg');
+    }
+    public function donorSperm()
+    {
+        return $this->renderWithSeo('frontend.pages.donor-sperm', 'donor-sperm');
+    }
+
+    public function donorEmbryo()
+    {
+        return $this->renderWithSeo('frontend.pages.donor-embryo', 'donor-sperm');
+    }
+
+    public function Surrogacy()
+    {
+        return $this->renderWithSeo('frontend.pages.surrogacy', 'surrogacy');
     }
 }
