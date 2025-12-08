@@ -157,4 +157,25 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.surrogacy', 'surrogacy');
     }
+
+    public function IVFSingleMothers()
+    {
+        return $this->renderWithSeo('frontend.pages.ivf-single-mothers', 'ivf-single-mothers');
+    }
+    public function tesa()
+    {
+        return $this->renderWithSeo('frontend.pages.tesa', 'tesa');
+    }
+
+    public function pesa()
+    {
+        return $this->renderWithSeo('frontend.pages.pesa', 'pesa');
+    }
+
+    public function microTESE()
+    {
+       return $this->renderWithSeo('frontend.pages.micro-tese', 'micro-tese');
+    }
+
+
 }

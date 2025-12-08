@@ -88,7 +88,6 @@ Route::get('second-opinion', [App\Http\Controllers\Frontend\PageController::clas
 Route::get('shop', [App\Http\Controllers\Frontend\PageController::class, 'shop'])->name('shop');
 // Route::get('/fertility-services', [App\Http\Controllers\Frontend\PageController::class, 'fertilityServices'])->name('fertility-services');
 // IVFRelatedTreatment
-Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');
 // FertilityPreservation
 Route::get('/fertility-preservation', [App\Http\Controllers\Frontend\PageController::class, 'fertilityPreservation'])->name('fertility-preservation');
 // FertilityWellness
@@ -113,6 +112,18 @@ Route::get('/donor-sperm', [App\Http\Controllers\Frontend\PageController::class,
 Route::get('/donor-embryo', [App\Http\Controllers\Frontend\PageController::class, 'donorEmbryo'])->name('donor-embryo');
 // Surrogacy_final
 Route::get('/surrogacy', [App\Http\Controllers\Frontend\PageController::class, 'Surrogacy'])->name('surrogacy');
+// IVFSingleMothers
+Route::get('/ivf-single-mothers', [App\Http\Controllers\Frontend\PageController::class, 'IVFSingleMothers'])->name('ivf-single-mothers');
+// IVFHIV_final
+Route::get('/ivf-hiv', [App\Http\Controllers\Frontend\PageController::class, 'ivfHiv'])->name('ivf-hiv');
+// TESA_final
+Route::get('/tesa',[App\Http\Controllers\Frontend\PageController::class, 'tesa'])->name('tesa');
+// PESA_final
+Route::get('/pesa',[App\Http\Controllers\Frontend\PageController::class, 'pesa'])->name('pesa');
+// MicroTESE_final
+Route::get('/micro-tese',[App\Http\Controllers\Frontend\PageController::class, 'microTESE'])->name('micro-tese');
+// IVFRelatedTreatment
+Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');
 // Route::get('/contact', [App\Http\Controllers\Frontend\PageController::class, 'contact'])->name('contact');
