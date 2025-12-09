@@ -124,6 +124,19 @@ Route::get('/pesa',[App\Http\Controllers\Frontend\PageController::class, 'pesa']
 Route::get('/micro-tese',[App\Http\Controllers\Frontend\PageController::class, 'microTESE'])->name('micro-tese');
 // IVFRelatedTreatment
 Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');
+// FranchiseOpportunities_final
+// today -----------------------------
+Route::get('/franchise-opportunities', [App\Http\Controllers\Frontend\PageController::class, 'franchiseOpportunities'])->name('franchise-opportunities');
+// fCorporateHealthTalks_final
+Route::get('/corporate-health-talks', [App\Http\Controllers\Frontend\PageController::class, 'corporateHealthTalks'])->name('corporate-health-talks');
+// FertilityDiet_final
+Route::get('/fertility-diet', [App\Http\Controllers\Frontend\PageController::class, 'fertilityDiet'])->name('fertility-diet');
+// BlastoCystTransfer_final
+Route::get('/blasto-cyst-transfer', [App\Http\Controllers\Frontend\PageController::class, 'blastoCystTransfer'])->name('blasto-cyst-transfer');
+// EmbryoGlue_final
+Route::get('/embryo-glue', [App\Http\Controllers\Frontend\PageController::class, 'embryoGlue'])->name('embryo-glue');
+
+
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');
 // Route::get('/contact', [App\Http\Controllers\Frontend\PageController::class, 'contact'])->name('contact');
@@ -206,6 +219,9 @@ Route::prefix('admin')->group(function () {
     Route::get('image-compression/stats', [ImageCompressionController::class, 'getStorageStatsApi'])->name('admin.image-compression.stats');
     Route::post('image-compression/test', [ImageCompressionController::class, 'testCompression'])->name('admin.image-compression.test');
 });
+// EmiAndPaymentPlans_final
+Route::get('/emi-and-payment-plans', [App\Http\Controllers\Frontend\PageController::class, 'emiAndPaymentPlans'])->name('emi-and-payment-plans');
+
 
 
 //Update User Details

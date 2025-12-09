@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('title', 'Home')
 @section('content')
   <section id="hero-section"
          class="relative bg-gradient-to-br from-[#20417e] via-[#2f4c8a] to-[#778aaf] text-white overflow-hidden py-12">

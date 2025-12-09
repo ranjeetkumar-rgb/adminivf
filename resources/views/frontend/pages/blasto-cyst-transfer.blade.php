@@ -1,12 +1,12 @@
 @extends('frontend.layouts.master')
 @section('title', 'Home')
 @section('content')
-  <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
+    <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
         <div
             class="container mx-auto px-6 text-center md:text-left flex flex-col-reverse md:flex-row items-center gap-10">
             <div class="md:w-1/2">
-                <h1 class="text-5xl font-bold text-gray-800 leading-tight mb-4"><span class="text-brand-pink">IVF (In
-                        Vitro Fertilization)</span></h1>
+                <h1 class="text-5xl font-bold text-gray-800 leading-tight mb-4"><span class="text-brand-pink">Blastocyst
+                        Transfer</span></h1>
                 <p class="text-gray-600 text-lg mb-6 leading-relaxed">If you’ve been trying to conceive without success,
                     you’re not alone. Around 1 in 6 couples experience fertility challenges. Our compassionate team uses
                     advanced diagnostics and personalized care to uncover the causes and guide you toward parenthood.
@@ -22,8 +22,7 @@
     </section>
     <section class="py-12 bg-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">IVF <span
-                    class="text-brand-pink">Treatment</span></h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why it is done?</h2>
             <p class="text-gray-600 mb-12 max-w-2xl mx-auto">There can be various factors — physical, hormonal, or
                 lifestyle-related — that affect your fertility. Understanding these causes helps us design the most
                 effective treatment plan for you.</p>
@@ -60,8 +59,8 @@
     </section>
     <section class="relative py-12 bg-gradient-to-b from-pink-50 via-white to-blue-50 overflow-hidden">
         <div class="relative container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">IVF <span class="text-pink-600">Process</span>
-            </h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">How Blastocyst <span
+                    class="text-pink-600">Culture &amp; Transfer Works?</span></h2>
             <p class="text-gray-600 max-w-2xl mx-auto mb-10">Every fertility journey begins with a detailed diagnosis.
                 Here’s how our specialists uncover the root cause — through a combination of advanced tests and clinical
                 insight.</p>
@@ -134,8 +133,8 @@
     <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">Other <span
-                        class="text-brand-pink">Treatments</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 leading-tight"><span
+                        class="text-brand-pink">Treatment</span> &amp; Support Options</h2>
                 <p class="text-gray-600 mt-4 text-lg max-w-2xl mx-auto">Explore personalized fertility treatments,
                     advanced techniques, and holistic wellness programs designed for your journey.</p>
             </div>

@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('title', 'Home')
 @section('content')
    <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
          <div

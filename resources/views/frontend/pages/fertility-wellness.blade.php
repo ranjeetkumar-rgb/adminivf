@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('title', 'Home')
 @section('content')
     <section id="hero-section"
         class="relative bg-gradient-to-br from-[#20417e] via-[#2f4c8a] to-[#778aaf] text-white overflow-hidden py-12">
@@ -402,5 +403,5 @@
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer=""></script>
-    
+
 @endsection

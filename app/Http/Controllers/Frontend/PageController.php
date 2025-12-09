@@ -177,5 +177,33 @@ class PageController extends BaseController
        return $this->renderWithSeo('frontend.pages.micro-tese', 'micro-tese');
     }
 
+    public function franchiseOpportunities()
+    {
+        return $this->renderWithSeo('frontend.pages.franchise-opportunities', 'franchise-opportunities');
+    }
 
+    public function corporateHealthTalks()
+    {
+        return $this->renderWithSeo('frontend.pages.corporate-health-talks', 'corporate-health-talks');
+    }
+
+    public function emiAndPaymentPlans()
+    {
+        return $this->renderWithSeo('frontend.pages.emi-and-payment-plans', 'emi-and-payment-plans');
+    }
+
+    public function fertilityDiet()
+    {
+        return $this->renderWithSeo('frontend.pages.fertility-diet', 'fertility-diet');
+    }
+
+    public function blastoCystTransfer()
+    {
+        return $this->renderWithSeo('frontend.pages.blasto-cyst-transfer', 'blasto-cyst-transfer');
+    }
+
+    public function embryoGlue()
+    {
+        return $this->renderWithSeo('frontend.pages.embryo-glue', 'embryo-glue');
+    }
 }

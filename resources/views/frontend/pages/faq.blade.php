@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('title', 'Home')
 @section('content')
   <section id="general-faqs" class="relative bg-gradient-to-b from-blue-50 via-white to-pink-50 py-12">
          <div class="container mx-auto px-6 max-w-5xl">

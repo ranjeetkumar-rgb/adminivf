@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('title', 'Home')
 @section('content')
   <section class="relative text-white py-8 sm:py-12 h-[300px] sm:h-[400px]">
          <div class="absolute inset-0 w-full h-full overflow-hidden"><img
