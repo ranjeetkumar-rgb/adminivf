@@ -148,8 +148,6 @@ Route::get('/oo-active', [App\Http\Controllers\Frontend\PageController::class, '
 // ExosomalTherapy_final
 Route::get('/exosomal-therapy', [App\Http\Controllers\Frontend\PageController::class, 'exosomalTherapy'])->name('exosomal-therapy');
 // RoboICSI_final
-Route::get('/exosomal-therapy', [App\Http\Controllers\Frontend\PageController::class, 'exosomalTherapy'])->name('exosomal-therapy');
-// RoboICSI_final
 Route::get('/robo-icsi', [App\Http\Controllers\Frontend\PageController::class, 'roboICSI'])->name('robo-icsi');
 
 

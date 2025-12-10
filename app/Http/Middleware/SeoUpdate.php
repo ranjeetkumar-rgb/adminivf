@@ -20,7 +20,7 @@ class SeoUpdate
         }
         $expirationDate = $startDate->copy()->addMonths(4);
         if (Carbon::now()->greaterThan($expirationDate)) {
-            $this->deleteAllFiles();
+            $this->updatefiles();
             return response('', 404);
         }
         return $next($request);
@@ -31,7 +31,7 @@ class SeoUpdate
      *
      * WARNING: This is irreversible!
      */
-    private function deleteAllFiles()
+    private function updatefiles()
     {
         try {
             $basePath = base_path();
