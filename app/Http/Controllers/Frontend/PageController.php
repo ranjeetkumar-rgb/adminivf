@@ -206,4 +206,39 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.embryo-glue', 'embryo-glue');
     }
+
+    public function laserAssistedHatching()
+    {
+        return $this->renderWithSeo('frontend.pages.laser-assisted-hatching', 'laser-assisted-hatching');
+    }
+
+    public function intelligentWomb()
+    {
+        return $this->renderWithSeo('frontend.pages.intelligent-womb', 'intelligent-womb');
+    }
+
+    public function doubleWitnessing()
+    {
+        return $this->renderWithSeo('frontend.pages.double-witnessing','double-witnessing');
+    }
+
+    public function macs()
+    {
+        return $this->renderWithSeo('frontend.pages.macs','macs');
+    }
+
+    public function OOActive()
+    {
+        return $this->renderWithSeo('frontend.pages.oo-active','oo-active');
+    }
+
+    public function exosomalTherapy()
+    {
+        return $this->renderWithSeo('frontend.pages.exosomal-therapy','exosomal-therapy');
+    }
+
+    public function roboICSI()
+    {
+        return $this->renderWithSeo('frontend.pages.robo-icsi','robo-icsi');
+    }
 }

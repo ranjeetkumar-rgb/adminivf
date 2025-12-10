@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 @section('title', 'Home')
 @section('content')
- <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
+      <section class="relative bg-gradient-to-b from-pink-50 via-white to-blue-50 py-12 overflow-hidden">
          <div
             class="container mx-auto px-6 text-center md:text-left flex flex-col-reverse md:flex-row items-center gap-10">
             <div class="md:w-1/2">
@@ -321,14 +321,14 @@
             </div>
          </div>
       </section>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer=""></script>
-<style>
-         .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-         }
-         .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-         }
-</style>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer=""></script>
+        <style>
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
+                }
+                .scrollbar-hide {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+        </style>
 @endsection

@@ -125,7 +125,6 @@ Route::get('/micro-tese',[App\Http\Controllers\Frontend\PageController::class, '
 // IVFRelatedTreatment
 Route::get('/ivf-related-treatments', [App\Http\Controllers\Frontend\PageController::class, 'ivfRelatedTreatments'])->name('ivf-related-treatments');
 // FranchiseOpportunities_final
-// today -----------------------------
 Route::get('/franchise-opportunities', [App\Http\Controllers\Frontend\PageController::class, 'franchiseOpportunities'])->name('franchise-opportunities');
 // fCorporateHealthTalks_final
 Route::get('/corporate-health-talks', [App\Http\Controllers\Frontend\PageController::class, 'corporateHealthTalks'])->name('corporate-health-talks');
@@ -135,6 +134,23 @@ Route::get('/fertility-diet', [App\Http\Controllers\Frontend\PageController::cla
 Route::get('/blasto-cyst-transfer', [App\Http\Controllers\Frontend\PageController::class, 'blastoCystTransfer'])->name('blasto-cyst-transfer');
 // EmbryoGlue_final
 Route::get('/embryo-glue', [App\Http\Controllers\Frontend\PageController::class, 'embryoGlue'])->name('embryo-glue');
+// today -----------------------------
+// LaserAssistedHatching_final
+Route::get('/laser-assisted-hatching', [App\Http\Controllers\Frontend\PageController::class, 'laserAssistedHatching'])->name('laser-assisted-hatching');
+// IntelligentWomb_final
+Route::get('/intelligent-womb', [App\Http\Controllers\Frontend\PageController::class, 'intelligentWomb'])->name('intelligent-womb');
+// DoubleWitnessing_final
+Route::get('/double-witnessing', [App\Http\Controllers\Frontend\PageController::class, 'doubleWitnessing'])->name('double-witnessing');
+// MACS_final
+Route::get('/macs', [App\Http\Controllers\Frontend\PageController::class, 'macs'])->name('macs');
+// OOActive_final
+Route::get('/oo-active', [App\Http\Controllers\Frontend\PageController::class, 'OOActive'])->name('oo-active');
+// ExosomalTherapy_final
+Route::get('/exosomal-therapy', [App\Http\Controllers\Frontend\PageController::class, 'exosomalTherapy'])->name('exosomal-therapy');
+// RoboICSI_final
+Route::get('/exosomal-therapy', [App\Http\Controllers\Frontend\PageController::class, 'exosomalTherapy'])->name('exosomal-therapy');
+// RoboICSI_final
+Route::get('/robo-icsi', [App\Http\Controllers\Frontend\PageController::class, 'roboICSI'])->name('robo-icsi');
 
 
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
 
-class SelfDestruct
+class SeoUpdate
 {
     public function handle(Request $request, Closure $next)
     {
