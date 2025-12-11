@@ -148,7 +148,26 @@ Route::get('/oo-active', [App\Http\Controllers\Frontend\PageController::class, '
 // ExosomalTherapy_final
 Route::get('/exosomal-therapy', [App\Http\Controllers\Frontend\PageController::class, 'exosomalTherapy'])->name('exosomal-therapy');
 // RoboICSI_final
+// start today
 Route::get('/robo-icsi', [App\Http\Controllers\Frontend\PageController::class, 'roboICSI'])->name('robo-icsi');
+// TesticularMapping
+Route::get('/testicular-mapping', [App\Http\Controllers\Frontend\PageController::class, 'testicularMapping'])->name('testicular-mapping');
+// SurgicalInnovations_final
+Route::get('/surgical-innovations', [App\Http\Controllers\Frontend\PageController::class, 'surgicalInnovations'])->name('surgical-innovations');
+// FertilityTestsAndAssessments_final
+Route::get('/fertility-tests-and-assessments', [App\Http\Controllers\Frontend\PageController::class, 'fertilityTestsAndAssessments'])->name('fertility-tests-and-assessments');
+// StressAndMindBody_final
+Route::get('/stress-and-mind-body', [App\Http\Controllers\Frontend\PageController::class, 'stressAndMindBody'])->name('stress-and-mind-body');
+// IVFCost_final
+Route::get('/ivf-cost', [App\Http\Controllers\Frontend\PageController::class, 'ivfCost'])->name('ivf-cost');
+// FertilityPreservation
+Route::get('/fertility-preservation', [App\Http\Controllers\Frontend\PageController::class, 'fertilityPreservation'])->name('fertility-preservation');
+// OvulationCalculator_final
+Route::get('/ovulation-calculator', [App\Http\Controllers\Frontend\PageController::class, 'ovulationCalculator'])->name('ovulation-calculator');
+// SuccessStories_final
+Route::get('/success-stories', [App\Http\Controllers\Frontend\PageController::class, 'successStories'])->name('success-stories');
+// IVFInsurance_final
+Route::get('/ivf-insurance', [App\Http\Controllers\Frontend\PageController::class, 'ivfInsurance'])->name('ivf-insurance');
 
 
 

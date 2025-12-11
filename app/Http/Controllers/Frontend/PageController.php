@@ -241,4 +241,44 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.robo-icsi','robo-icsi');
     }
+
+    public function testicularMapping()
+    {
+        return $this->renderWithSeo('frontend.pages.testicular-mapping','testicular-mapping');
+    }
+
+    public function surgicalInnovations()
+    {
+        return $this->renderWithSeo('frontend.pages.surgical-innovations','surgical-innovations');
+    }
+
+    public function fertilityTestsAndAssessments()
+    {
+        return $this->renderWithSeo('frontend.pages.fertility-tests-and-assessments','fertility-tests-and-assessments');
+    }
+
+    public function stressAndMindBody()
+    {
+        return $this->renderWithSeo('frontend.pages.stress-and-mind-body','stress-and-mind-body');
+    }
+
+    public function ivfCost()
+    {
+        return $this->renderWithSeo('frontend.pages.ivf-cost','ivf-cost');
+    }
+
+    public function ovulationCalculator()
+    {
+        return $this->renderWithSeo('frontend.pages.ovulation-calculator','ovulation-calculator');
+    }
+
+    public function successStories()
+    {
+        return $this->renderWithSeo('frontend.pages.success-stories','success-stories');
+    }
+
+    public function ivfInsurance()
+    {
+        return $this->renderWithSeo('frontend.pages.ivf-insurance','ivf-insurance');
+    }
 }
