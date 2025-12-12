@@ -166,9 +166,17 @@ Route::get('/fertility-preservation', [App\Http\Controllers\Frontend\PageControl
 Route::get('/ovulation-calculator', [App\Http\Controllers\Frontend\PageController::class, 'ovulationCalculator'])->name('ovulation-calculator');
 // SuccessStories_final
 Route::get('/success-stories', [App\Http\Controllers\Frontend\PageController::class, 'successStories'])->name('success-stories');
+// start today
 // IVFInsurance_final
 Route::get('/ivf-insurance', [App\Http\Controllers\Frontend\PageController::class, 'ivfInsurance'])->name('ivf-insurance');
-
+// OurPricing_final
+Route::get('/our-pricing', [App\Http\Controllers\Frontend\PageController::class, 'ourPricing'])->name('our-pricing');
+// AcademicsTrainingPage_final
+Route::get('/academics-training', [App\Http\Controllers\Frontend\PageController::class, 'academicsTraining'])->name('academics-training');
+// InternationalPatients_final
+Route::get('/international-patients', [App\Http\Controllers\Frontend\PageController::class, 'internationalPatients'])->name('international-patients');
+// PatientResources_final
+Route::get('/patient-resources', [App\Http\Controllers\Frontend\PageController::class, 'patientResources'])->name('patient-resources');
 
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');

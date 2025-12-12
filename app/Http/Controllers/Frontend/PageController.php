@@ -281,4 +281,24 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.ivf-insurance','ivf-insurance');
     }
+
+    public function ourPricing()
+    {
+        return $this->renderWithSeo('frontend.pages.our-pricing','our-pricing');
+    }
+
+    public function academicsTraining()
+    {
+        return $this->renderWithSeo('frontend.pages.academics-training','academics-training');
+    }
+
+    public function internationalPatients()
+    {
+        return $this->renderWithSeo('frontend.pages.international-patients','international-patients');
+    }
+
+    public function patientResources()
+    {
+        return $this->renderWithSeo('frontend.pages.patient-resources','patient-resources');
+    }
 }
