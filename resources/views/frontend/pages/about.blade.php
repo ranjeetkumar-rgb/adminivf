@@ -196,7 +196,7 @@
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">About <span class="text-yellow-300">India
                         IVF</span>
                 </h1>
-                <p class="text-lg md:text-xl text-white/90">Pioneering fertility care in India with compassion,
+                <p class="text-lg md:text-xl text-white/90 text-justify">Pioneering fertility care in India with compassion,
                     expertise, and advanced technology. Our mission is to help every hopeful parent realize their
                     dreams.
                 </p>
@@ -219,8 +219,7 @@
                                 class="fa-solid fa-bullseye text-3xl"></i></div>
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-800 mb-2">Our Mission</h2>
-                    <p class="text-gray-600 leading-relaxed">To provide accessible, compassionate, and advanced
-                        fertility care that empowers every couple or individual to achieve their dream of parenthood.
+                    <p class="text-gray-600 leading-relaxedm text-justify">To radically transform Fertility healthcare through bold innovation, data-driven solutions, unwavering compassion, and a holistic phygital approach-enabling every hopeful parent to build a healthy family, regardless of barriers.
                     </p>
                 </div>
                 <div
@@ -230,8 +229,7 @@
                         </div>
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-800 mb-2">Our Vision</h2>
-                    <p class="text-gray-600 leading-relaxed">To be recognized as India’s leading fertility center,
-                        setting benchmarks in success, care, innovation, and patient experience.
+                    <p class="text-gray-600 leading-relaxedm text-justify">A world where anyone who wants a child can have one, powered by cutting-edge fertility breakthroughs that continually push the boundaries of science, accessibility, and quality of care.
                     </p>
                 </div>
                 <div
