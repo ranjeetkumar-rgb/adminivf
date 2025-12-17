@@ -77,6 +77,27 @@ class PageController extends BaseController
         return $this->renderWithSeo('frontend.pages.delhi-center', 'delhi-center');
     }
 
+    public function delhiCenterRohini()
+    {
+        return $this->renderWithSeo('frontend.pages.delhi-center-rohini', 'delhi-center-rohini');
+    }
+
+    public function noidaCenter()
+    {
+        return $this->renderWithSeo('frontend.pages.noida-center', 'noida-center');
+    }
+    public function gurugramCenter()
+    {
+        return $this->renderWithSeo('frontend.pages.gurugram-center', 'gurugram-center');
+    }
+    public function ghaziabadCenter()
+    {
+        return $this->renderWithSeo('frontend.pages.ghaziabad-center', 'ghaziabad-center');
+    }
+    public function srinagarCenter()
+    {
+        return $this->renderWithSeo('frontend.pages.srinagar-center', 'srinagar-center');
+    }
     public function UnexplainedInfertility()
     {
         return $this->renderWithSeo('frontend.pages.unexplained-infertility', 'unexplained-infertility');
@@ -267,6 +288,22 @@ class PageController extends BaseController
         return $this->renderWithSeo('frontend.pages.ivf-cost','ivf-cost');
     }
 
+    public function icsiCost()
+    {
+        return $this->renderWithSeo('frontend.pages.icsi-cost','icsi-cost');
+    }
+    public function eggFreezingCost()
+    {
+        return $this->renderWithSeo('frontend.pages.egg-freezing-cost','egg-freezing-cost');
+    }
+    public function iuiCost()
+    {
+        return $this->renderWithSeo('frontend.pages.iui-cost','iui-cost');
+    }
+    public function embryoFreezingCost()
+    {
+        return $this->renderWithSeo('frontend.pages.embryo-freezing-cost','embryo-freezing-cost');
+    }
     public function ovulationCalculator()
     {
         return $this->renderWithSeo('frontend.pages.ovulation-calculator','ovulation-calculator');
@@ -300,5 +337,20 @@ class PageController extends BaseController
     public function patientResources()
     {
         return $this->renderWithSeo('frontend.pages.patient-resources','patient-resources');
+    }
+
+    public function socialEggFreezing()
+    {
+        return $this->renderWithSeo('frontend.pages.social-egg-freezing','social-egg-freezing');
+    }
+
+    public function SpermFreezing()
+    {
+        return $this->renderWithSeo('frontend.pages.sperm-freezing','sperm-freezing');
+    }
+
+    public function embryoFreezing()
+    {
+        return $this->renderWithSeo('frontend.pages.embryo-freezing','embryo-freezing');
     }
 }

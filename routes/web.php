@@ -74,7 +74,12 @@ Route::get('/difficulty-conceiving', [App\Http\Controllers\Frontend\PageControll
 Route::get('female-infertility',[App\Http\Controllers\Frontend\PageController::class, 'femaleInfertility'])->name('female-infertility');
 // maleInfertility_final
 Route::get('male-infertility',[App\Http\Controllers\Frontend\PageController::class, 'maleInfertility'])->name('male-infertility');
-Route::get('delhi-center',[App\Http\Controllers\Frontend\PageController::class, 'delhiCenter'])->name('delhi-center');
+Route::get('delhi-center-basant-lok',[App\Http\Controllers\Frontend\PageController::class, 'delhiCenter'])->name('delhi-center-basant-lok');
+Route::get('delhi-center-rohini',[App\Http\Controllers\Frontend\PageController::class, 'delhiCenterRohini'])->name('delhi-center-rohini');
+Route::get('noida-center',[App\Http\Controllers\Frontend\PageController::class, 'noidaCenter'])->name('noida-center');
+Route::get('gurugram-center',[App\Http\Controllers\Frontend\PageController::class, 'gurugramCenter'])->name('gurugram-center');
+Route::get('ghaziabad-center',[App\Http\Controllers\Frontend\PageController::class, 'ghaziabadCenter'])->name('ghaziabad-center');
+Route::get('srinagar-center',[App\Http\Controllers\Frontend\PageController::class, 'srinagarCenter'])->name('srinagar-center');
 // UnexplainedInfertility_final
 Route::get('unexplained-infertility',[App\Http\Controllers\Frontend\PageController::class, 'UnexplainedInfertility'])->name('unexplained-infertility');
 // PregnancyLossCarePage
@@ -160,6 +165,10 @@ Route::get('/fertility-tests-and-assessments', [App\Http\Controllers\Frontend\Pa
 Route::get('/stress-and-mind-body', [App\Http\Controllers\Frontend\PageController::class, 'stressAndMindBody'])->name('stress-and-mind-body');
 // IVFCost_final
 Route::get('/ivf-cost', [App\Http\Controllers\Frontend\PageController::class, 'ivfCost'])->name('ivf-cost');
+Route::get('/icsi-cost', [App\Http\Controllers\Frontend\PageController::class, 'icsiCost'])->name('icsi-cost');
+Route::get('/iui-cost', [App\Http\Controllers\Frontend\PageController::class, 'iuiCost'])->name('iui-cost');
+Route::get('/egg-freezing-cost', [App\Http\Controllers\Frontend\PageController::class, 'eggFreezingCost'])->name('ivf-cost');
+Route::get('/embryo-freezing-cost', [App\Http\Controllers\Frontend\PageController::class, 'embryoFreezingCost'])->name('embryo-freezing-cost');
 // FertilityPreservation
 Route::get('/fertility-preservation', [App\Http\Controllers\Frontend\PageController::class, 'fertilityPreservation'])->name('fertility-preservation');
 // OvulationCalculator_final
@@ -177,6 +186,12 @@ Route::get('/academics-training', [App\Http\Controllers\Frontend\PageController:
 Route::get('/international-patients', [App\Http\Controllers\Frontend\PageController::class, 'internationalPatients'])->name('international-patients');
 // PatientResources_final
 Route::get('/patient-resources', [App\Http\Controllers\Frontend\PageController::class, 'patientResources'])->name('patient-resources');
+// SocialEggFreezing_final
+Route::get('/social-egg-freezing', [App\Http\Controllers\Frontend\PageController::class, 'socialEggFreezing'])->name('social-egg-freezing');
+// SpermFreezing_final
+Route::get('/sperm-freezing', [App\Http\Controllers\Frontend\PageController::class, 'SpermFreezing'])->name('sperm-freezing');
+// EmbryoFreezing_final
+Route::get('/embryo-freezing', [App\Http\Controllers\Frontend\PageController::class, 'embryoFreezing'])->name('embryo-freezing');
 
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');
