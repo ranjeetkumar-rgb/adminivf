@@ -353,4 +353,14 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.embryo-freezing','embryo-freezing');
     }
+
+    public function eggFreezing()
+    {
+        return $this->renderWithSeo('frontend.pages.egg-freezing','egg-freezing');
+    }
+
+    public function oncoFertility()
+    {
+        return $this->renderWithSeo('frontend.pages.onco-fertility','onco-fertility');
+    }
 }

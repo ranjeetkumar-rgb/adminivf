@@ -192,6 +192,10 @@ Route::get('/social-egg-freezing', [App\Http\Controllers\Frontend\PageController
 Route::get('/sperm-freezing', [App\Http\Controllers\Frontend\PageController::class, 'SpermFreezing'])->name('sperm-freezing');
 // EmbryoFreezing_final
 Route::get('/embryo-freezing', [App\Http\Controllers\Frontend\PageController::class, 'embryoFreezing'])->name('embryo-freezing');
+// EggFreezing_final
+Route::get('/egg-freezing', [App\Http\Controllers\Frontend\PageController::class, 'eggFreezing'])->name('egg-freezing');
+// OncoFertility_final
+Route::get('/onco-fertility', [App\Http\Controllers\Frontend\PageController::class, 'oncoFertility'])->name('onco-fertility');
 
 
 // Route::get('/services', [App\Http\Controllers\Frontend\PageController::class, 'services'])->name('services');
