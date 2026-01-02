@@ -99,6 +99,80 @@
          </style>
       </section>
       <section class="relative py-12 bg-gradient-to-b from-pink-50 via-white to-blue-50 overflow-hidden">
+            <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Every <span class="text-brand-pink">Fertility Challenge</span> Deserves the Right Care
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-12">We combine empathy, expertise, and innovation to guide you toward parenthood — with care made just for you.
+                </p>
+
+                <div class="relative overflow-hidden">
+                    <div id="fertilityChallengesSlider" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth no-scrollbar">
+
+                        <div class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] p-[2px] bg-gradient-to-tr from-pink-200 to-blue-200 rounded-3xl snap-start hover:shadow-xl transition-all duration-300">
+                            <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center h-full">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-400 to-red-300 flex items-center justify-center mb-4 text-2xl">
+                                    💗
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Difficulty Conceiving</h3>
+                                <p class="text-gray-500 text-sm h-16">Personalized IVF programs to help couples achieve their dream of parenthood.
+                                </p>
+                                <a href="#" class="bg-brand-pink text-white px-6 py-1 rounded-full font-semibold text-lg shadow-lg mt-2 hover:bg-pink-600 transition-colors">Know More</a>
+                            </div>
+                        </div>
+
+                        <div class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] p-[2px] bg-gradient-to-tr from-blue-200 to-cyan-200 rounded-3xl snap-start hover:shadow-xl transition-all duration-300">
+                            <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center h-full">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-blue-400 to-cyan-300 flex items-center justify-center mb-4 text-2xl">
+                                    🌈
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Female Infertility</h3>
+                                <p class="text-gray-500 text-sm h-16">Gentle IUI care for couples seeking a more natural conception path.
+                                </p>
+                                <a href="#" class="bg-brand-pink text-white px-6 py-1 rounded-full font-semibold text-lg shadow-lg mt-2 hover:bg-pink-600 transition-colors">Know More</a>
+                            </div>
+                        </div>
+
+                        <div class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] p-[2px] bg-gradient-to-tr from-purple-200 to-pink-200 rounded-3xl snap-start hover:shadow-xl transition-all duration-300">
+                            <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center h-full">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-purple-400 to-pink-300 flex items-center justify-center mb-4 text-2xl">
+                                    🌸
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Unexplained Infertility</h3>
+                                <p class="text-gray-500 text-sm h-16">Preserve your fertility with leading-edge freezing and storage facilities.
+                                </p>
+                                <a href="#" class="bg-brand-pink text-white px-6 py-1 rounded-full font-semibold text-lg shadow-lg mt-2 hover:bg-pink-600 transition-colors">Know More</a>
+                            </div>
+                        </div>
+
+                        <div class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] p-[2px] bg-gradient-to-tr from-green-200 to-lime-200 rounded-3xl snap-start hover:shadow-xl transition-all duration-300">
+                            <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center h-full">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-green-400 to-lime-300 flex items-center justify-center mb-4 text-2xl">
+                                    👶
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Male Infertility</h3>
+                                <p class="text-gray-500 text-sm h-16">Comprehensive male fertility diagnosis and modern treatment options.
+                                </p>
+                                <a href="#" class="bg-brand-pink text-white px-6 py-1 rounded-full font-semibold text-lg shadow-lg mt-2 hover:bg-pink-600 transition-colors">Know More</a>
+                            </div>
+                        </div>
+
+                        <div class="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] p-[2px] bg-gradient-to-tr from-orange-200 to-yellow-200 rounded-3xl snap-start hover:shadow-xl transition-all duration-300">
+                            <div class="bg-white rounded-3xl p-6 flex flex-col items-center text-center h-full">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-orange-400 to-yellow-300 flex items-center justify-center mb-4 text-2xl">
+                                    🌿
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">PCOS Management</h3>
+                                <p class="text-gray-500 text-sm h-16">End-to-end PCOS fertility care with hormonal balance and wellness focus.
+                                </p>
+                                <a href="#" class="bg-brand-pink text-white px-6 py-1 rounded-full font-semibold text-lg shadow-lg mt-2 hover:bg-pink-600 transition-colors">Know More</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+     </section>
+      {{-- <section class="relative py-12 bg-gradient-to-b from-pink-50 via-white to-blue-50 overflow-hidden">
          <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Every <span class="text-brand-pink">Fertility
                Challenge</span> Deserves the Right Care
@@ -191,7 +265,7 @@
                </div>
             </div>
          </div>
-      </section>
+      </section> --}}
       <section class="relative bg-white py-12 overflow-hidden">
          <div class="container mx-auto px-6">
             <div class="text-center">

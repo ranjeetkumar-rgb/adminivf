@@ -363,4 +363,23 @@ class PageController extends BaseController
     {
         return $this->renderWithSeo('frontend.pages.onco-fertility','onco-fertility');
     }
+
+    public function success()
+    {
+        return view('frontend.pages.success');
+    }
+
+    public function confirmation()
+    {
+        // You can pass booking data here if needed
+        // For now, we'll use placeholder data
+        $booking = (object) [
+            'id' => rand(10000, 99999),
+            'appointment_date' => now()->addDays(7)->format('Y-m-d H:i:s'),
+            'service' => 'Fertility Consultation',
+            'location' => 'Delhi Center'
+        ];
+
+        return view('frontend.pages.confirmation', compact('booking'));
+    }
 }

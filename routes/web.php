@@ -388,6 +388,10 @@ Route::get('/debug/page-seo', function() {
 })->name('debug.page-seo');
 
 
+// System Pages
+Route::get('/success', [App\Http\Controllers\Frontend\PageController::class, 'success'])->name('success');
+Route::get('/confirmation', [App\Http\Controllers\Frontend\PageController::class, 'confirmation'])->name('confirmation');
+
 // Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 // Route::get('{any}', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
 

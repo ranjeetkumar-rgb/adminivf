@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="hidden md:block bg-brand-blue hover:bg-brand-pink text-white px-4 md:px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all text-sm md:text-base">Shop</button>
+                <a href="{{ route('shop') }}" class="hidden md:block bg-brand-blue hover:bg-brand-pink text-white px-4 md:px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all text-sm md:text-base text-center">Shop</a>
                 <div class="flex flex-row items-center space-x-2 md:space-x-3">
                     @if($globalSettings && $globalSettings->facebook_url)
                     <a href="{{ $globalSettings->facebook_url }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -100,46 +100,46 @@
                             <div>
                                 <h4 class="text-md font-semibold mb-2 text-brand-pink">Fertility Issues</h4>
                                 <ul class="space-y-1 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">Difficulty Conceiving</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Female Infertility</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Male Infertility</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Unexplained Infertility</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Pregnancy Loss Care</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Failed IVF Solutions</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Second Opinion</a></li>
+                                    <li><a href="{{ route('difficulty-conceiving') }}" class="hover:text-pink-500">Difficulty Conceiving</a></li>
+                                    <li><a href="{{ route('female-infertility') }}" class="hover:text-pink-500">Female Infertility</a></li>
+                                    <li><a href="{{ route('male-infertility') }}" class="hover:text-pink-500">Male Infertility</a></li>
+                                    <li><a href="{{ route('unexplained-infertility') }}" class="hover:text-pink-500">Unexplained Infertility</a></li>
+                                    <li><a href="{{ route('pregnancy-loss-care') }}" class="hover:text-pink-500">Pregnancy Loss Care</a></li>
+                                    <li><a href="{{ route('failed-ivf-solutions') }}" class="hover:text-pink-500">Failed IVF Solutions</a></li>
+                                    <li><a href="{{ route('second-opinion') }}" class="hover:text-pink-500">Second Opinion</a></li>
                                 </ul>
                             </div>
                             <div>
                                 <h4 class="text-md font-semibold mb-2 text-brand-pink">IVF &amp; Related Treatments</h4>
                                 <ul class="space-y-1 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">IVF</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">ICSI</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">IUI</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Donor Egg Program</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Donor Sperm Program</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Surrogacy</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">IVF for Single Mothers</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">IVF for HIV-positive Couples</a></li>
+                                    <li><a href="{{ route('ivf') }}" class="hover:text-pink-500">IVF</a></li>
+                                    <li><a href="{{ route('icsi') }}" class="hover:text-pink-500">ICSI</a></li>
+                                    <li><a href="{{ route('iui') }}" class="hover:text-pink-500">IUI</a></li>
+                                    <li><a href="{{ route('donor-egg') }}" class="hover:text-pink-500">Donor Egg Program</a></li>
+                                    <li><a href="{{ route('donor-sperm') }}" class="hover:text-pink-500">Donor Sperm Program</a></li>
+                                    <li><a href="{{ route('surrogacy') }}" class="hover:text-pink-500">Surrogacy</a></li>
+                                    <li><a href="{{ route('ivf-single-mothers') }}" class="hover:text-pink-500">IVF for Single Mothers</a></li>
+                                    <li><a href="{{ route('ivf-hiv') }}" class="hover:text-pink-500">IVF for HIV-positive Couples</a></li>
                                 </ul>
                             </div>
                             <div>
                                 <h4 class="text-md font-semibold mb-2 text-brand-pink">Advanced Techniques</h4>
                                 <ul class="space-y-1 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">Blastocyst Transfer</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Embryo Glue</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Laser Assisted Hatching</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Time-Lapse Embryo Monitoring</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Double Witnessing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">MACS</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Microfluidic Sperm Sorting</a></li>
+                                    <li><a href="{{ route('blasto-cyst-transfer') }}" class="hover:text-pink-500">Blastocyst Transfer</a></li>
+                                    <li><a href="{{ route('embryo-glue') }}" class="hover:text-pink-500">Embryo Glue</a></li>
+                                    <li><a href="{{ route('laser-assisted-hatching') }}" class="hover:text-pink-500">Laser Assisted Hatching</a></li>
+                                    <li><a href="{{ route('intelligent-womb') }}" class="hover:text-pink-500">Time-Lapse Embryo Monitoring</a></li>
+                                    <li><a href="{{ route('double-witnessing') }}" class="hover:text-pink-500">Double Witnessing</a></li>
+                                    <li><a href="{{ route('macs') }}" class="hover:text-pink-500">MACS</a></li>
+                                    <li><a href="{{ route('oo-active') }}" class="hover:text-pink-500">Microfluidic Sperm Sorting</a></li>
                                 </ul><br>
                                 <h5 class="text-md font-semibold mb-2 text-brand-pink">Male Surgical Procedures</h5>
                                 <ul class="space-y-1 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">TESA</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">PESA</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Micro-TESE</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Testicular Mapping</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Surgical Innovations / Stem Cell Research</a></li>
+                                    <li><a href="{{ route('tesa') }}" class="hover:text-pink-500">TESA</a></li>
+                                    <li><a href="{{ route('pesa') }}" class="hover:text-pink-500">PESA</a></li>
+                                    <li><a href="{{ route('micro-tese') }}" class="hover:text-pink-500">Micro-TESE</a></li>
+                                    <li><a href="{{ route('testicular-mapping') }}" class="hover:text-pink-500">Testicular Mapping</a></li>
+                                    <li><a href="{{ route('surgical-innovations') }}" class="hover:text-pink-500">Surgical Innovations / Stem Cell Research</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -153,12 +153,12 @@
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-2 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500 ">Egg Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500 ">Sperm Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500 ">Embryo Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500 ">Fertility Preservation for Cancer Patients</a></li>
-                                    <li><a href="#" class="hover:text-pink-500 ">Social Egg Freezing</a></li>
-                                    <li><a href="#" class="hover:text-pink-500 ">Storage &amp; Legal Guidelines</a></li>
+                                    <li><a href="{{ route('egg-freezing') }}" class="hover:text-pink-500 ">Egg Freezing</a></li>
+                                    <li><a href="{{ route('sperm-freezing') }}" class="hover:text-pink-500 ">Sperm Freezing</a></li>
+                                    <li><a href="{{ route('embryo-freezing') }}" class="hover:text-pink-500 ">Embryo Freezing</a></li>
+                                    <li><a href="{{ route('onco-fertility') }}" class="hover:text-pink-500 ">Fertility Preservation for Cancer Patients</a></li>
+                                    <li><a href="{{ route('social-egg-freezing') }}" class="hover:text-pink-500 ">Social Egg Freezing</a></li>
+                                    <li><a href="{{ route('fertility-preservation') }}" class="hover:text-pink-500 ">Storage &amp; Legal Guidelines</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -172,11 +172,11 @@
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-2 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">Fertility Tests &amp; Assessments</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">BMI Calculator &amp; Weight Management</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Fertility Diet &amp; Lifestyle Consultations</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Stress &amp; Mind-Body Support</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Fertility Supplements &amp; Products</a></li>
+                                    <li><a href="{{ route('fertility-tests-and-assessments') }}" class="hover:text-pink-500">Fertility Tests &amp; Assessments</a></li>
+                                    <li><a href="{{ route('fertility-wellness') }}" class="hover:text-pink-500">BMI Calculator &amp; Weight Management</a></li>
+                                    <li><a href="{{ route('fertility-diet') }}" class="hover:text-pink-500">Fertility Diet &amp; Lifestyle Consultations</a></li>
+                                    <li><a href="{{ route('stress-and-mind-body') }}" class="hover:text-pink-500">Stress &amp; Mind-Body Support</a></li>
+                                    <li><a href="{{ route('fertility-wellness') }}" class="hover:text-pink-500">Fertility Supplements &amp; Products</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -190,22 +190,22 @@
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-2 text-gray-600">
-                                    <li><a href="#" class="hover:text-pink-500">Delhi – South (Vasant Lok)</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Delhi – North (Rohini)</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Gurugram</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Noida</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Ghaziabad</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Srinagar</a></li>
+                                    <li><a href="{{ route('delhi-center-basant-lok') }}" class="hover:text-pink-500">Delhi – South (Vasant Lok)</a></li>
+                                    <li><a href="{{ route('delhi-center-rohini') }}" class="hover:text-pink-500">Delhi – North (Rohini)</a></li>
+                                    <li><a href="{{ route('gurugram-center') }}" class="hover:text-pink-500">Gurugram</a></li>
+                                    <li><a href="{{ route('noida-center') }}" class="hover:text-pink-500">Noida</a></li>
+                                    <li><a href="{{ route('ghaziabad-center') }}" class="hover:text-pink-500">Ghaziabad</a></li>
+                                    <li><a href="{{ route('srinagar-center') }}" class="hover:text-pink-500">Srinagar</a></li>
                                 </ul>
                             </div>
                         </div>
                         </div>
                     </div>
                 </div>
-                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Our Pricing</span>
-                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Patient Resources</span>
-                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">Academics</span>
-                <span class="text-gray-700 hover:text-brand-pink font-medium cursor-pointer whitespace-nowrap">International Patients</span>
+                <a href="{{ route('our-pricing') }}" class="text-gray-700 hover:text-brand-pink font-medium whitespace-nowrap">Our Pricing</a>
+                <a href="{{ route('patient-resources') }}" class="text-gray-700 hover:text-brand-pink font-medium whitespace-nowrap">Patient Resources</a>
+                <a href="{{ route('academics-training') }}" class="text-gray-700 hover:text-brand-pink font-medium whitespace-nowrap">Academics</a>
+                <a href="{{ route('international-patients') }}" class="text-gray-700 hover:text-brand-pink font-medium whitespace-nowrap">International Patients</a>
 
                 <div class="group relative">
                     <button id="desktopMenuBtn" class="text-gray-700 hover:text-brand-pink focus:outline-none">
@@ -218,10 +218,10 @@
                         <div class="grid gap-6 w-full">
                             <div>
                                 <ul class="space-y-3">
-                                    <li><a href="#" class="hover:text-pink-500">Franchise Opportunities</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">Corporate Health Talks</a></li>
+                                    <li><a href="{{ route('franchise-opportunities') }}" class="hover:text-pink-500">Franchise Opportunities</a></li>
+                                    <li><a href="{{ route('corporate-health-talks') }}" class="hover:text-pink-500">Corporate Health Talks</a></li>
                                     <li><a href="{{ url('blog') }}" class="hover:text-pink-500">Blog</a></li>
-                                    <li><a href="#" class="hover:text-pink-500">About Us</a></li>
+                                    <li><a href="{{ route('about') }}" class="hover:text-pink-500">About Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -245,13 +245,13 @@
                         <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
                     </button>
                     <div class="hidden submenu space-y-1 pl-4">
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Difficulty Conceiving</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Female Infertility</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Male Infertility</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Unexplained Infertility</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Pregnancy Loss Care</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Failed IVF Solutions</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Second Opinion</a>
+                        <a href="{{ route('difficulty-conceiving') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Difficulty Conceiving</a>
+                        <a href="{{ route('female-infertility') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Female Infertility</a>
+                        <a href="{{ route('male-infertility') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Male Infertility</a>
+                        <a href="{{ route('unexplained-infertility') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Unexplained Infertility</a>
+                        <a href="{{ route('pregnancy-loss-care') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Pregnancy Loss Care</a>
+                        <a href="{{ route('failed-ivf-solutions') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Failed IVF Solutions</a>
+                        <a href="{{ route('second-opinion') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Second Opinion</a>
                     </div>
 
                     <!-- IVF & Related Treatments -->
@@ -260,14 +260,14 @@
                         <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
                     </button>
                     <div class="hidden submenu space-y-1 pl-4">
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">ICSI</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IUI</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Donor Egg Program</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Donor Sperm Program</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surrogacy</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for Single Mothers</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for HIV-positive Couples</a>
+                        <a href="{{ route('ivf') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF</a>
+                        <a href="{{ route('icsi') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">ICSI</a>
+                        <a href="{{ route('iui') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IUI</a>
+                        <a href="{{ route('donor-egg') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Donor Egg Program</a>
+                        <a href="{{ route('donor-sperm') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Donor Sperm Program</a>
+                        <a href="{{ route('surrogacy') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surrogacy</a>
+                        <a href="{{ route('ivf-single-mothers') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for Single Mothers</a>
+                        <a href="{{ route('ivf-hiv') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">IVF for HIV-positive Couples</a>
                     </div>
 
                     <!-- Advanced Techniques -->
@@ -276,13 +276,13 @@
                         <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
                     </button>
                     <div class="hidden submenu space-y-1 pl-4">
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Blastocyst Transfer</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Embryo Glue</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Laser Assisted Hatching</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Time-Lapse Embryo Monitoring</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Double Witnessing</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">MACS</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Microfluidic Sperm Sorting</a>
+                        <a href="{{ route('blasto-cyst-transfer') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Blastocyst Transfer</a>
+                        <a href="{{ route('embryo-glue') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Embryo Glue</a>
+                        <a href="{{ route('laser-assisted-hatching') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Laser Assisted Hatching</a>
+                        <a href="{{ route('intelligent-womb') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Time-Lapse Embryo Monitoring</a>
+                        <a href="{{ route('double-witnessing') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Double Witnessing</a>
+                        <a href="{{ route('macs') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">MACS</a>
+                        <a href="{{ route('oo-active') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Microfluidic Sperm Sorting</a>
                     </div>
 
                     <!-- Male Surgical Procedures -->
@@ -291,11 +291,11 @@
                         <i class="fa-solid fa-chevron-down transition-transform duration-300 text-xs"></i>
                     </button>
                     <div class="hidden submenu space-y-1 pl-4">
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">TESA</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">PESA</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Micro-TESE</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Testicular Mapping</a>
-                        <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surgical Innovations / Stem Cell Research</a>
+                        <a href="{{ route('tesa') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">TESA</a>
+                        <a href="{{ route('pesa') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">PESA</a>
+                        <a href="{{ route('micro-tese') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Micro-TESE</a>
+                        <a href="{{ route('testicular-mapping') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Testicular Mapping</a>
+                        <a href="{{ route('surgical-innovations') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Surgical Innovations / Stem Cell Research</a>
                     </div>
                 </div>
 
@@ -307,12 +307,12 @@
                     <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                 </button>
                 <div class="hidden submenu space-y-1 pl-4">
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Egg Freezing</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Sperm Freezing</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Embryo Freezing</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Preservation for Cancer Patients</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Social Egg Freezing</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Storage &amp; Legal Guidelines</a>
+                    <a href="{{ route('egg-freezing') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Egg Freezing</a>
+                    <a href="{{ route('sperm-freezing') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Sperm Freezing</a>
+                    <a href="{{ route('embryo-freezing') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Embryo Freezing</a>
+                    <a href="{{ route('onco-fertility') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Preservation for Cancer Patients</a>
+                    <a href="{{ route('social-egg-freezing') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Social Egg Freezing</a>
+                    <a href="{{ route('fertility-preservation') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Storage &amp; Legal Guidelines</a>
                 </div>
 
                 <hr class="my-2">
@@ -323,11 +323,11 @@
                     <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                 </button>
                 <div class="hidden submenu space-y-1 pl-4">
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Tests &amp; Assessments</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">BMI Calculator &amp; Weight Management</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Diet &amp; Lifestyle Consultations</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Stress &amp; Mind-Body Support</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Supplements &amp; Products</a>
+                    <a href="{{ route('fertility-tests-and-assessments') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Tests &amp; Assessments</a>
+                    <a href="{{ route('fertility-wellness') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">BMI Calculator &amp; Weight Management</a>
+                    <a href="{{ route('fertility-diet') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Diet &amp; Lifestyle Consultations</a>
+                    <a href="{{ route('stress-and-mind-body') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Stress &amp; Mind-Body Support</a>
+                    <a href="{{ route('fertility-wellness') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Fertility Supplements &amp; Products</a>
                 </div>
 
                 <hr class="my-2">
@@ -338,23 +338,23 @@
                     <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                 </button>
                 <div class="hidden submenu space-y-1 pl-4">
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Delhi – South (Vasant Lok)</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Delhi – North (Rohini)</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Gurugram</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Noida</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Ghaziabad</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Srinagar</a>
+                    <a href="{{ route('delhi-center-basant-lok') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Delhi – South (Vasant Lok)</a>
+                    <a href="{{ route('delhi-center-rohini') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Delhi – North (Rohini)</a>
+                    <a href="{{ route('gurugram-center') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Gurugram</a>
+                    <a href="{{ route('noida-center') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Noida</a>
+                    <a href="{{ route('ghaziabad-center') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Ghaziabad</a>
+                    <a href="{{ route('srinagar-center') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Srinagar</a>
                 </div>
 
                 <hr class="my-2">
 
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Our Pricing</a>
+                <a href="{{ route('our-pricing') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Our Pricing</a>
                 <hr class="my-2">
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Patient Resources</a>
+                <a href="{{ route('patient-resources') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Patient Resources</a>
                 <hr class="my-2">
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Academics</a>
+                <a href="{{ route('academics-training') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Academics</a>
                 <hr class="my-2">
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">International Patients</a>
+                <a href="{{ route('international-patients') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">International Patients</a>
                 <hr class="my-2">
 
                 <!-- More Menu -->
@@ -363,10 +363,10 @@
                     <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                 </button>
                 <div class="hidden submenu space-y-1 pl-4">
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Franchise Opportunities</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Corporate Health Talks</a>
+                    <a href="{{ route('franchise-opportunities') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Franchise Opportunities</a>
+                    <a href="{{ route('corporate-health-talks') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Corporate Health Talks</a>
                     <a href="{{ url('blog') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">Blog</a>
-                    <a href="#" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">About Us</a>
+                    <a href="{{ route('about') }}" class="block py-1.5 text-gray-600 hover:text-brand-pink text-sm">About Us</a>
                 </div>
             </div>
         </nav>
