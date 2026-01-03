@@ -111,12 +111,11 @@ class TestimonialController extends Controller
     public function destroy(string $id)
     {
         $testimonial = Testimonial::findOrFail($id);
-        
-        // Delete image if exists
+
         if ($testimonial->image) {
             $testimonial->deleteImage('image');
         }
-        
+
         $testimonial->delete();
         return redirect()->route('testimonial.index')->with('success', 'Testimonial deleted successfully.');
     }

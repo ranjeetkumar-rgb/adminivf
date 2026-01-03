@@ -153,7 +153,7 @@ class SiteSettingController extends Controller
         }
 
         $siteSetting->update($validated);
-        Cache::forget('site_settings');
+        Cache::forget('site_settings');     
         return redirect()->route('admin.site-settings.index')->with('success', 'Site settings updated successfully.');
     }
 

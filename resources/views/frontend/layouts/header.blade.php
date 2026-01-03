@@ -1,14 +1,14 @@
 <header id="header" class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50 overflow-visible">
-    <div class="container mx-auto px-4 mb-4 md:mb-0 md:px-12 overflow-visible">
-        <div class="flex flex-col md:flex-row md:items-center justify-between  space-y-4 md:space-y-0">
-            <div class="flex items-center justify-between px-4 md:px-0 py-2 bg-white">
+    <div class="container mx-auto px-4  md:mb-0 md:px-12 overflow-visible">
+        <div class="flex flex-col md:flex-row md:items-center justify-between  space-y-1 md:space-y-0">
+            <div class="flex items-center justify-between px-4 md:px-0 py-1 bg-white">
                 <div class="flex items-center">
                     <a href="{{ url('/') }}" class="flex items-center">
                         @if($globalSettings && $globalSettings->site_logo)
-                            <img src="{{ asset('storage/' . $globalSettings->site_logo) }}" alt="{{ $globalSettings->site_name ?? 'India IVF' }}" style="height: 100px !important" class="h-10 md:h-16 w-auto object-contain">
+                            <img src="{{ asset('storage/' . $globalSettings->site_logo) }}" alt="{{ $globalSettings->site_name ?? 'India IVF' }}" class="h-12 md:h-16 w-auto object-contain">
                         @else
-                            <img src="{{ asset('assets/images/No-1-IVF-Centre-IndiaIVF.webp') }}" alt="India IVF Logo" class="h-10 md:h-16 w-auto object-contain">
-                        @endif
+                            <img src="{{ asset('assets/images/No-1-IVF-Centre-IndiaIVF.webp') }}" alt="India IVF Logo" class="h-12 md:h-16 w-auto object-contain">
+                           @endif
                     </a>
                 </div>
                 <div class="md:hidden">
@@ -19,7 +19,7 @@
                     </button>
                 </div>
             </div>
-            <div class="flex items-center space-x-2 md:space-x-4 w-full md:w-auto">
+            <div class="hidden md:flex items-center space-x-2 md:space-x-4 w-full md:w-auto">
                 <div class="relative block w-full md:w-auto">
                     <input
                         id="article-search-input"
@@ -229,7 +229,7 @@
                     </div>
                 </div>
             </div>
-            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white py-4 space-y-2 max-h-[calc(100vh-200px)] overflow-y-auto">
+            <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white py-2 space-y-2 max-h-[calc(100vh-180px)] overflow-y-auto">
                 <a href="{{ url('/') }}" class="block px-4 py-2 text-gray-700 hover:text-brand-pink font-medium">Home</a>
                 <hr class="my-2">
 
